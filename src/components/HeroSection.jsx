@@ -1,6 +1,7 @@
 // src/components/HeroSection.jsx
 import React from 'react';
 import { Button } from './Button';
+import { Navbar } from './Navbar';
 import { TrustBanner } from './TrustBanner';
 import { ComparisonTable } from './ComparisonTable';
 import { ReviewsCarousel } from './ReviewsCarousel';
@@ -10,8 +11,11 @@ import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
 export function HeroSection() {
   return (
     <div className="bg-white">
+      <Navbar />
       {/* Trust Bar (Top) */}
-      <TrustBanner />
+      <div className="mt-16 md:mt-20">
+        <TrustBanner />
+      </div>
 
       <section className="relative overflow-hidden pt-12 pb-16 lg:pt-24 lg:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,13 +60,13 @@ export function HeroSection() {
             <div className="order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left relative z-20 overflow-visible w-full">
               <div className="flex flex-col items-center lg:items-start mb-6 w-full -ml-4 sm:-ml-8 lg:-ml-12 pl-4 sm:pl-8 lg:pl-12">
 
-                {/* Review Summary & Trust Signals - SLIM DESIGN */}
+                {/* Review Summary & Trust Signals - MINIMAL DESIGN (NO BACKGROUND) */}
                 <div className="flex flex-col items-center lg:items-start mb-4">
-                  <div className="flex items-center gap-3 px-4 py-1.5 bg-white/60 backdrop-blur-md rounded-full border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
+                  <div className="flex items-center gap-4 py-1 transition-all duration-300">
                     <img 
                       src={mioDottoreLogo} 
                       alt="MioDottore" 
-                      className="h-8 sm:h-9 w-auto object-contain flex-shrink-0" 
+                      className="h-8 sm:h-9 w-auto object-contain flex-shrink-0 transition-all" 
                     />
                     <div className="w-[1px] h-4 bg-slate-200"></div>
                     <div className="flex items-center gap-2">
@@ -77,7 +81,7 @@ export function HeroSection() {
                       </div>
                     </div>
                     <div className="w-[1px] h-4 bg-slate-200"></div>
-                    <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-tighter">150+ RECENSIONI</span>
+                    <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-widest">150+ RECENSIONI</span>
                   </div>
                 </div>
 
@@ -130,26 +134,14 @@ export function HeroSection() {
                 </Button>
               </div>
 
-              {/* Rassicurazioni / Risk Reversals */}
-              <div className="mt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 text-sm text-slate-500 font-medium">
-                <div className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  Nessun abbonamento vincolante
-                </div>
-                <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-slate-300"></div>
-                <div className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  Percorso 100% su misura
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Reviews Section Anchor */}
+      <section id="recensioni" className="bg-slate-50">
+        {/* Placeholder or existing reviews component integration if needed */}
       </section>
     </div>
   );
