@@ -68,42 +68,52 @@ export function ReviewsCarousel() {
         {[...reviews, ...reviews].map((review, index) => (
           <div 
             key={`${review.id}-${index}`} 
-            className="w-[280px] bg-white border border-slate-100 shadow-sm rounded-xl p-4 mx-2 flex-shrink-0 flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:border-green-100"
+            className="w-[280px] bg-white border border-slate-100 rounded-2xl p-5 mx-3 flex-shrink-0 flex flex-col justify-between relative overflow-hidden shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]"
           >
-            <div>
+            {/* Very subtile elegant gradient hint at the bottom right */}
+            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl"></div>
+            
+            <div className="relative z-10">
               {/* Header: MioDottore Logo (Left) & Verification Chip (Right) */}
-              <div className="flex justify-between items-center mb-3">
-                <img src={mioDottoreLogo} alt="MioDottore" className="h-8 sm:h-9 w-auto object-contain" />
+              <div className="flex justify-between items-center mb-5">
+                <img 
+                  src={mioDottoreLogo} 
+                  alt="MioDottore" 
+                  className="h-10 sm:h-12 w-auto object-contain transition-all duration-500 opacity-100" 
+                />
                 {review.verified && (
-                  <div className="flex items-center gap-1 bg-green-50 px-2 py-1 rounded-full border border-green-100">
-                    <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <div className="flex items-center gap-1 bg-emerald-500/10 px-2 py-1 rounded-lg border border-emerald-500/20">
+                    <svg className="w-3 h-3 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-[9px] font-bold text-green-700 tracking-wide uppercase">Verificata</span>
+                    <span className="text-[10px] font-bold text-emerald-700 tracking-tight uppercase">Verificata</span>
                   </div>
                 )}
               </div>
               
               {/* Testimonial Text */}
-              <p className="text-slate-600 text-[14px] leading-relaxed mb-4 line-clamp-3 italic text-left">
-                "{review.text}"
-              </p>
+              <div className="relative">
+                <span className="absolute -top-1 -left-1 text-2xl text-emerald-500/10 font-serif">“</span>
+                <p className="text-slate-600 text-[13px] leading-relaxed mb-6 line-clamp-5 italic text-left relative z-10 pl-2">
+                  {review.text}
+                </p>
+              </div>
             </div>
             
             {/* User Info */}
-            <div className="flex items-center gap-3 mt-auto pt-3 border-t border-slate-100 text-left">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-100 to-emerald-200 flex items-center justify-center text-green-800 font-bold shadow-inner flex-shrink-0 text-sm">
+            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100/80 text-left">
+              <div className="w-8 h-8 rounded-lg bg-emerald-50/50 border border-emerald-100/50 flex items-center justify-center text-emerald-600/40 font-bold flex-shrink-0 text-xs shadow-sm">
                 {review.name.charAt(0)}
               </div>
               <div className="flex flex-col flex-grow overflow-hidden">
-                <div className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-2 w-full">
                   <span className="text-[13px] font-bold text-slate-800 truncate leading-tight">{review.name}</span>
-                  <div className="flex text-[#FFC107] text-[12px] ml-2">
+                  <div className="flex text-amber-400 text-[10px] flex-shrink-0">
                     {'★'.repeat(5)}
                   </div>
                 </div>
-                <span className="text-[11px] font-semibold text-[#00b398] truncate mt-0.5">{review.service}</span>
-                {review.date && <span className="text-[9px] text-slate-400 mt-0.5">{review.date}</span>}
+                <span className="text-[11px] font-semibold text-emerald-600 truncate mt-0.5">{review.service}</span>
+                {review.date && <span className="text-[9px] text-slate-400 mt-0.5 font-medium">{review.date}</span>}
               </div>
             </div>
           </div>
