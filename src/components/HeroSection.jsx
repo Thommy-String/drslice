@@ -54,19 +54,15 @@ export function HeroSection() {
                 {/* Design element - overlapping graphic */}
                 <div className="absolute top-10 -left-6 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl z-20"></div>
               </div>
-            </div>
 
-            {/* Content Left / Top -> Now Bottom / Second in flow */}
-            <div className="order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left relative z-20 overflow-visible w-full">
-              <div className="flex flex-col items-center lg:items-start mb-6 w-full -ml-4 sm:-ml-8 lg:-ml-12 pl-4 sm:pl-8 lg:pl-12">
-
-                {/* Review Summary & Trust Signals - MINIMAL DESIGN (NO BACKGROUND) */}
-                <div className="flex flex-col items-center lg:items-start mb-4">
-                  <div className="flex items-center gap-4 py-1 transition-all duration-300">
+              {/* Review Summary & Trust Signals - SPOSTATO SOTTO L'IMMAGINE */}
+              <div className="mt-4 flex justify-center">
+                <div className="flex items-center gap-4 py-1">
+                  <div className="flex items-center gap-3">
                     <img 
                       src={mioDottoreLogo} 
                       alt="MioDottore" 
-                      className="h-8 sm:h-9 w-auto object-contain flex-shrink-0 transition-all" 
+                      className="h-7 sm:h-8 w-auto object-contain flex-shrink-0" 
                     />
                     <div className="w-[1px] h-4 bg-slate-200"></div>
                     <div className="flex items-center gap-2">
@@ -80,10 +76,25 @@ export function HeroSection() {
                         ★★★★★
                       </div>
                     </div>
-                    <div className="w-[1px] h-4 bg-slate-200"></div>
-                    <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-widest">150+ RECENSIONI</span>
                   </div>
+                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-widest whitespace-nowrap">150+ RECENSIONI</span>
                 </div>
+              </div>
+            </div>
+
+            {/* Content Left / Top -> Now Bottom / Second in flow */}
+            <div className="order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left relative z-20 overflow-visible w-full">
+              
+              <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-extrabold tracking-tight text-slate-900 leading-[1.1]">
+                L’ultimo nutrizionista della tua{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-400">vita</span>
+              </h1>
+
+              <p className="mt-6 text-md md:text-2xl font-medium text-slate-400 max-w-xl mx-auto lg:mx-0 leading-snug">
+                Il segreto per un corpo sano non è togliere cibi, ma imparare a bilanciarli tutti con il Metodo SLICE.
+              </p>
+
+              <div className="flex flex-col items-center lg:items-start mt-8 mb-6 w-full -ml-4 sm:-ml-8 lg:-ml-12 pl-4 sm:pl-8 lg:pl-12">
 
                 {/* Reviews Carousel - MARGINE AZZERATO */}
                 <div className="w-[110vw] sm:w-[500px] lg:w-[600px] xl:w-[700px] relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 mt-0">
@@ -91,14 +102,6 @@ export function HeroSection() {
                 </div>
 
               </div>
-
-              <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-                L’ultimo nutrizionista della tua{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-400">vita</span>
-              </h1>
-
-              <p className="mt-6 text-md md:text-2xl font-medium text-slate-400 max-w-xl mx-auto lg:mx-0 leading-snug">
-                Il segreto per un corpo sano non è togliere cibi, ma imparare a bilanciarli tutti con il Metodo SLICE.              </p>
 
               <ComparisonTable />
 
@@ -137,11 +140,6 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Reviews Section Anchor */}
-      <section id="recensioni" className="bg-slate-50">
-        {/* Placeholder or existing reviews component integration if needed */}
       </section>
     </div>
   );
