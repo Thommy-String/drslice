@@ -10,10 +10,32 @@ import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
 
 export function HeroSection() {
   return (
-    <div className="bg-white">
+    <div className="bg-[#FAFAFA] relative isolate">
       <Navbar />
+      
+      {/* Dynamic Modern Background Elements */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        {/* Subtle Mesh Gradient */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-100/40 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-blue-50/50 rounded-full blur-[100px]" />
+        
+        {/* Modern Grid Pattern */}
+        <svg className="absolute inset-0 h-full w-full stroke-slate-200/50 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+          <defs>
+            <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M.5 40V.5H40" fill="none" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" strokeWidth="0" fill="url(#hero-grid)" />
+        </svg>
+
+        {/* Decorative Floating Shapes */}
+        <div className="absolute top-1/4 right-1/4 w-px h-64 bg-gradient-to-b from-transparent via-emerald-200 to-transparent opacity-20 hidden lg:block" />
+        <div className="absolute top-1/2 left-1/3 w-64 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-20 hidden lg:block" />
+      </div>
+
       {/* Trust Bar (Top) */}
-      <div className="mt-16 md:mt-20">
+      <div className="mt-16 md:mt-20 relative z-10">
         <TrustBanner />
       </div>
 
@@ -38,10 +60,10 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-green-900/10 bg-gradient-to-b from-green-50 to-white pt-6 px-6 pb-0 aspect-square lg:aspect-[4/5] border border-white top-0 lg:-top-6">
-
-                {/* Visual Accent/Blob inside card */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-green-300/30 to-transparent rounded-bl-full"></div>
+              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white pt-6 px-6 pb-0 aspect-square lg:aspect-[4/5] border border-white/80 backdrop-blur-sm top-0 lg:-top-6">
+                
+                {/* Visual Accent/Glass Overlay inside card */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-emerald-100/20 to-transparent rounded-bl-full z-0"></div>
 
                 {/* Main Hero Image */}
                 <img
@@ -62,7 +84,7 @@ export function HeroSection() {
                     <img 
                       src={mioDottoreLogo} 
                       alt="MioDottore" 
-                      className="h-7 sm:h-8 w-auto object-contain flex-shrink-0" 
+                      className="h-9 sm:h-11 w-auto object-contain flex-shrink-0" 
                     />
                     <div className="w-[1px] h-4 bg-slate-200"></div>
                     <div className="flex items-center gap-2">
@@ -94,6 +116,27 @@ export function HeroSection() {
                 Il segreto per un corpo sano non è togliere cibi, ma imparare a bilanciarli tutti con il Metodo SLICE.
               </p>
 
+                <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button
+                  href="https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="primary"
+                  size="lg"
+                  className="w-full sm:w-auto text-lg shadow-lg shadow-emerald-600/30 flex items-center justify-center transition-all duration-300"
+                  icon={
+                    <img 
+                      src={mioDottoreLogo} 
+                      alt="" 
+                      className="w-18 h-8 sm:w-14 sm:h-18 object-contain brightness-0 invert" 
+                    />
+                  }
+                >
+                  Prenota la tua visita
+                </Button>
+                
+              </div>
+
               <div className="flex flex-col items-center lg:items-start mt-8 mb-6 w-full -ml-4 sm:-ml-8 lg:-ml-12 pl-4 sm:pl-8 lg:pl-12">
 
                 {/* Reviews Carousel - MARGINE AZZERATO */}
@@ -105,37 +148,7 @@ export function HeroSection() {
 
               <ComparisonTable />
 
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button
-                  href="https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli?filter%5Btype%5D=positive#profile-reviews"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="primary"
-                  size="lg"
-                  className="w-full sm:w-auto text-lg shadow-lg shadow-green-600/30 flex items-center justify-center gap-2"
-                >
-                  {/* Calendar / Schedule SVG Icon */}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                    <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-                  </svg>
-                  Prenota la prima visita
-                </Button>
-                <Button
-                  href="https://wa.me/390000000000" // Sostituisci in futuro con il tuo numero di telefono
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto text-lg backdrop-blur-sm bg-white/50 flex items-center justify-center gap-2"
-                >
-                  {/* Whatsapp SVG Icon */}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
-                  </svg>
-                  Invia messaggio
-                </Button>
-              </div>
+              
 
             </div>
           </div>
