@@ -121,31 +121,35 @@ export function Services() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full text-[10px] sm:text-xs font-black transition-all duration-500 flex items-center gap-2 tracking-widest uppercase ${
+                className={`px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full text-[10px] sm:text-xs font-black flex items-center gap-2 tracking-widest uppercase cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/25 scale-105'
-                    : 'bg-white text-slate-500 hover:text-emerald-600 border border-slate-200 hover:border-emerald-200'
+                    ? 'bg-emerald-600 text-white shadow-md border border-emerald-600'
+                    : 'bg-white text-slate-500 hover:bg-slate-50 border border-slate-200'
                 }`}
               >
-                {cat !== "Tutti" && categoryIcons[cat] && (
-                  <span className={`${activeCategory === cat ? 'text-white' : 'text-emerald-500'}`}>
-                    {React.cloneElement(categoryIcons[cat], { className: "w-4 h-4 sm:w-4.5 sm:h-4.5" })}
-                  </span>
-                )}
-                {cat}
+                <span className="flex items-center gap-2">
+                  {cat !== "Tutti" && categoryIcons[cat] && (
+                    <span className={`${activeCategory === cat ? 'text-white' : 'text-emerald-500'}`}>
+                      {React.cloneElement(categoryIcons[cat], { className: "w-4 h-4 sm:w-4.5 sm:h-4.5" })}
+                    </span>
+                  )}
+                  {cat}
+                </span>
               </button>
             ))}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-          {filteredServices.map((service, idx) => {
+          {filteredServices.map((service) => {
             const theme = getThemeColors(service.group, service.featured);
+            const serviceId = `service-${service.name.toLowerCase().replace(/\s+/g, '-')}`;
+            
             return (
               <div 
-                key={idx}
-                id={`service-${service.name.toLowerCase().replace(/\s+/g, '-')}`}
-                className={`group relative flex flex-col p-8 sm:p-10 rounded-[3rem] transition-all duration-700 border ${theme.card} ${
+                key={service.name}
+                id={serviceId}
+                className={`group relative flex flex-col p-8 sm:p-10 rounded-[3rem] transition-all duration-300 border hover:-translate-y-1 ${theme.card} ${
                   service.featured ? 'scale-100 lg:scale-105 z-10' : 'scale-100'
                 }`}
               >
@@ -210,7 +214,7 @@ export function Services() {
                   href={SOCIAL_LINKS.miodottore}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group/btn w-full py-5 rounded-2xl font-black text-sm flex items-center justify-center gap-3 transition-all duration-500 active:scale-[0.98] text-white shadow-xl ${theme.button}`}
+                  className={`group/btn w-full py-5 rounded-2xl font-black text-sm flex items-center justify-center gap-3 transition-all duration-300 active:scale-[0.98] text-white shadow-xl ${theme.button}`}
                 >
                   <span>{service.price === "Su Preventivo" ? "RICHIEDI INFO" : "PRENOTA ORA"}</span>
                   <CheckCircle2 className="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform" />
