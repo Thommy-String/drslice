@@ -31,30 +31,51 @@ const steps = [
 
 export function Methodology() {
   const [activeIndex, setActiveIndex] = React.useState(-1);
+  const [isDesktop, setIsDesktop] = React.useState(false);
 
   React.useEffect(() => {
+    // Check if we are on desktop
+    const checkIsDesktop = () => {
+      const desktop = window.innerWidth >= 768; // md breakpoint in tailwind is 768px
+      setIsDesktop(desktop);
+      // Reset active state when switching to desktop to prevent stuck active styles
+      if (desktop) {
+        setActiveIndex(-1);
+      }
+    };
+    
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+
+    // Scroll animation on mobile
     const handleScroll = () => {
+      // Very strict check: do absolutely nothing on scroll if desktop
+      if (window.innerWidth >= 768) return; 
+      
       const cards = document.querySelectorAll('.methodology-card');
       const viewportCenter = window.innerHeight / 2;
       
       let currentActive = -1;
       cards.forEach((card, index) => {
         const rect = card.getBoundingClientRect();
-        if (rect.top < viewportCenter && rect.bottom > viewportCenter) {
+        // Restore fluid scroll bounding logic
+        if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
           currentActive = index;
         }
       });
       
-      if (currentActive !== activeIndex) {
-        setActiveIndex(currentActive);
-      }
+      setActiveIndex(currentActive);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeIndex]);
+    // setTimeout solves immediate flashing on page reload
+    setTimeout(handleScroll, 100); 
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkIsDesktop);
+    };
+  }, []);
 
   return (
     <section id="metodo" className="py-24 bg-[#050505] overflow-hidden">
@@ -79,9 +100,11 @@ export function Methodology() {
           {steps.map((step, index) => (
             <div 
               key={step.letter} 
-              className={`methodology-card group relative bg-[#0A0A0A] border rounded-3xl p-8 py-12 transition-all duration-300 overflow-hidden flex flex-col items-center text-center ${
+              onMouseEnter={() => { if (isDesktop) setActiveIndex(index); }}
+              onMouseLeave={() => { if (isDesktop) setActiveIndex(-1); }}
+              className={`methodology-card group relative bg-[#0A0A0A] border rounded-3xl p-8 py-12 transition-all duration-300 overflow-hidden flex flex-col items-center text-center cursor-default ${
                 activeIndex === index 
-                  ? 'border-emerald-500/50 bg-[#0F0F0F] ring-1 ring-emerald-500/20 shadow-[0_0_60px_-12px_rgba(16,185,129,0.3)]' 
+                  ? 'border-emerald-500/50 bg-[#0F0F0F] ring-1 ring-emerald-500/20 shadow-[0_0_60px_-12px_rgba(16,185,129,0.3)] lg:-translate-y-2' 
                   : 'border-white/5'
               }`}
             >

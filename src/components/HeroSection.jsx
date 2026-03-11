@@ -1,5 +1,6 @@
 // src/components/HeroSection.jsx
 import React from 'react';
+import { Sparkles } from 'lucide-react';
 import { Button } from './Button';
 import { Navbar } from './Navbar';
 import { TrustBanner } from './TrustBanner';
@@ -118,11 +119,12 @@ export function HeroSection() {
 
 
             {/* Image Right / Bottom -> Now Top / First in flow */}
-            <div className="order-1 lg:order-2 relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px] lg:pl-10 pb-2 lg:pb-0 pt-0 lg:pt-0 -mt-6 lg:-mt-12">
+            <div className="order-1 lg:order-2 relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px] lg:pl-10 pb-2 lg:pb-0 pt-0 lg:pt-8 -mt-6 lg:-mt-0">
+              
               {/* Background abstract elements for depth */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100/40 to-emerald-50/40 rounded-full blur-3xl -z-10"></div>
 
-              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white pt-6 px-6 pb-0 aspect-square lg:aspect-[4.2/5] border border-white/80 backdrop-blur-sm top-0 lg:-top-6">
+              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white pt-6 px-6 pb-0 aspect-square lg:aspect-[4.2/5] border border-white/80 backdrop-blur-sm top-0 lg:top-4">
                 
                 {/* Visual Accent/Glass Overlay inside card */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-emerald-100/20 to-transparent rounded-bl-full z-0"></div>
@@ -227,7 +229,7 @@ export function HeroSection() {
 
           </div>
 
-          <div className="hidden lg:block w-full max-w-3xl lg:mt-8">
+          <div className="hidden lg:flex w-full justify-center max-w-3xl lg:mt-8 mx-auto">
              <HeroServiceTags />
           </div>
 
@@ -238,23 +240,18 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Service Quiz - Spostato qui subito sotto le recensioni */}
-          <div className="w-[100vw] mt-0 bg-transparent flex justify-center pb-8 pt-12 ml-[calc(-50vw+50%)] relative z-10">
-            <div className="w-full max-w-2xl px-4 sm:px-6 lg:px-8">
-              <ServiceQuiz />
-            </div>
+          {/* Quiz Section - Restored under Reviews */}
+          <div className="mt-12 z-50 flex flex-col items-center justify-center max-w-lg mx-auto w-full">
+            <h3 className="text-xl lg:text-3xl font-black mb-4 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-emerald-500" />
+              Non sai da dove iniziare?
+            </h3>
+            <ServiceQuiz />
           </div>
 
           {/* Moved Services here, just under the Hero logic so it spans full width and acts as a clear divider */}
           <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10 transition-all duration-500">
             <Services />
-          </div>
-
-          {/* Service Quiz */}
-          <div className="w-[100vw] mt-0 bg-transparent flex justify-center pb-8 pt-12 ml-[calc(-50vw+50%)] relative z-10">
-            <div className="w-full max-w-2xl px-4 sm:px-6 lg:px-8">
-              <ServiceQuiz />
-            </div>
           </div>
 
           {/* Underneath the grid, taking full width */}
