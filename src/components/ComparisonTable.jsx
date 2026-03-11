@@ -1,38 +1,76 @@
 import React from 'react';
+import { X, Check } from 'lucide-react';
 
 export function ComparisonTable() {
   const comparativa = [
-    { old: 'Schemi rigidi e pesatura al grammo', new: 'Flessibilità e gestione "nella vita vera"' },
-    { old: 'Cibi "tristi" e divieti sociali', new: 'Libertà alimentare senza rinunce drastiche' },
-    { old: 'Risultati temporanei (effetto yo-yo)', new: 'Educazione definitiva per non tornare indietro' },
-    { old: 'Lotta costante contro la fame', new: 'Equilibrio ormonale e sazietà reale' },
+    { 
+      old: 'Diete rigide e "copia-incolla"', 
+      new: 'Piani 100% personalizzati' 
+    },
+    { 
+      old: 'Pesare ogni grammo', 
+      new: 'Porzioni visive e flessibili' 
+    },
+    { 
+      old: 'Rinunciare a cene fuori', 
+      new: 'Gestione libera dei pasti' 
+    },
+    { 
+      old: 'Fame e privazione', 
+      new: 'Sazietà ed equilibrio' 
+    },
+    { 
+      old: 'Effetto yo-yo nel tempo', 
+      new: 'Educazione definitiva' 
+    }
   ];
 
   return (
-    <div className="mt-8 border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm max-w-xl mx-auto lg:mx-0">
-      <div className="grid grid-cols-2 text-sm sm:text-base font-semibold border-b border-slate-200">
-        <div className="py-3 px-4 sm:px-5 bg-rose-50/50 text-slate-500 flex items-center gap-2">
-          La Dieta Comune
+    <div className="w-full mt-4 sm:mt-8 md:rounded-[2rem] overflow-hidden sm:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border-y sm:border border-slate-100 flex flex-col font-sans">
+      
+      {/* Header */}
+      <div className="grid grid-cols-2 relative">
+        <div className="bg-red-50/80 px-2 sm:px-8 py-5 sm:py-8 text-center flex flex-col items-center justify-center border-b border-white">
+          <span className="text-[9px] sm:text-xs font-bold text-red-500 uppercase tracking-widest mb-1.5 sm:mb-2">Vecchia maniera</span>
+          <h3 className="text-lg sm:text-3xl font-black text-red-950 leading-tight">La Dieta<br/>Comune</h3>
         </div>
-        <div className="py-3 px-4 sm:px-5 bg-green-50 text-green-800 flex items-center gap-2">
-          Il Metodo SLICE
+        
+        <div className="bg-emerald-100/90 px-2 sm:px-8 py-5 sm:py-8 text-center flex flex-col items-center justify-center border-b border-white">
+          <span className="text-[9px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest mb-1.5 sm:mb-2">La Soluzione</span>
+          <h3 className="text-lg sm:text-3xl font-black text-emerald-950 leading-tight">Il Metodo<br/>SLICE</h3>
+        </div>
+
+        {/* VS Badge */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center font-black text-slate-300 text-xs sm:text-sm shadow border border-slate-50 z-10 hidden sm:flex">
+          VS
         </div>
       </div>
-      <div className="divide-y divide-slate-100 text-xs sm:text-sm">
+
+      {/* Body */}
+      <div className="flex flex-col bg-white">
         {comparativa.map((item, idx) => (
-          <div key={idx} className="grid grid-cols-2 group hover:bg-slate-50 transition-colors">
-            <div className="py-3 px-4 sm:px-5 text-slate-500 flex items-start gap-2 pr-2">
-              <svg className="w-3.5 h-3.5 text-rose-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-              <span className="leading-snug">{item.old}</span>
+          <div key={idx} className="grid grid-cols-2">
+            
+            {/* Old approach */}
+            <div className="bg-red-50/40 px-3 sm:px-8 py-4 sm:py-6 flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 border-b border-white text-center sm:text-left h-full">
+              <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-red-50">
+                <X className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-red-400" strokeWidth={3} />
+              </div>
+              <p className="text-[13px] sm:text-base text-slate-500 font-medium leading-snug mt-1 sm:mt-1.5">
+                {item.old}
+              </p>
             </div>
-            <div className="py-3 px-4 sm:px-5 text-slate-800 flex items-start gap-2 font-medium bg-green-50/30 pl-4 border-l border-slate-100">
-              <svg className="w-3.5 h-3.5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="leading-snug">{item.new}</span>
+
+            {/* New approach */}
+            <div className="bg-emerald-50/70 px-3 sm:px-8 py-4 sm:py-6 flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 border-b border-white text-center sm:text-left h-full border-l-[2px] sm:border-l-[4px] border-emerald-500">
+              <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-emerald-100">
+                <Check className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-emerald-500" strokeWidth={3} />
+              </div>
+              <p className="text-[13px] sm:text-base text-emerald-950 font-bold leading-snug mt-1 sm:mt-1.5">
+                {item.new}
+              </p>
             </div>
+            
           </div>
         ))}
       </div>

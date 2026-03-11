@@ -1,37 +1,48 @@
 import React from 'react';
 import lazioLogo from '../assets/loghi/medicina-regione-lazio-logo.png';
+import intervistaPaolo from '../assets/Paolo/intervistaPaolo.png';
 
 export function TrustBanner() {
   return (
-    <div className="bg-transparent pt-1 pb-6 relative z-10 overflow-visible">
+    <div className="bg-transparent pt-3 pb-6 relative z-10 overflow-visible group/trust">
       <div className="max-w-7xl mx-auto flex justify-center px-4 overflow-visible">
-        {/* Semi-Chip Container: Layout con brand a sinistra e testo a destra */}
-        <div className="flex flex-row items-center gap-5 px-5 py-2.5 bg-white/30 backdrop-blur-sm border border-white/50 rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] transition-all hover:bg-white/40 max-w-2xl">
+        {/* Layout super-compatto: Card orizzontale. Aumentata altezza totale sm:h-20 */}
+        <div className="flex flex-col sm:flex-row items-center gap-0 bg-white/80 backdrop-blur-xl border border-white/90 rounded-[1.5rem] sm:rounded-full shadow-[0_8px_30px_-10px_rgba(16,185,129,0.12)] transition-all max-w-3xl overflow-hidden p-1.5 sm:p-1.5 sm:pr-8">
           
-          {/* Colonna Sinistra: Badge sopra e Logo sotto */}
-          <div className="flex flex-col items-center justify-center gap-1 shrink-0">
-            <div className="flex items-center gap-1 text-slate-400 font-medium italic text-[8px] sm:text-[9px] uppercase tracking-tighter">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-2 h-2 text-emerald-600/50" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M3.5 6.5a.5.5 0 0 0-1 0v1a5.5 5.5 0 0 0 5 5.478v1.522a.5.5 0 0 0 1 0v-1.522a5.5 5.5 0 0 0 5-5.478v-1a.5.5 0 0 0-1 0v1a4.5 4.5 0 0 1-9 0z"/>
-                <path d="M8 11a3 3 0 0 0 3-3V3a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3"/>
-              </svg>
-              <span>Intervistato da</span>
+          {/* Immagine: aumentata altezza h-28 sm:h-20, allargato spazio laterale e centrato testo */}
+          <div className="w-full sm:w-[280px] h-28 sm:h-20 shrink-0 overflow-hidden rounded-2xl sm:rounded-full relative border border-slate-100/50 shadow-inner group-hover/trust:shadow-md transition-shadow">
+            {/* Foto di Sfondo */}
+            <img 
+              src={intervistaPaolo} 
+              alt="Intervista Medicina Regione Lazio" 
+              className="absolute inset-0 w-full h-full object-cover object-center filter contrast-[1.1] transform transition-transform duration-700 group-hover/trust:scale-105" 
+            />
+            {/* Gradiente solo centrale, lasciando l'intervistatrice (sinistra) e Paolo (destra) a colori pieni */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/85 to-transparent"></div>
+            
+            {/* Contenuto in Overlay sull'immagine: Intervistato da + Logo (Colorato) al CENTRO */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <div className="flex items-center gap-1 text-slate-600 font-bold italic text-[8px] sm:text-[9px] uppercase tracking-widest mb-0.5">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                </span>
+                <span>Intervistato da</span>
+              </div>
+              <img 
+                src={lazioLogo} 
+                alt="Medicina Regione Lazio" 
+                className="h-7 sm:h-8 object-contain drop-shadow-sm mix-blend-multiply" 
+              />
             </div>
             
-            <img 
-              src={lazioLogo} 
-              alt="Medicina Regione Lazio" 
-              className="h-9 sm:h-11 object-contain opacity-90" 
-            />
+            <div className="absolute inset-0 rounded-2xl sm:rounded-full ring-1 ring-inset ring-black/5 pointer-events-none"></div>
           </div>
 
-          {/* Sottile Separatore Verticale */}
-          <div className="w-px h-10 bg-slate-300/40 shrink-0"></div>
-
-          {/* Testo a Destra */}
-          <div className="flex-1">
-            <p className="text-[11px] sm:text-xs text-slate-500 italic leading-snug">
-              «Un professionista <span className="font-semibold text-emerald-900/70 not-italic">chiaro e preparato</span>. Grazie per aver partecipato all'intervista.»
+          {/* Testo Citazione (Destra / Sotto) */}
+          <div className="flex-1 flex items-center pt-3 pb-1.5 sm:py-0 px-4 sm:px-5">
+            <p className="text-[11px] sm:text-[13px] text-slate-600 font-medium leading-tight sm:leading-relaxed italic text-center sm:text-left w-full">
+              «Un professionista <span className="font-bold text-emerald-900 not-italic">chiaro e preparato</span>. Grazie per aver partecipato all'intervista.»
             </p>
           </div>
 

@@ -60,7 +60,7 @@ const reviews = [
 
 export function ReviewsCarousel() {
   return (
-    <div className="w-full overflow-hidden mt-6 mb-2 relative z-30 group" 
+    <div className="w-full overflow-hidden mt-6 mb-2 relative z-30 group flex-1" 
          style={{ overflowX: 'auto', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
       {/* Container that animates */}
       <div className="flex w-max animate-scroll group-hover:[animation-play-state:paused] pointer-events-auto">

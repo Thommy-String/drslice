@@ -5,6 +5,7 @@ import { Navbar } from './Navbar';
 import { TrustBanner } from './TrustBanner';
 import { ComparisonTable } from './ComparisonTable';
 import { ReviewsCarousel } from './ReviewsCarousel';
+import { ServiceQuiz } from './ServiceQuiz';
 import paoloImg from '../assets/Paolo/drPaoloPanarini.jpg';
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
 
@@ -52,14 +53,81 @@ export function HeroSection() {
 
       <section className="relative overflow-visible pt-2 pb-12 lg:pt-8 lg:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-start">
+
+            {/* Content Left / Top -> Now Bottom / Second in flow */}
+            <div className="order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left relative z-20 overflow-visible w-full lg:pr-12">
+              
+              <div className="mb-8 lg:mb-12">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
+                  L&apos;ultimo nutrizionista <br className="hidden lg:block" />
+                  <span className="text-emerald-600 relative inline-block">
+                    della tua vita.
+                    <svg className="absolute -bottom-2 left-0 w-full h-3 text-emerald-200/60 -z-10" viewBox="0 0 100 12" preserveAspectRatio="none">
+                      <path d="M0,10 Q50,0 100,10" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </h1>
+                <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
+                  Ottieni risultati definitivi con il <span className="text-emerald-700 font-bold">Metodo SLICE</span>: 
+                  un approccio scientifico senza rinunce drastiche.
+                </p>
+              </div>
+
+              <div className="mt-4 lg:mt-0 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+                <div className="flex flex-col gap-3 w-full sm:w-auto">
+                  <Button
+                    href="https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="primary"
+                    size="lg"
+                    className="w-full sm:w-auto text-lg shadow-lg shadow-emerald-600/30 flex items-center justify-center transition-all duration-300"
+                    icon={
+                      <img 
+                        src={mioDottoreLogo} 
+                        alt="" 
+                        className="w-18 h-8 sm:w-14 sm:h-18 object-contain brightness-0 invert" 
+                      />
+                    }
+                  >
+                    Prenota la tua visita
+                  </Button>
+                    
+                  {/* Trust/Risk Reversal Signal */}
+                  <div className="flex items-center justify-center lg:justify-start gap-2 px-1">
+                    <div className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 text-emerald-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                    <span className="text-[11px] sm:text-xs font-medium text-slate-500 tracking-tight">
+                      Nessun pagamento anticipato
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Service Quiz Section - Spostato qui sotto la CTA principale */}
+              <div className="mt-16 lg:mt-20 w-full relative z-10 transition-all duration-500">
+                <ServiceQuiz />
+                
+                {/* Reviews Carousel (Spostato sotto il quiz) */}
+                <div className="relative mt-12 px-0 flex justify-center w-[100vw] ml-[calc(-50vw+50%)] overflow-hidden">
+                  <div className="w-full inline-flex justify-center">
+                    <ReviewsCarousel />
+                  </div>
+                </div>
+              </div>
+
+            </div>
 
             {/* Image Right / Bottom -> Now Top / First in flow */}
-            <div className="order-1 lg:order-2 relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px] lg:pl-10">
+            <div className="order-1 lg:order-2 relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px] lg:pl-10 pb-8 lg:pb-0">
               {/* Background abstract elements for depth */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100/40 to-emerald-50/40 rounded-full blur-3xl -z-10"></div>
 
-              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white pt-6 px-6 pb-0 aspect-square lg:aspect-[4.5/5] border border-white/80 backdrop-blur-sm top-0 lg:-top-6">
+              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white pt-6 px-6 pb-0 aspect-square lg:aspect-[4.2/5] border border-white/80 backdrop-blur-sm top-0 lg:-top-6">
                 
                 {/* Visual Accent/Glass Overlay inside card */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-emerald-100/20 to-transparent rounded-bl-full z-0"></div>
@@ -88,7 +156,6 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Review Summary & Trust Signals - SPOSTATO SOTTO L'IMMAGINE */}
               <div className="mt-4 flex justify-center">
                 <div className="flex items-center gap-4 py-1">
                   <div className="flex items-center gap-3">
@@ -115,67 +182,18 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Content Left / Top -> Now Bottom / Second in flow */}
-            <div className="order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left relative z-20 overflow-visible w-full">
-              
-              <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-                L’ultimo nutrizionista della tua{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-400">vita</span>
-              </h1>
-
-              <p className="mt-6 text-md md:text-2xl font-medium text-slate-400 max-w-xl mx-auto lg:mx-0 leading-snug">
-                Il segreto per un corpo sano non è togliere cibi, ma imparare a bilanciarli tutti con il Metodo SLICE.
-              </p>
-
-                <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
-                  <div className="flex flex-col gap-3 w-full sm:w-auto">
-                    <Button
-                      href="https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      variant="primary"
-                      size="lg"
-                      className="w-full sm:w-auto text-lg shadow-lg shadow-emerald-600/30 flex items-center justify-center transition-all duration-300"
-                      icon={
-                        <img 
-                          src={mioDottoreLogo} 
-                          alt="" 
-                          className="w-18 h-8 sm:w-14 sm:h-18 object-contain brightness-0 invert" 
-                        />
-                      }
-                    >
-                      Prenota la tua visita
-                    </Button>
-                    
-                    {/* Trust/Risk Reversal Signal */}
-                    <div className="flex items-center justify-center lg:justify-start gap-2 px-1">
-                      <div className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 text-emerald-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                      </div>
-                      <span className="text-[11px] sm:text-xs font-medium text-slate-500 tracking-tight">
-                        Nessun pagamento anticipato
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-              <div className="flex flex-col items-center lg:items-start mt-8 mb-6 w-full -ml-4 sm:-ml-8 lg:-ml-12 pl-4 sm:pl-8 lg:pl-12">
-
-                {/* Reviews Carousel - MARGINE AZZERATO */}
-                <div className="w-[110vw] sm:w-[500px] lg:w-[600px] xl:w-[700px] relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 mt-0">
-                  <ReviewsCarousel />
-                </div>
-
-              </div>
-
-              <ComparisonTable />
-
-              
-
-            </div>
           </div>
+
+          {/* Underneath the grid, taking full width */}
+          <div className="mt-8 sm:mt-12 w-full flex flex-col items-center gap-12 sm:gap-16">
+
+            {/* Comparison Table */}
+            <div className="w-[100vw] sm:w-full max-w-5xl px-0 sm:px-6 lg:px-8 z-20">
+              <ComparisonTable />
+            </div>
+
+          </div>
+
         </div>
       </section>
     </div>
