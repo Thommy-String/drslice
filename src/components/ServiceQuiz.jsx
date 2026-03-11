@@ -438,8 +438,8 @@ export function ServiceQuiz() {
                   >
                     <img 
                       src={mioDottoreLogo} 
-                      alt="" 
-                      className="w-16 h-7 object-contain brightness-0 invert opacity-90 group-hover/btn:opacity-100 transition-opacity" 
+                      alt="MioDottore" 
+                      className="w-auto h-7 object-contain brightness-0 invert opacity-90 group-hover/btn:opacity-100 transition-opacity" 
                     />
                     Prenota la tua visita
                   </a>
