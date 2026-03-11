@@ -93,7 +93,7 @@ export const SERVICES = [
   { 
     name: "Consulenza online", 
     price: "50 €", 
-    category: "Digitale",
+    category: "Online",
     group: "Smart",
     description: "La flessibilità della tecnologia al servizio della tua salute. Ovunque tu sia.",
     duration: "45 min",
@@ -152,6 +152,38 @@ export const SERVICES = [
       "Stima della Massa Muscolare Scheletrica",
       "Analisi del Metabolismo Basale",
       "Report cartaceo/digitale immediato"
+    ]
+  },
+  { 
+    name: "Educazione alimentare", 
+    price: "40 €", 
+    category: "In Studio",
+    group: "Percorso Formativo",
+    description: "Impara a gestire la tua alimentazione con consapevolezza per risultati duraturi nel tempo.",
+    duration: "45 min",
+    target: "Donne, uomini, persone impegnatissime senza tempo o chiunque voglia imparare a mangiare bene.",
+    features: [
+      "Insegnamento lettura delle etichette",
+      "Pianificazione dei pasti settimanali",
+      "Gestione della spesa intelligente",
+      "Approccio intuitivo senza restrizioni rigide",
+      "Materiale didattico in OMAGGIO"
+    ]
+  },
+  { 
+    name: "Visita a domicilio", 
+    price: "120 € - 150 €", 
+    category: "In Studio",
+    group: "Domiciliare",
+    description: "La professionalità del nutrizionista comodamente a casa tua.",
+    duration: "60-90 min",
+    target: "Personale a mobilità ridotta, neo-mamme o chi prefersice l'intimità domestica.",
+    features: [
+      "Visita nutrizionale completa a casa tua",
+      "Valutazione della dispensa domestica",
+      "Consigli pratici su cucina e bilance",
+      "Analisi antropometriche portatili",
+      "Stesso standard qualitativo dello studio"
     ]
   }
 ];

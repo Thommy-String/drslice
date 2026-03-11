@@ -60,16 +60,7 @@ export function Methodology() {
     <section id="metodo" className="py-24 bg-[#050505] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="flex flex-col items-center gap-4 mb-8">
-            <img 
-              src="/src/assets/Paolo/drPaoloPanarini.jpg" 
-              alt="Dott. Paolo Panarini" 
-              className="w-16 h-16 rounded-full object-cover border-2 border-emerald-500/30 p-0.5 shadow-lg shadow-emerald-500/10"
-            />
-            <span className="text-xs font-bold text-emerald-500/80 uppercase tracking-widest border-b border-emerald-500/30 pb-1">
-              Creato dal Dott. Paolo Panarini
-            </span>
-          </div>
+          
 
           <h2 className="text-sm font-bold text-emerald-500 uppercase tracking-[0.3em] mb-4">
             Il Metodo

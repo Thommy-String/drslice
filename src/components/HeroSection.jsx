@@ -5,7 +5,9 @@ import { Navbar } from './Navbar';
 import { TrustBanner } from './TrustBanner';
 import { ComparisonTable } from './ComparisonTable';
 import { ReviewsCarousel } from './ReviewsCarousel';
+import { Services } from './Services';
 import { ServiceQuiz } from './ServiceQuiz';
+import { HeroServiceTags } from './HeroServiceTags';
 import paoloImg from '../assets/Paolo/drPaoloPanarini.jpg';
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
 
@@ -31,6 +33,10 @@ export function HeroSection() {
               <stop offset="0%" stopColor="white" stopOpacity="1" />
               <stop offset="100%" stopColor="white" stopOpacity="0" />
             </radialGradient>
+            <radialGradient id="grad-mesh-2" cx="80%" cy="20%" r="40%">
+              <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+            </radialGradient>
           </defs>
           <rect width="100%" height="100%" fill="url(#complex-grid)" mask="url(#fade-mask)" />
           <mask id="fade-mask">
@@ -55,10 +61,10 @@ export function HeroSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-start">
 
-            {/* Content Left / Top -> Now Bottom / Second in flow */}
-            <div className="order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left relative z-20 overflow-visible w-full lg:pr-12">
+            {/* Desktop Only Content Left / Top -> Now explicitly hidden on mobile since it's moved below image on mobile */}
+            <div className="hidden lg:block order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left relative z-20 overflow-visible w-full lg:pr-12">
               
-              <div className="mb-8 lg:mb-12">
+              <div className="mb-8 lg:mb-12 mt-4 lg:mt-0">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
                   L&apos;ultimo nutrizionista <br className="hidden lg:block" />
                   <span className="text-emerald-600 relative inline-block">
@@ -108,22 +114,11 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Service Quiz Section - Spostato qui sotto la CTA principale */}
-              <div className="mt-16 lg:mt-20 w-full relative z-10 transition-all duration-500">
-                <ServiceQuiz />
-                
-                {/* Reviews Carousel (Spostato sotto il quiz) */}
-                <div className="relative mt-12 px-0 flex justify-center w-[100vw] ml-[calc(-50vw+50%)] overflow-hidden">
-                  <div className="w-full inline-flex justify-center">
-                    <ReviewsCarousel />
-                  </div>
-                </div>
-              </div>
-
             </div>
 
+
             {/* Image Right / Bottom -> Now Top / First in flow */}
-            <div className="order-1 lg:order-2 relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px] lg:pl-10 pb-8 lg:pb-0">
+            <div className="order-1 lg:order-2 relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px] lg:pl-10 pb-2 lg:pb-0 pt-0 lg:pt-0 -mt-6 lg:-mt-12">
               {/* Background abstract elements for depth */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100/40 to-emerald-50/40 rounded-full blur-3xl -z-10"></div>
 
@@ -180,8 +175,86 @@ export function HeroSection() {
                   <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-widest whitespace-nowrap">150+ RECENSIONI</span>
                 </div>
               </div>
+
+              {/* Service tags moved right under the hero image */}
+              <div className="block lg:hidden w-full max-w-sm mx-auto mt-6 text-center">
+                 <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-3">
+                   L&apos;ultimo nutrizionista <br />
+                   <span className="text-emerald-600 relative inline-block">
+                     della tua vita.
+                     <svg className="absolute -bottom-2 left-0 w-full h-2 text-emerald-200/60 -z-10" viewBox="0 0 100 12" preserveAspectRatio="none">
+                       <path d="M0,10 Q50,0 100,10" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round" />
+                     </svg>
+                   </span>
+                 </h1>
+                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium max-w-xs mx-auto mb-5">
+                   Ottieni risultati definitivi con il <span className="text-emerald-700 font-bold">Metodo SLICE</span>: 
+                   un approccio scientifico senza rinunce drastiche.
+                 </p>
+                 <div className="flex flex-col gap-3 w-full mb-6">
+                   <Button
+                     href="https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     variant="primary"
+                     size="lg"
+                     className="w-full text-base shadow-lg shadow-emerald-600/30 flex items-center justify-center transition-all duration-300"
+                     icon={
+                       <img 
+                         src={mioDottoreLogo} 
+                         alt="" 
+                         className="w-12 h-6 object-contain brightness-0 invert" 
+                       />
+                     }
+                   >
+                     Prenota la tua visita
+                   </Button>
+                   <div className="flex items-center justify-center gap-2 px-1">
+                     <div className="flex items-center justify-center w-4 h-4 rounded-full bg-emerald-100 text-emerald-600">
+                       <svg xmlns="http://www.w3.org/2000/svg" className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                         <polyline points="20 6 9 17 4 12"></polyline>
+                       </svg>
+                     </div>
+                     <span className="text-[10px] font-medium text-slate-500 tracking-tight">
+                       Nessun pagamento anticipato
+                     </span>
+                   </div>
+                 </div>
+                 
+                 <HeroServiceTags />
+              </div>
             </div>
 
+          </div>
+
+          <div className="hidden lg:block w-full max-w-3xl lg:mt-8">
+             <HeroServiceTags />
+          </div>
+
+          {/* Reviews Carousel */}
+          <div className="relative mt-12 px-0 flex justify-center w-[100vw] overflow-hidden ml-[calc(-50vw+50%)]">
+            <div className="w-full inline-flex justify-center flex-col items-center">
+              <ReviewsCarousel />
+            </div>
+          </div>
+
+          {/* Service Quiz - Spostato qui subito sotto le recensioni */}
+          <div className="w-[100vw] mt-0 bg-transparent flex justify-center pb-8 pt-12 ml-[calc(-50vw+50%)] relative z-10">
+            <div className="w-full max-w-2xl px-4 sm:px-6 lg:px-8">
+              <ServiceQuiz />
+            </div>
+          </div>
+
+          {/* Moved Services here, just under the Hero logic so it spans full width and acts as a clear divider */}
+          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10 transition-all duration-500">
+            <Services />
+          </div>
+
+          {/* Service Quiz */}
+          <div className="w-[100vw] mt-0 bg-transparent flex justify-center pb-8 pt-12 ml-[calc(-50vw+50%)] relative z-10">
+            <div className="w-full max-w-2xl px-4 sm:px-6 lg:px-8">
+              <ServiceQuiz />
+            </div>
           </div>
 
           {/* Underneath the grid, taking full width */}

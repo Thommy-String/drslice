@@ -3,7 +3,7 @@ import { Clock, Globe, Home, Activity, CheckCircle2, TrendingUp, Sparkles } from
 import { SERVICES, SOCIAL_LINKS, DOCTOR_INFO } from '../constants';
 
 const categoryIcons = {
-  "Digitale": <Globe className="w-5 h-5" />,
+  "Online": <Globe className="w-5 h-5" />,
   "In Studio": <Home className="w-5 h-5" />,
   "Diagnostica": <Activity className="w-5 h-5" />,
   "Specialistica": <TrendingUp className="w-5 h-5" />
@@ -15,7 +15,9 @@ const GroupBadge = ({ group }) => {
     "Smart": "bg-indigo-500/10 text-indigo-700 border-indigo-200",
     "Performance": "bg-orange-500/10 text-orange-700 border-orange-200",
     "Clinical": "bg-rose-500/10 text-rose-700 border-rose-200",
-    "Check-up": "bg-cyan-500/10 text-cyan-700 border-cyan-200"
+    "Check-up": "bg-cyan-500/10 text-cyan-700 border-cyan-200",
+    "Percorso Formativo": "bg-lime-500/10 text-lime-700 border-lime-200",
+    "Domiciliare": "bg-fuchsia-500/10 text-fuchsia-700 border-fuchsia-200"
   };
   
   return (
@@ -26,9 +28,9 @@ const GroupBadge = ({ group }) => {
 };
 
 export function Services() {
-  const [activeCategory, setActiveCategory] = React.useState("Tutti");
+  const [activeCategory, setActiveCategory] = React.useState("In Studio");
 
-  const categories = ["Tutti", "In Studio", "Digitale", "Specialistica", "Diagnostica"];
+  const categories = ["Tutti", "In Studio", "Online", "Specialistica", "Diagnostica"];
 
   const filteredServices = activeCategory === "Tutti" 
     ? SERVICES 
@@ -49,35 +51,49 @@ export function Services() {
         icon: "bg-blue-50 text-blue-600 group-hover:bg-blue-100",
         accent: "text-blue-600",
         button: "bg-blue-600 hover:bg-blue-700 shadow-blue-600/20",
-        glow: "from-blue-500/5 to-blue-500/0"
+        glow: "from-blue-500/5 to-transparent"
       },
       "Smart": {
         card: "bg-white border-indigo-100 hover:border-indigo-300 hover:shadow-[0_32px_64px_-16px_rgba(99,102,241,0.1)]",
         icon: "bg-indigo-50 text-indigo-600 group-hover:bg-indigo-100",
         accent: "text-indigo-600",
         button: "bg-indigo-600 hover:bg-indigo-700 shadow-indigo-600/20",
-        glow: "from-indigo-500/5 to-indigo-500/0"
+        glow: "from-indigo-500/5 to-transparent"
       },
       "Performance": {
         card: "bg-white border-orange-100 hover:border-orange-300 hover:shadow-[0_32px_64px_-16px_rgba(249,115,22,0.1)]",
         icon: "bg-orange-50 text-orange-600 group-hover:bg-orange-100",
         accent: "text-orange-600",
         button: "bg-orange-600 hover:bg-orange-700 shadow-orange-600/20",
-        glow: "from-orange-500/5 to-orange-500/0"
+        glow: "from-orange-500/5 to-transparent"
       },
       "Clinical": {
         card: "bg-white border-rose-100 hover:border-rose-300 hover:shadow-[0_32px_64px_-16px_rgba(244,63,94,0.1)]",
         icon: "bg-rose-50 text-rose-600 group-hover:bg-rose-100",
         accent: "text-rose-600",
         button: "bg-rose-600 hover:bg-rose-700 shadow-rose-600/20",
-        glow: "from-rose-500/5 to-rose-500/0"
+        glow: "from-rose-500/5 to-transparent"
       },
       "Check-up": {
         card: "bg-white border-cyan-100 hover:border-cyan-300 hover:shadow-[0_32px_64px_-16px_rgba(6,182,212,0.1)]",
         icon: "bg-cyan-50 text-cyan-600 group-hover:bg-cyan-100",
         accent: "text-cyan-600",
         button: "bg-cyan-600 hover:bg-cyan-700 shadow-cyan-600/20",
-        glow: "from-cyan-500/5 to-cyan-500/0"
+        glow: "from-cyan-500/5 to-transparent"
+      },
+      "Percorso Formativo": {
+        card: "bg-white border-lime-100 hover:border-lime-300 hover:shadow-[0_32px_64px_-16px_rgba(132,204,22,0.1)]",
+        icon: "bg-lime-50 text-lime-600 group-hover:bg-lime-100",
+        accent: "text-lime-600",
+        button: "bg-lime-600 hover:bg-lime-700 shadow-lime-600/20",
+        glow: "from-lime-500/5 to-transparent"
+      },
+      "Domiciliare": {
+        card: "bg-white border-fuchsia-100 hover:border-fuchsia-300 hover:shadow-[0_32px_64px_-16px_rgba(217,70,239,0.1)]",
+        icon: "bg-fuchsia-50 text-fuchsia-600 group-hover:bg-fuchsia-100",
+        accent: "text-fuchsia-600",
+        button: "bg-fuchsia-600 hover:bg-fuchsia-700 shadow-fuchsia-600/20",
+        glow: "from-fuchsia-500/5 to-transparent"
       }
     };
     return themes[group] || themes["Percorso Base"];
@@ -95,32 +111,30 @@ export function Services() {
             <Sparkles className="w-3 h-3" />
             Percorsi e Listino
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-8">
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-8">
             Servizi su misura per te
           </h2>
           
-          {/* Category Filter Chips - Scrollable Row */}
-          <div className="relative max-w-full overflow-x-auto no-scrollbar pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
-            <div className="flex justify-start sm:justify-center gap-2.5 p-2 bg-white/50 backdrop-blur-md rounded-[2.5rem] border border-slate-200/60 w-fit mx-auto shadow-sm whitespace-nowrap">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-6 py-3.5 rounded-full text-[10px] sm:text-xs font-black transition-all duration-500 flex items-center gap-2.5 tracking-widest uppercase flex-shrink-0 ${
-                    activeCategory === cat
-                      ? 'bg-emerald-600 text-white shadow-xl shadow-emerald-600/20 scale-105'
-                      : 'bg-transparent text-slate-500 hover:text-emerald-600 hover:bg-white'
-                  }`}
-                >
-                  {cat !== "Tutti" && categoryIcons[cat] && (
-                    <span className={`${activeCategory === cat ? 'text-white' : 'text-emerald-500'}`}>
-                      {React.cloneElement(categoryIcons[cat], { className: "w-4 h-4" })}
-                    </span>
-                  )}
-                  {cat}
-                </button>
-              ))}
-            </div>
+          {/* Category Filter Chips - Compact Wrap */}
+          <div className="flex flex-wrap justify-center gap-2.5 max-w-lg mx-auto mb-10">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full text-[10px] sm:text-xs font-black transition-all duration-500 flex items-center gap-2 tracking-widest uppercase ${
+                  activeCategory === cat
+                    ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/25 scale-105'
+                    : 'bg-white text-slate-500 hover:text-emerald-600 border border-slate-200 hover:border-emerald-200'
+                }`}
+              >
+                {cat !== "Tutti" && categoryIcons[cat] && (
+                  <span className={`${activeCategory === cat ? 'text-white' : 'text-emerald-500'}`}>
+                    {React.cloneElement(categoryIcons[cat], { className: "w-4 h-4 sm:w-4.5 sm:h-4.5" })}
+                  </span>
+                )}
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -130,6 +144,7 @@ export function Services() {
             return (
               <div 
                 key={idx}
+                id={`service-${service.name.toLowerCase().replace(/\s+/g, '-')}`}
                 className={`group relative flex flex-col p-8 sm:p-10 rounded-[3rem] transition-all duration-700 border ${theme.card} ${
                   service.featured ? 'scale-100 lg:scale-105 z-10' : 'scale-100'
                 }`}

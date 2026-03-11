@@ -60,69 +60,73 @@ const reviews = [
 
 export function ReviewsCarousel() {
   return (
-    <div className="w-full overflow-hidden mt-6 mb-2 relative z-30 group flex-1" 
+    <section className="py-24 bg-white overflow-hidden relative" id="recensioni">
+      {/* Visual background decor */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <div className="w-full overflow-hidden mt-6 mb-2 relative z-30 group flex-1" 
          style={{ overflowX: 'auto', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
-      {/* Container that animates */}
-      <div className="flex w-max animate-scroll group-hover:[animation-play-state:paused] pointer-events-auto">
-        {/* We map twice to create an infinite loop effect */}
-        {[...reviews, ...reviews].map((review, index) => (
-          <div 
-            key={`${review.id}-${index}`} 
-            className="w-[280px] bg-white border border-slate-100 rounded-2xl p-5 mx-3 flex-shrink-0 flex flex-col justify-between relative overflow-hidden shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]"
-          >
-            {/* Very subtile elegant gradient hint at the bottom right */}
-            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl"></div>
-            
-            <div className="relative z-10">
-              {/* Header: MioDottore Logo (Left) & Verification Chip (Right) */}
-              <div className="flex justify-between items-center mb-5">
-                <img 
-                  src={mioDottoreLogo} 
-                  alt="MioDottore" 
-                  className="h-10 sm:h-12 w-auto object-contain transition-all duration-500 opacity-100" 
-                />
-                {review.verified && (
-                  <div className="flex items-center gap-1 bg-emerald-500/10 px-2 py-1 rounded-lg border border-emerald-500/20">
-                    <svg className="w-3 h-3 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-[10px] font-bold text-emerald-700 tracking-tight uppercase">Verificata</span>
-                  </div>
-                )}
+        {/* Container that animates */}
+        <div className="flex w-max animate-scroll group-hover:[animation-play-state:paused] pointer-events-auto">
+          {/* We map twice to create an infinite loop effect */}
+          {[...reviews, ...reviews].map((review, index) => (
+            <div 
+              key={`${review.id}-${index}`} 
+              className="w-[280px] bg-white border border-slate-100 rounded-2xl p-5 mx-3 flex-shrink-0 flex flex-col justify-between relative overflow-hidden shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]"
+            >
+              {/* Very subtile elegant gradient hint at the bottom right */}
+              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl"></div>
+              
+              <div className="relative z-10">
+                {/* Header: MioDottore Logo (Left) & Verification Chip (Right) */}
+                <div className="flex justify-between items-center mb-5">
+                  <img 
+                    src={mioDottoreLogo} 
+                    alt="MioDottore" 
+                    className="h-10 sm:h-12 w-auto object-contain transition-all duration-500 opacity-100" 
+                  />
+                  {review.verified && (
+                    <div className="flex items-center gap-1 bg-emerald-500/10 px-2 py-1 rounded-lg border border-emerald-500/20">
+                      <svg className="w-3 h-3 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-[10px] font-bold text-emerald-700 tracking-tight uppercase">Verificata</span>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Testimonial Text */}
+                <div className="relative">
+                  <span className="absolute -top-1 -left-1 text-2xl text-emerald-500/10 font-serif">“</span>
+                  <p className="text-slate-600 text-[13px] leading-relaxed mb-6 line-clamp-5 italic text-left relative z-10 pl-2">
+                    {review.text}
+                  </p>
+                </div>
               </div>
               
-              {/* Testimonial Text */}
-              <div className="relative">
-                <span className="absolute -top-1 -left-1 text-2xl text-emerald-500/10 font-serif">“</span>
-                <p className="text-slate-600 text-[13px] leading-relaxed mb-6 line-clamp-5 italic text-left relative z-10 pl-2">
-                  {review.text}
-                </p>
-              </div>
-            </div>
-            
-            {/* User Info */}
-            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100/80 text-left">
-              <div className="w-8 h-8 rounded-lg bg-emerald-50/50 border border-emerald-100/50 flex items-center justify-center text-emerald-600/40 font-bold flex-shrink-0 text-xs shadow-sm">
-                {review.name.charAt(0)}
-              </div>
-              <div className="flex flex-col flex-grow overflow-hidden">
-                <div className="flex items-center gap-2 w-full">
-                  <span className="text-[13px] font-bold text-slate-800 truncate leading-tight">{review.name}</span>
-                  <div className="flex text-amber-400 text-[10px] flex-shrink-0">
-                    {'★'.repeat(5)}
-                  </div>
+              {/* User Info */}
+              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100/80 text-left">
+                <div className="w-8 h-8 rounded-lg bg-emerald-50/50 border border-emerald-100/50 flex items-center justify-center text-emerald-600/40 font-bold flex-shrink-0 text-xs shadow-sm">
+                  {review.name.charAt(0)}
                 </div>
-                <span className="text-[11px] font-semibold text-emerald-600 truncate mt-0.5">{review.service}</span>
-                {review.date && <span className="text-[9px] text-slate-400 mt-0.5 font-medium">{review.date}</span>}
+                <div className="flex flex-col flex-grow overflow-hidden">
+                  <div className="flex items-center gap-2 w-full">
+                    <span className="text-[13px] font-bold text-slate-800 truncate leading-tight">{review.name}</span>
+                    <div className="flex text-amber-400 text-[10px] flex-shrink-0">
+                      {'★'.repeat(5)}
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-semibold text-emerald-600 truncate mt-0.5">{review.service}</span>
+                  {review.date && <span className="text-[9px] text-slate-400 mt-0.5 font-medium">{review.date}</span>}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        
+        {/* Gradient masks for smooth edges */}
+        <div className="absolute top-0 right-0 w-12 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
       </div>
-      
-      {/* Gradient masks for smooth edges */}
-      <div className="absolute top-0 right-0 w-12 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-    </div>
+    </section>
   );
 }

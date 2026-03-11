@@ -196,6 +196,63 @@ export function ServiceQuiz() {
     return SERVICES.find(s => s.name.includes('Prima visita'));
   };
 
+  const getThemeColors = (group) => {
+    const themes = {
+      "Percorso Base": {
+        card: "border-blue-100 shadow-[0_40px_80px_-15px_rgba(59,130,246,0.15)] ring-blue-500/20",
+        icon: "bg-blue-50 text-blue-600",
+        accent: "text-blue-600",
+        button: "bg-blue-600 hover:bg-blue-500 shadow-blue-600/30",
+        glow: "from-blue-500/10",
+        badge: "bg-blue-500/10 text-blue-700 border-blue-200"
+      },
+      "Smart": {
+        card: "border-indigo-100 shadow-[0_40px_80px_-15px_rgba(99,102,241,0.15)] ring-indigo-500/20",
+        icon: "bg-indigo-50 text-indigo-600",
+        accent: "text-indigo-600",
+        button: "bg-indigo-600 hover:bg-indigo-500 shadow-indigo-600/20",
+        glow: "from-indigo-500/10",
+        badge: "bg-indigo-500/10 text-indigo-700 border-indigo-200"
+      },
+      "Performance": {
+        card: "border-orange-100 shadow-[0_40px_80px_-15px_rgba(249,115,22,0.15)] ring-orange-500/20",
+        icon: "bg-orange-50 text-orange-600",
+        accent: "text-orange-600",
+        button: "bg-orange-600 hover:bg-orange-500 shadow-orange-600/30",
+        glow: "from-orange-500/10",
+        badge: "bg-orange-500/10 text-orange-700 border-orange-200"
+      },
+      "Clinical": {
+        card: "border-rose-100 shadow-[0_40px_80px_-15px_rgba(244,63,94,0.15)] ring-rose-500/20",
+        icon: "bg-rose-50 text-rose-600",
+        accent: "text-rose-600",
+        button: "bg-rose-600 hover:bg-rose-500 shadow-rose-600/30",
+        glow: "from-rose-500/10",
+        badge: "bg-rose-500/10 text-rose-700 border-rose-200"
+      },
+      "Check-up": {
+        card: "border-cyan-100 shadow-[0_40px_80px_-15px_rgba(6,182,212,0.15)] ring-cyan-500/20",
+        icon: "bg-cyan-50 text-cyan-600",
+        accent: "text-cyan-600",
+        button: "bg-cyan-600 hover:bg-cyan-500 shadow-cyan-600/30",
+        glow: "from-cyan-500/10",
+        badge: "bg-cyan-500/10 text-cyan-700 border-cyan-200"
+      },
+      "default": {
+        card: "border-emerald-100 shadow-[0_40px_80px_-15px_rgba(16,185,129,0.15)] ring-emerald-500/20",
+        icon: "bg-emerald-50 text-emerald-600",
+        accent: "text-emerald-600",
+        button: "bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/30",
+        glow: "from-emerald-500/10",
+        badge: "bg-emerald-500/10 text-emerald-700 border-emerald-200"
+      }
+    };
+    return themes[group] || themes["default"];
+  };
+
+  const recommendedService = getRecommendedService();
+  const theme = getThemeColors(recommendedService?.group);
+
   const progress = ((currentStep) / questions.length) * 100;
 
   return (
@@ -206,10 +263,10 @@ export function ServiceQuiz() {
         <div className="text-center mb-8 px-4">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest mb-3 border border-emerald-100/50">
             <Sparkles className="w-3 h-3" />
-            Trova il tuo percorso
+            quiz
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-            Fai il quiz per scoprire il servizio giusto
+            Quiz per scoprire il tuo percorso
           </h2>
         </div>
 
@@ -310,43 +367,43 @@ export function ServiceQuiz() {
             /* Results Screen */
             <div className={`flex flex-col items-center justify-center text-center flex-1 py-8 transition-all duration-500 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
               <div className="relative">
-                <div className="absolute inset-0 bg-emerald-400 blur-xl opacity-30 rounded-full animate-pulse" />
-                <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-[2rem] flex items-center justify-center mb-6 shadow-xl shadow-emerald-500/20 relative z-10 rotate-3 transition-transform hover:rotate-0">
-                  <Sparkles className="w-10 h-10" strokeWidth={2.5} />
-                </div>
+                <div className={`absolute inset-0 ${theme.glow.replace('from-', 'bg-').replace('/10', '')} blur-xl opacity-30 rounded-full animate-pulse`} />
+                
               </div>
               
-              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-emerald-600 mb-3">
+              <h3 className={`text-xs font-black uppercase tracking-[0.2em] ${theme.accent} mb-3`}>
                 Analisi Completata
               </h3>
               <h4 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4 tracking-tight">
-                Ecco il percorso perfetto
+                Ecco il tuo risultato
               </h4>
               
-              <div className="w-full mt-6 bg-white rounded-[2.5rem] p-6 md:p-8 border border-emerald-100 text-left relative overflow-hidden shadow-[0_40px_80px_-15px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20 group transition-all hover:-translate-y-1">
+              <div className={`w-full mt-6 bg-white rounded-[2.5rem] p-6 md:p-8 border ${theme.card} text-left relative overflow-hidden ring-1 group transition-all hover:-translate-y-1`}>
                 {/* Decorative gradients */}
-                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-emerald-500/10 to-transparent rounded-full blur-3xl -z-10 transition-transform group-hover:scale-110" />
+                <div className={`absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br ${theme.glow} to-transparent rounded-full blur-3xl -z-10 transition-transform group-hover:scale-110`} />
                 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 relative z-10">
                   <div className="flex items-center gap-3">
-                    <div className="w-14 h-14 bg-emerald-50 rounded-2xl shadow-sm border border-emerald-100/50 flex items-center justify-center text-emerald-600 transition-transform group-hover:scale-110">
+                    <div className={`w-14 h-14 ${theme.icon} rounded-2xl shadow-sm border border-black/5 flex items-center justify-center transition-transform group-hover:scale-110`}>
                       <Target className="w-7 h-7" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-black px-3 py-1.5 rounded-full bg-emerald-50/50 text-emerald-700 border border-emerald-200 uppercase tracking-widest mb-1 block w-fit">
-                        {getRecommendedService()?.group}
+                      <span className={`text-[10px] font-black px-3 py-1.5 rounded-full ${theme.badge} uppercase tracking-widest mb-1 block w-fit`}>
+                        {recommendedService?.group}
                       </span>
-                      <span className="text-emerald-600 font-bold text-sm tracking-wide bg-emerald-50/50 px-2 py-0.5 rounded-md border border-emerald-100/30 w-fit">
+                      <span className={`${theme.accent} font-bold text-sm tracking-wide px-2 py-0.5 rounded-md w-fit`}>
                         Più Adatto a Te
                       </span>
                     </div>
                   </div>
                   <div className="text-left sm:text-right">
-                    <div className="text-3xl font-black text-slate-900 tracking-tight flex items-baseline gap-1 bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-emerald-400 w-fit sm:ml-auto">
-                      {getRecommendedService()?.price}
-                      <span className="text-sm font-bold text-slate-400 tracking-normal no-underline"></span>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">
+                      Investimento
                     </div>
-                    {getRecommendedService()?.duration && (
+                    <div className={`text-xl sm:text-2xl font-black tracking-tight ${theme.accent} w-fit sm:ml-auto`}>
+                      {recommendedService?.price}
+                    </div>
+                    {recommendedService?.duration && (
                       <div className="text-slate-400 text-sm font-semibold flex items-center justify-start sm:justify-end gap-1.5 mt-1">
                         <Clock className="w-4 h-4" /> {getRecommendedService()?.duration}
                       </div>
@@ -354,18 +411,18 @@ export function ServiceQuiz() {
                   </div>
                 </div>
                 
-                <h5 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3 tracking-tight group-hover:text-emerald-700 transition-colors relative z-10">
-                  {getRecommendedService()?.name}
+                <h5 className={`text-2xl sm:text-4xl font-black mb-3 tracking-tight transition-colors relative z-10 ${theme.accent}`}>
+                  {recommendedService?.name}
                 </h5>
                 <p className="text-slate-600 text-[15px] mb-6 leading-relaxed font-medium relative z-10">
-                  {getRecommendedService()?.description}
+                  {recommendedService?.description}
                 </p>
 
-                {getRecommendedService()?.features && (
+                {recommendedService?.features && (
                   <ul className="mb-8 space-y-3 relative z-10">
-                    {getRecommendedService()?.features.map((feature, idx) => (
+                    {recommendedService?.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start text-sm font-medium text-slate-600">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className={`w-5 h-5 ${theme.accent} mr-3 flex-shrink-0 mt-0.5`} />
                         <span className="leading-snug">{feature}</span>
                       </li>
                     ))}
@@ -377,7 +434,7 @@ export function ServiceQuiz() {
                     href={SOCIAL_LINKS.miodottore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-[1.5] bg-emerald-600 text-white font-black text-lg py-5 px-8 rounded-2xl flex items-center justify-center gap-3 hover:bg-emerald-500 transition-all active:scale-[0.98] shadow-xl shadow-emerald-600/30 group/btn"
+                    className={`flex-[1.5] ${theme.button} text-white font-black text-lg py-5 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-xl group/btn`}
                   >
                     <img 
                       src={mioDottoreLogo} 
@@ -388,7 +445,7 @@ export function ServiceQuiz() {
                   </a>
                   <a 
                     href={`tel:${DOCTOR_INFO.phone}`}
-                    className="flex-1 bg-white border-2 border-emerald-100 text-emerald-700 font-bold py-5 px-8 rounded-2xl flex items-center justify-center gap-3 hover:border-emerald-500 hover:bg-emerald-50/50 transition-all active:scale-[0.98] shadow-sm group/btn2"
+                    className={`flex-1 bg-white border-2 border-slate-100 ${theme.accent} font-bold py-5 px-8 rounded-2xl flex items-center justify-center gap-3 hover:${theme.card.split(' ')[0]} transition-all active:scale-[0.98] shadow-sm group/btn2`}
                   >
                     <Phone className="w-5 h-5 flex-shrink-0 group-hover/btn2:rotate-12 transition-transform" />
                     Chiama per info

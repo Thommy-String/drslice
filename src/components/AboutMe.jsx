@@ -1,99 +1,103 @@
 import React from 'react';
-import paoloImg from '../assets/Paolo/drPaoloPanarini.jpg';
+import { GraduationCap, Award, Heart, Lightbulb, Sparkles, Quote, BookOpen, Utensils, Brain } from 'lucide-react';
+import aboutMeImg from '../assets/Paolo/aboutmeDottPaolo.jpg';
 
 export function AboutMe() {
   return (
-    <section id="chi-sono" className="py-24 bg-white relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 left-0 w-1/4 h-1/2 bg-emerald-50 rounded-br-full -z-10 blur-3xl opacity-30"></div>
+    <section className="py-24 bg-[#0B0F19] overflow-hidden relative" id="chi-sono">
+      {/* Cinematic Background Elements */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/2 pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:items-center">
           
-          {/* Image Container */}
-          <div className="relative">
-            <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl skew-y-1 hover:skew-y-0 transition-transform duration-700">
-              <img 
-                src={paoloImg} 
-                alt="Paolo Panarini" 
-                className="w-full aspect-[4/5] object-cover"
-                style={{ objectPosition: 'center 20%' }}
-              />
-            </div>
-            
-            {/* Experience badge */}
-            <div className="absolute -bottom-6 -right-6 md:-right-10 bg-white p-6 rounded-3xl shadow-xl border border-slate-50 z-20 max-w-[200px]">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <span className="text-3xl font-bold text-slate-900">1k+</span>
+          {/* Visual Side: Minimal Image (now even smaller) */}
+          <div className="lg:w-1/5 md:w-1/3 w-1/2 mx-auto lg:mx-0">
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <img 
+                  src={aboutMeImg} 
+                  alt="Dott. Paolo Panarini" 
+                  className="w-full aspect-[4/5] object-cover scale-105"
+                />
               </div>
-              <p className="text-sm font-medium text-slate-500 leading-tight">
-                Pazienti aiutati a raggiungere i propri obiettivi
-              </p>
-            </div>
-
-            {/* Decorative dots */}
-            <div className="absolute top-10 -left-10 w-20 h-20 bg-emerald-200/20 rounded-full blur-2xl -z-10"></div>
-          </div>
-
-          {/* Text Content */}
-          <div className="lg:pl-8">
-            <h2 className="text-base font-bold text-emerald-600 uppercase tracking-[0.2em] mb-4">
-              La Mia Storia
-            </h2>
-            <h3 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-8 leading-tight">
-              Oltre il camice: la mia <span className="text-emerald-600">missione</span>
-            </h3>
-            
-            <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
-              <p>
-                Sono <span className="font-bold text-slate-900">Paolo Panarini</span>, Dietista e Nutrizionista con una visione chiara: 
-                rendere la sana alimentazione un piacere, non un dovere.
-              </p>
-              <p>
-                Spesso vediamo la dieta come un periodo di privazione, una guerra contro il nostro corpo. 
-                Ho fondato il <span className="font-semibold text-emerald-600">Metodo SLICE</span> proprio per abbattere questo muro. 
-                Il mio obiettivo è darti gli strumenti per capire come gestire il cibo in ogni situazione: 
-                dalla cena con gli amici al pasto veloce in ufficio.
-              </p>
-              <p>
-                La mia formazione clinica mi permette di affrontare ogni caso con il massimo rigore scientifico, 
-                ma è l'ascolto dei miei pazienti che ha definito il mio approccio umano e flessibile.
-              </p>
-            </div>
-
-            <div className="mt-10 grid grid-cols-2 gap-6 border-t border-slate-100 pt-10">
-              <div>
-                <p className="text-slate-900 font-bold mb-1">Qualifica</p>
-                <p className="text-sm text-slate-500">Dietista & Nutrizionista</p>
-              </div>
-              <div>
-                <p className="text-slate-900 font-bold mb-1">Specialità</p>
-                <p className="text-sm text-slate-500">Educazione Alimentare & Lifestyle</p>
-              </div>
-            </div>
-            
-            <div className="mt-12 flex flex-col sm:flex-row items-center gap-6">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
-                    <div className="w-full h-full bg-emerald-500/20"></div>
-                  </div>
-                ))}
-                <div className="w-10 h-10 rounded-full border-2 border-white bg-emerald-600 flex items-center justify-center text-[10px] font-bold text-white">
-                  +150
-                </div>
-              </div>
-              <p className="text-sm text-slate-500 italic">
-                Unisciti alla community di pazienti soddisfatti.
-              </p>
+              {/* Minimal Accent */}
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-emerald-500/40 rounded-bl-xl -z-10" />
             </div>
           </div>
 
+          {/* Content Side: Minimalist Narrative (takes up more space) */}
+          <div className="lg:w-4/5">
+            <div className="mb-12">
+              <div className="h-0.5 w-12 bg-emerald-500 mb-6" />
+              <h2 className="text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight">
+                Dott. <span className="font-semibold italic">Paolo Panarini</span>
+              </h2>
+            </div>
+
+            {/* Academic Section - Refined */}
+            <div className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <GraduationCap className="w-4 h-4 text-emerald-500" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-500/80">Laurea Magistrale</span>
+                </div>
+                <h4 className="text-white text-lg font-bold leading-tight">Scienza della Nutrizione Umana</h4>
+                <p className="text-slate-500 text-sm italic">Università di Roma Tor Vergata</p>
+              </div>
+              
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <BookOpen className="w-4 h-4 text-emerald-500" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-500/80">Laurea Triennale</span>
+                </div>
+                <h4 className="text-white text-lg font-bold leading-tight">Dietistica</h4>
+                <p className="text-slate-500 text-sm italic">Tesi d'eccellenza in ambito clinico</p>
+              </div>
+            </div>
+
+            {/* Narrative Timeline Style - Reduced weight */}
+            <div className="space-y-12 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-[1px] before:bg-white/5">
+              
+              {/* Point 1 */}
+              <div className="relative pl-12 group">
+                <div className="absolute left-0 top-1 w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-emerald-500/50 group-hover:text-emerald-400 transition-colors">
+                  <Brain className="w-4 h-4" />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-slate-400 leading-relaxed text-base">
+                    Formazione clinica tra <span className="text-white">Toscana e Roma</span>, consolidata con un approccio basato sull'evidenza scientifica e l'aggiornamento costante.
+                  </p>
+                </div>
+              </div>
+
+              {/* Point 2 */}
+              <div className="relative pl-12 group">
+                <div className="absolute left-0 top-1 w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-blue-500/50 group-hover:text-blue-400 transition-colors">
+                  <Heart className="w-4 h-4" />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-slate-400 leading-relaxed text-base">
+                    La nutrizione come <span className="text-white italic">empatia scientifica</span>: un ascolto attivo che trasforma i parametri clinici in cambiamenti reali.
+                  </p>
+                </div>
+              </div>
+
+              {/* Point 3 */}
+              <div className="relative pl-12 group">
+                <div className="absolute left-0 top-1 w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-amber-500/50 group-hover:text-amber-400 transition-colors">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-slate-400 leading-relaxed text-base">
+                    <span className="text-white font-medium">Metodo Slice:</span> flessibilità e rigore clinico per adattare la scienza ai ritmi della vita quotidiana.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </section>
