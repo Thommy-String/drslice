@@ -21,4 +21,5 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: #1f2937;
   background-color: #ffffff;
+  overflow-x: hidden;
 }

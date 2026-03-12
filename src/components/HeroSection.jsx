@@ -233,11 +233,9 @@ export function HeroSection() {
              <HeroServiceTags />
           </div>
 
-          {/* Reviews Carousel */}
-          <div className="relative mt-12 px-0 flex justify-center w-[100vw] overflow-hidden ml-[calc(-50vw+50%)]">
-            <div className="w-full inline-flex justify-center flex-col items-center">
-              <ReviewsCarousel />
-            </div>
+          {/* Reviews Carousel - Completely breaking out of the container on all screen sizes to span 100% of viewport width without clipping */}
+          <div className="relative mt-12 w-[100vw] ml-[calc(-50vw+50%)]">
+            <ReviewsCarousel />
           </div>
 
           {/* Quiz Section - Restored under Reviews */}
@@ -249,7 +247,7 @@ export function HeroSection() {
             <ServiceQuiz />
           </div>
 
-          {/* Moved Services here, just under the Hero logic so it spans full width and acts as a clear divider */}
+          {/* Moved Services here, stretching across screen properly without horizontal scrollbar */}
           <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10 transition-all duration-500">
             <Services />
           </div>
@@ -258,7 +256,7 @@ export function HeroSection() {
           <div className="mt-8 sm:mt-12 w-full flex flex-col items-center gap-12 sm:gap-16">
 
             {/* Comparison Table */}
-            <div className="w-[100vw] sm:w-full max-w-5xl px-0 sm:px-6 lg:px-8 z-20">
+            <div className="w-[100vw] ml-[calc(-50vw+50%)] lg:ml-0 lg:w-full sm:max-w-5xl px-0 sm:px-6 lg:px-8 z-20">
               <ComparisonTable />
             </div>
 
