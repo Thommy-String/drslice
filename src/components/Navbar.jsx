@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { NAV_LINKS, SOCIAL_LINKS } from '../constants';
+import logoImg from '../assets/loghi/slice logo. finale_.png';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,10 +26,7 @@ export function Navbar() {
           <div className="flex-shrink-0">
             <a href="#" className="group flex items-center gap-2.5">
               <div className="relative">
-                <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-600/20 group-hover:scale-110 transition-transform duration-500 rotate-3 group-hover:rotate-0">
-                  <span className="text-white font-black text-xl tracking-tighter">S.</span>
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white animate-pulse" />
+                <img src={logoImg} alt="Slice Nutrizione Logo" className="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="flex flex-col">
                 <span className="text-slate-900 font-bold text-md leading-tight tracking-tight uppercase">Dott. Paolo Panarini</span>
