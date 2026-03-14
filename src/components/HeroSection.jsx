@@ -67,17 +67,16 @@ export function HeroSection() {
               
               <div className="mb-8 lg:mb-12 mt-4 lg:mt-0">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
-                  L&apos;ultimo nutrizionista <br className="hidden lg:block" />
-                  <span className="text-emerald-600 relative inline-block">
-                    della tua vita.
+                  Dimagrire non è una questione di forza di volontà. <br className="hidden lg:block" />
+                  È questione di <span className="text-emerald-600 relative inline-block">
+                    metodo.
                     <svg className="absolute -bottom-2 left-0 w-full h-3 text-emerald-200/60 -z-10" viewBox="0 0 100 12" preserveAspectRatio="none">
                       <path d="M0,10 Q50,0 100,10" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round" />
                     </svg>
                   </span>
                 </h1>
                 <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  Ottieni risultati definitivi con il <span className="text-emerald-700 font-bold">Metodo SLICE</span>: 
-                  un approccio scientifico senza rinunce drastiche.
+                  Smetti di ricominciare ogni lunedì: trova il tuo equilibrio definitivo con il <span className="text-emerald-700 font-bold">Metodo SLICE</span>.
                 </p>
               </div>
 
@@ -181,17 +180,16 @@ export function HeroSection() {
               {/* Service tags moved right under the hero image */}
               <div className="block lg:hidden w-full max-w-sm mx-auto mt-6 text-center">
                  <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-3">
-                   L&apos;ultimo nutrizionista <br />
-                   <span className="text-emerald-600 relative inline-block">
-                     della tua vita.
+                   Dimagrire non è una questione di forza di volontà. <br />
+                   È questione di <span className="text-emerald-600 relative inline-block">
+                     metodo.
                      <svg className="absolute -bottom-2 left-0 w-full h-2 text-emerald-200/60 -z-10" viewBox="0 0 100 12" preserveAspectRatio="none">
                        <path d="M0,10 Q50,0 100,10" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round" />
                      </svg>
                    </span>
                  </h1>
                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium max-w-xs mx-auto mb-5">
-                   Ottieni risultati definitivi con il <span className="text-emerald-700 font-bold">Metodo SLICE</span>: 
-                   un approccio scientifico senza rinunce drastiche.
+                   Smetti di ricominciare ogni lunedì: il <span className="text-emerald-700 font-bold">Metodo SLICE</span> cambia le regole.
                  </p>
                  <div className="flex flex-col gap-3 w-full mb-6">
                    <Button
