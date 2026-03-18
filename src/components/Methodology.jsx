@@ -1,5 +1,6 @@
 import React from 'react';
 import { DOCTOR_INFO } from '../constants';
+import logoImg from '../assets/loghi/slice logo. finale_.png';
 
 const steps = [
   {
@@ -78,10 +79,17 @@ export function Methodology() {
   }, []);
 
   return (
-    <section id="metodo" className="py-24 bg-[#050505] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="metodo" className="py-24 bg-[#0B0F19] overflow-hidden relative">
+      {/* Cinematic Background Elements - Blu notte come AboutMe/Footer */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/2 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           
+          <div className="flex justify-center mb-8">
+            <img src={logoImg} alt="Slice Nutrizione Logo" className="h-24 lg:h-32 w-auto object-contain brightness-0 invert opacity-90" />
+          </div>
 
           <h2 className="text-sm font-bold text-emerald-500 uppercase tracking-[0.3em] mb-4">
             Il Metodo
@@ -102,23 +110,25 @@ export function Methodology() {
               key={step.letter} 
               onMouseEnter={() => { if (isDesktop) setActiveIndex(index); }}
               onMouseLeave={() => { if (isDesktop) setActiveIndex(-1); }}
-              className={`methodology-card group relative bg-[#0A0A0A] border rounded-3xl p-8 py-12 transition-all duration-300 overflow-hidden flex flex-col items-center text-center cursor-default ${
+              className={`methodology-card group relative bg-[#0D121F] border rounded-3xl p-8 py-12 transition-all duration-300 overflow-hidden flex flex-col items-center text-center cursor-default ${
                 activeIndex === index 
-                  ? 'border-emerald-500/50 bg-[#0F0F0F] ring-1 ring-emerald-500/20 shadow-[0_0_60px_-12px_rgba(16,185,129,0.3)] lg:-translate-y-2' 
+                  ? 'border-emerald-500/50 bg-[#121826] ring-1 ring-emerald-500/20 shadow-[0_0_60px_-12px_rgba(16,185,129,0.3)] lg:-translate-y-2' 
                   : 'border-white/5'
               }`}
             >
               {/* Large Background Letter */}
-              <div className={`absolute -top-4 -right-2 transition-all duration-500 pointer-events-none ${
-                activeIndex === index 
-                  ? 'opacity-30 scale-110' 
-                  : 'opacity-[0.03]'
+              <div className={`absolute -top-6 -right-4 text-9xl font-black transition-all duration-500 select-none ${
+                activeIndex === index ? 'text-emerald-500/10 scale-110 rotate-12' : 'text-white/[0.02]'
               }`}>
-                <span className={`text-[12rem] font-black leading-none transition-colors duration-500 ${
-                  activeIndex === index ? 'text-emerald-500' : 'text-white'
-                }`}>
-                  {step.letter}
-                </span>
+                {step.letter}
+              </div>
+
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black mb-6 transition-all duration-500 ${
+                activeIndex === index 
+                  ? 'bg-emerald-600 text-white scale-110 shadow-lg shadow-emerald-600/20 rotate-3' 
+                  : 'bg-white/5 text-emerald-400'
+              }`}>
+                {step.letter}
               </div>
               
               <div className="relative z-10 w-full">

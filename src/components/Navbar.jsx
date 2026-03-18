@@ -17,7 +17,7 @@ export function Navbar() {
 
   return (
     <nav className={`relative w-full z-[100] ${
-      scrolled ? 'bg-white/80 backdrop-blur-xl border-b border-slate-100 py-2 shadow-sm' : 'bg-transparent py-4'
+      scrolled ? 'bg-white/80 backdrop-blur-xl border-b border-slate-100 py-2 shadow-sm' : 'bg-transparent py-1'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -26,7 +26,7 @@ export function Navbar() {
           <div className="flex-shrink-0">
             <a href="#" className="group flex items-center gap-2.5">
               <div className="relative">
-                <img src={logoImg} alt="Slice Nutrizione Logo" className="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-110" />
+                <img src={logoImg} alt="Slice Nutrizione Logo" className="h-20 lg:h-32 w-auto object-contain transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="flex flex-col">
                 <span className="text-slate-900 font-bold text-md leading-tight tracking-tight uppercase">Dott. Paolo Panarini</span>

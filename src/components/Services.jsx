@@ -1,12 +1,13 @@
 import React from 'react';
-import { Clock, Globe, Home, Activity, CheckCircle2, TrendingUp, Sparkles, Dumbbell } from 'lucide-react';
+import { Clock, Globe, Home, Activity, CheckCircle2, TrendingUp, Sparkles, Dumbbell, Apple } from 'lucide-react';
 import { SERVICES, SOCIAL_LINKS, DOCTOR_INFO } from '../constants';
 
 const categoryIcons = {
   "Online": <Globe className="w-5 h-5" />,
   "In Studio": <Home className="w-5 h-5" />,
   "Diagnostica": <Activity className="w-5 h-5" />,
-  "Specialistica": <TrendingUp className="w-5 h-5" />
+  "Specialistica": <TrendingUp className="w-5 h-5" />,
+  "Diete": <Apple className="w-5 h-5" />
 };
 
 const GroupBadge = ({ group }) => {
@@ -15,6 +16,7 @@ const GroupBadge = ({ group }) => {
     "Smart": "bg-indigo-500/10 text-indigo-700 border-indigo-200",
     "Performance": "bg-orange-500/10 text-orange-700 border-orange-200",
     "Clinical": "bg-rose-500/10 text-rose-700 border-rose-200",
+    "Keto": "bg-purple-500/10 text-purple-700 border-purple-200",
     "Check-up": "bg-cyan-500/10 text-cyan-700 border-cyan-200",
     "Percorso Formativo": "bg-lime-500/10 text-lime-700 border-lime-200",
     "Domiciliare": "bg-fuchsia-500/10 text-fuchsia-700 border-fuchsia-200",
@@ -31,7 +33,7 @@ const GroupBadge = ({ group }) => {
 export function Services() {
   const [activeCategory, setActiveCategory] = React.useState("In Studio");
 
-  const categories = ["Tutti", "In Studio", "Online", "Specialistica", "Diagnostica"];
+  const categories = ["Tutti", "In Studio", "Online", "Diete", "Specialistica", "Diagnostica"];
 
   const filteredServices = activeCategory === "Tutti" 
     ? SERVICES 
@@ -74,6 +76,13 @@ export function Services() {
         accent: "text-rose-600",
         button: "bg-rose-600 hover:bg-rose-700 shadow-rose-600/20",
         glow: "from-rose-500/5 to-transparent"
+      },
+      "Keto": {
+        card: "bg-white border-purple-100 hover:border-purple-300 hover:shadow-[0_32px_64px_-16px_rgba(168,85,247,0.1)]",
+        icon: "bg-purple-50 text-purple-600 group-hover:bg-purple-100",
+        accent: "text-purple-600",
+        button: "bg-purple-600 hover:bg-purple-700 shadow-purple-600/20",
+        glow: "from-purple-500/5 to-transparent"
       },
       "Check-up": {
         card: "bg-white border-cyan-100 hover:border-cyan-300 hover:shadow-[0_32px_64px_-16px_rgba(6,182,212,0.1)]",

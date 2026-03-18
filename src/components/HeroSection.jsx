@@ -9,7 +9,7 @@ import { ReviewsCarousel } from './ReviewsCarousel';
 import { Services } from './Services';
 import { ServiceQuiz } from './ServiceQuiz';
 import { HeroServiceTags } from './HeroServiceTags';
-import paoloImg from '../assets/Paolo/drPaoloPanarini.jpg';
+import paoloImg from '../assets/Paolo/paoloheroimage.png';
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
 
 export function HeroSection() {
@@ -53,12 +53,12 @@ export function HeroSection() {
         <div className="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-l from-emerald-50/20 to-transparent skew-x-[-20deg] blur-3xl opacity-50" />
       </div>
 
-      {/* Trust Bar (Top) - Ridotto ulteriormente il margine superiore per avvicinarlo alla navbar */}
-      <div className="mt-2 md:mt-2 relative z-10 overflow-visible">
+      {/* Trust Bar (Top) - Ripristinato lo spazio per evitare sovrapposizioni */}
+      <div className="mt-4 lg:mt-6 relative z-10 overflow-visible px-4 sm:px-0">
         <TrustBanner />
       </div>
 
-      <section className="relative overflow-visible pt-2 pb-12 lg:pt-8 lg:pb-32">
+      <section className="relative overflow-visible pt-6 pb-12 lg:pt-8 lg:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-start">
 
@@ -123,7 +123,7 @@ export function HeroSection() {
               {/* Background abstract elements for depth */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100/40 to-emerald-50/40 rounded-full blur-3xl -z-10"></div>
 
-              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white pt-6 px-6 pb-0 aspect-square lg:aspect-[4.2/5] border border-white/80 backdrop-blur-sm top-0 lg:top-4">
+              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white aspect-square lg:aspect-[4.2/5] border border-white/80 backdrop-blur-sm top-0 lg:top-4">
                 
                 {/* Visual Accent/Glass Overlay inside card */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-emerald-100/20 to-transparent rounded-bl-full z-0"></div>
@@ -132,7 +132,7 @@ export function HeroSection() {
                 <img
                   src={paoloImg}
                   alt="Dott. Paolo Panarini"
-                  className="relative w-full h-full object-cover object-top rounded-t-[1.5rem] z-10 bottom-0 filter contrast-[1.05]"
+                  className="relative w-full h-full object-cover object-top z-10 bottom-0 filter contrast-[1.05]"
                   style={{ objectPosition: 'center 15%' }}
                 />
 

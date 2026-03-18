@@ -5,7 +5,7 @@ import intervistaPaolo from '../assets/Paolo/intervistaPaolo.png';
 
 export function TrustBanner() {
   return (
-    <div className="bg-transparent pt-3 pb-6 relative z-10 overflow-visible group/trust">
+    <div className="bg-transparent pt-0 pb-2 relative z-10 overflow-visible group/trust">
       <div className="max-w-7xl mx-auto flex justify-center px-4 overflow-visible">
         {/* Layout super-compatto: Card orizzontale. Aumentata altezza totale sm:h-20 */}
         <div className="flex flex-col sm:flex-row items-center gap-0 bg-white/80 backdrop-blur-xl border border-white/90 rounded-[1.5rem] sm:rounded-full shadow-[0_8px_30px_-10px_rgba(16,185,129,0.12)] transition-all max-w-3xl overflow-hidden p-1 sm:p-1.5 sm:pr-6">

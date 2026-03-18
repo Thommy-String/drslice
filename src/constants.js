@@ -44,15 +44,6 @@ export const LOCATIONS = [
     phone: "+390774300300",
     mapsUrl: "https://maps.app.goo.gl/FhHzFg8cML6V5naFA",
     isPrivate: false
-  },
-  {
-    name: "Centro Medico Colaiaco",
-    address: "Via dei Monti Tiburtini 572, Roma 00157",
-    city: "Roma",
-    type: "Poliambulatorio",
-    phone: "+390645472000",
-    mapsUrl: "https://maps.app.goo.gl/XXGtMjD1tNwowWRh8",
-    isPrivate: false
   }
 ];
 
@@ -109,7 +100,7 @@ export const SERVICES = [
   { 
     name: "Nutrizione Sportiva", 
     price: "Su Preventivo", 
-    category: "Specialistica",
+    category: "Diete",
     group: "Performance",
     description: "Ottimizza il carburante per il tuo motore. Per chi non si accontenta di partecipare.",
     duration: "60 min",
@@ -125,7 +116,7 @@ export const SERVICES = [
   { 
     name: "Diete Cliniche", 
     price: "Su Preventivo", 
-    category: "Specialistica",
+    category: "Diete",
     group: "Clinical",
     description: "La nutrizione come terapia. Percorsi mirati per la gestione nutrizionale di patologie diagnosticate.",
     duration: "60 min",
@@ -187,6 +178,22 @@ export const SERVICES = [
     ]
   },
   { 
+    name: "Dieta Chetogenica", 
+    price: "Su Preventivo", 
+    category: "Diete",
+    group: "Keto",
+    description: "Protocolli VLCKD (Very Low Calorie Ketogenic Diet) per un reset metabolico rapido e controllato.",
+    duration: "60 min",
+    target: "Pazienti con obesità, insulino-resistenza o che necessitano di un dimagrimento rapido pre-intervento.",
+    features: [
+      "Protocolli VLCKD scientificamente validati",
+      "Monitoraggio dei corpi chetonici",
+      "Gestione della transizione e reintroduzione",
+      "Integrazione specifica per chetosi",
+      "Supporto costante durante la fase d'urto"
+    ]
+  },
+  { 
     name: "Piano Allenamento su Misura (Studio)", 
     price: "Su Preventivo", 
     category: "In Studio",
@@ -228,7 +235,7 @@ export const NAV_LINKS = [
 ];
 
 export const SOCIAL_LINKS = {
-  instagram: "https://instagram.com/dott.paolopanarini",
-  facebook: "https://facebook.com/dott.paolopanarini",
+  instagram: "https://www.instagram.com/dr.slice_/",
+  facebook: "https://www.facebook.com/SliceNutrizione/?locale=it_IT",
   miodottore: "https://www.miodottore.it/paolo-panarini/nutrizionista/tivoli"
 };
