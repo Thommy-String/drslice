@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Globe, Home, Activity, CheckCircle2, TrendingUp, Sparkles } from 'lucide-react';
+import { Clock, Globe, Home, Activity, CheckCircle2, TrendingUp, Sparkles, Dumbbell } from 'lucide-react';
 import { SERVICES, SOCIAL_LINKS, DOCTOR_INFO } from '../constants';
 
 const categoryIcons = {
@@ -17,7 +17,8 @@ const GroupBadge = ({ group }) => {
     "Clinical": "bg-rose-500/10 text-rose-700 border-rose-200",
     "Check-up": "bg-cyan-500/10 text-cyan-700 border-cyan-200",
     "Percorso Formativo": "bg-lime-500/10 text-lime-700 border-lime-200",
-    "Domiciliare": "bg-fuchsia-500/10 text-fuchsia-700 border-fuchsia-200"
+    "Domiciliare": "bg-fuchsia-500/10 text-fuchsia-700 border-fuchsia-200",
+    "Training": "bg-amber-500/10 text-amber-700 border-amber-200"
   };
   
   return (
@@ -94,6 +95,13 @@ export function Services() {
         accent: "text-fuchsia-600",
         button: "bg-fuchsia-600 hover:bg-fuchsia-700 shadow-fuchsia-600/20",
         glow: "from-fuchsia-500/5 to-transparent"
+      },
+      "Training": {
+        card: "bg-gradient-to-br from-amber-50 to-white border-amber-100 hover:border-amber-400 hover:shadow-[0_32px_64px_-16px_rgba(245,158,11,0.2)] scale-[1.02]",
+        icon: "bg-amber-500 text-white group-hover:bg-amber-600 shadow-lg shadow-amber-500/20",
+        accent: "text-amber-600",
+        button: "bg-amber-600 hover:bg-amber-700 shadow-amber-600/30",
+        glow: "from-amber-400/20 to-amber-500/5"
       }
     };
     return themes[group] || themes["Percorso Base"];
@@ -153,13 +161,15 @@ export function Services() {
                   service.featured ? 'scale-100 lg:scale-105 z-10' : 'scale-100'
                 }`}
               >
-                {/* Visual Accent Glow */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${theme.glow} rounded-[3rem] -z-10`} />
+                {/* Visual Flair for Training/Featured */}
+                {(service.group === "Training" || service.featured) && (
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${theme.glow} rounded-tr-[2.5rem] rounded-bl-[10rem] -z-10 transition-all duration-700 group-hover:scale-110 opacity-60`} />
+                )}
 
                 {/* Category & Badge */}
                 <div className="flex justify-between items-start mb-6">
                   <div className={`p-4 rounded-2xl transition-all duration-500 ${theme.icon} shadow-sm ring-1 ring-white/50`}>
-                    {React.cloneElement(categoryIcons[service.category], { className: "w-6 h-6" })}
+                    {service.group === "Training" ? <Dumbbell className="w-7 h-7" /> : React.cloneElement(categoryIcons[service.category], { className: "w-6 h-6" })}
                   </div>
                   {service.featured && (
                     <span className="bg-emerald-600 text-white text-[10px] font-black px-4 py-2 rounded-full shadow-lg shadow-emerald-600/20 tracking-wider">IL PIÙ SCELTO</span>

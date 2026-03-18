@@ -185,6 +185,38 @@ export const SERVICES = [
       "Analisi antropometriche portatili",
       "Stesso standard qualitativo dello studio"
     ]
+  },
+  { 
+    name: "Piano Allenamento su Misura (Studio)", 
+    price: "Su Preventivo", 
+    category: "In Studio",
+    group: "Training",
+    description: "Sinergia perfetta tra nutrizione e movimento. Un programma di allenamento cucito addosso alle tue esigenze fisiche.",
+    duration: "60 min",
+    target: "Per chi vuole massimizzare i risultati estetici e di salute abbinando l'esercizio fisico corretto alla dieta.",
+    features: [
+      "Valutazione della mobilità articolare",
+      "Test di forza e resistenza iniziali",
+      "Programmazione periodizzata mensile",
+      "Video tutorial per ogni esercizio",
+      "Integrazione con il piano alimentare"
+    ]
+  },
+  { 
+    name: "Piano Allenamento su Misura Online", 
+    price: "Su Preventivo", 
+    category: "Online",
+    group: "Training",
+    description: "Il tuo trainer digitale sempre con te. Un programma di allenamento professionale accessibile da ovunque.",
+    duration: "45 min",
+    target: "Ideale per chi si allena a casa o in palestra e vuole una guida tecnica esperta a distanza.",
+    features: [
+      "Video-call di valutazione tecnica",
+      "Scheda digitale interattiva",
+      "Check settimanali via chat/video",
+      "Correzione dell'esecuzione tramite video",
+      "Adattamento costante in base ai feedback"
+    ]
   }
 ];
 
