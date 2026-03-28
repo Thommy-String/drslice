@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronRight, Ban, Clock, UtensilsCrossed } from 'lucide-react';
 import { DOCTOR_INFO } from '../constants';
 import logoImg from '../assets/loghi/slice logo. finale_.png';
 
@@ -6,27 +8,45 @@ const steps = [
   {
     letter: 'S',
     title: 'Sostenibilità',
-    description: 'Un piano che non puoi seguire a lungo non serve a nulla. Creiamo abitudini che si adattano alla tua vita, non il contrario.'
+    description: 'Un piano che si adatta alla tua vita reale: pranzi fuori, cene in famiglia, ritmi di lavoro. Se non è sostenibile, non funziona.'
   },
   {
     letter: 'L',
     title: 'Libertà',
-    description: 'Nessun alimento è proibito. Impariamo a gestire la pizza, le cene fuori e i dolci senza sensi di colpa.'
+    description: 'Nessun alimento è proibito. Impari a gestire la pizza, i dolci e le cene fuori senza sensi di colpa — e senza riprendere peso.'
   },
   {
     letter: 'I',
     title: 'Individualità',
-    description: 'Non esistono diete copia-incolla. Ogni grammo e ogni scelta sono calibrati sul tuo metabolismo e i tuoi gusti.'
+    description: 'Zero diete copia-incolla. Ogni scelta è calibrata su di te: il tuo metabolismo, i tuoi gusti, i tuoi obiettivi.'
   },
   {
     letter: 'C',
     title: 'Consapevolezza',
-    description: 'Ti insegno a capire cosa mangi e perché. Diventerai autonomo nella gestione della tua alimentazione per sempre.'
+    description: 'Ti insegno a bilanciare un pasto da solo. Diventerai autonomo nella gestione della tua alimentazione, per sempre.'
   },
   {
     letter: 'E',
     title: 'Equilibrio',
-    description: 'La salute è armonia tra mente e corpo. Un approccio sereno al cibo è la chiave della tua trasformazione.'
+    description: 'La salute è armonia tra mente e corpo. Un approccio sereno al cibo è la chiave di una trasformazione che dura nel tempo.'
+  }
+];
+
+const failureReasons = [
+  {
+    icon: <UtensilsCrossed className="w-6 h-6" />,
+    title: 'La Monotonia',
+    description: 'Mangiare sempre le stesse 4-5 pietanze "sane" porta all\'abbandono. Con il Metodo SLICE scopri che si può dimagrire anche mangiando ciò che ami.'
+  },
+  {
+    icon: <Ban className="w-6 h-6" />,
+    title: 'La Mancanza di Libertà',
+    description: 'Le diete rigide tolgono la gioia del pasto. Nel mio metodo sei tu a scegliere cosa mangiare, ogni giorno, con consapevolezza.'
+  },
+  {
+    icon: <Clock className="w-6 h-6" />,
+    title: 'La Mancanza di Tempo',
+    description: 'Non serve stare ore ai fornelli. Ti insegno strategie pratiche per chi lavora, pranza fuori o torna a casa senza energie.'
   }
 ];
 
@@ -97,8 +117,8 @@ export function Methodology() {
           <h3 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">
             S.L.I.C.E.
           </h3>
-          <p className="text-lg text-slate-400 leading-relaxed font-light">
-            Un approccio scientifico, umano e sostenibile per trasformare il tuo rapporto con il cibo senza rinunce estreme.
+          <p className="text-lg text-slate-400 leading-relaxed font-light max-w-2xl mx-auto">
+            Non è solo un piano alimentare. È un percorso che ti insegna a gestire la tua alimentazione <span className="text-white font-medium">in autonomia, per sempre</span> — senza monotonia, senza rinunce, senza stare ore ai fornelli.
           </p>
         </div>
 
@@ -156,10 +176,52 @@ export function Methodology() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-slate-500 text-sm font-light italic">
+          <p className="text-slate-500 text-sm font-light italic mb-6">
             "Semplifica la tua alimentazione, potenzia la tua vita."
           </p>
         </div>
+
+        {/* 3 Motivi del Fallimento */}
+        <div className="mt-24">
+          <div className="text-center mb-14">
+            <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-4">
+              Perché le diete falliscono?
+            </h3>
+            <p className="text-slate-400 font-light max-w-xl mx-auto">
+              Nella mia pratica clinica ho individuato 3 fattori critici. Il Metodo SLICE li affronta tutti.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {failureReasons.map((reason, index) => (
+              <div key={index} className="relative bg-[#0D121F] border border-white/5 rounded-2xl p-8 hover:border-emerald-500/30 transition-all duration-300 group">
+                <div className="absolute top-6 right-6 text-6xl font-black text-white/[0.03] select-none">{index + 1}</div>
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-5 group-hover:bg-emerald-500/20 transition-colors">
+                  {reason.icon}
+                </div>
+                <h4 className="text-lg font-bold text-white mb-3">{reason.title}</h4>
+                <p className="text-sm text-slate-400 leading-relaxed font-light">{reason.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA verso pagina dedicata */}
+        <div className="mt-20 text-center">
+          <div className="inline-flex flex-col items-center gap-6 bg-gradient-to-b from-emerald-500/10 to-transparent rounded-3xl p-10 px-14 border border-emerald-500/10">
+            <p className="text-white font-bold text-lg md:text-xl max-w-md">
+              Vuoi scoprire nel dettaglio come funziona il Metodo SLICE?
+            </p>
+            <Link 
+              to="/metodo-slice"
+              className="group inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm uppercase tracking-widest px-8 py-4 rounded-2xl transition-all duration-300 shadow-xl shadow-emerald-600/20 hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+            >
+              Scopri il Metodo Completo
+              <ChevronRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+
       </div>
     </section>
   );

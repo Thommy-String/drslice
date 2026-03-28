@@ -1,15 +1,17 @@
+import { Routes, Route } from 'react-router-dom'
 import { HeroSection } from './components/HeroSection'
 import { Methodology } from './components/Methodology'
 import { Locations } from './components/Locations'
 import { AboutMe } from './components/AboutMe'
 import { Services } from './components/Services'
+import { MetodoSlicePage } from './components/MetodoSlicePage'
 import { DOCTOR_INFO, SOCIAL_LINKS, LOCATIONS, SERVICES } from './constants'
 import mioDottoreLogo from './assets/loghi/mio-dottore.png'
 import { Phone, MapPin, Mail, Instagram, Facebook, ExternalLink, Calendar } from 'lucide-react'
 
-function App() {
+function HomePage() {
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+    <>
       <HeroSection />
       
       <main>
@@ -17,6 +19,17 @@ function App() {
         <Locations />
         <AboutMe />
       </main>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/metodo-slice" element={<MetodoSlicePage />} />
+      </Routes>
 
       <footer className="bg-slate-900 pt-20 pb-12 text-white overflow-hidden relative" id="contatti">
         {/* Decorative background glow */}
