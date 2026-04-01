@@ -236,18 +236,18 @@ export function HeroSection() {
             <ReviewsCarousel />
           </div>
 
-          {/* Quiz Section - Restored under Reviews */}
+          {/* Moved Services here, stretching across screen properly without horizontal scrollbar */}
+          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10 transition-all duration-500">
+            <Services />
+          </div>
+
+          {/* Quiz Section - Under Services */}
           <div className="mt-12 z-50 flex flex-col items-center justify-center max-w-lg mx-auto w-full">
             <h3 className="text-xl lg:text-3xl font-black mb-4 flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-emerald-500" />
               Non sai da dove iniziare?
             </h3>
             <ServiceQuiz />
-          </div>
-
-          {/* Moved Services here, stretching across screen properly without horizontal scrollbar */}
-          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10 transition-all duration-500">
-            <Services />
           </div>
 
           {/* Underneath the grid, taking full width */}

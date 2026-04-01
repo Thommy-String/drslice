@@ -48,13 +48,14 @@ export const LOCATIONS = [
 ];
 
 export const SERVICES = [
+  // ── IN STUDIO ──
   { 
     name: "Prima visita nutrizionale", 
     price: "100 € - 120 €", 
     category: "In Studio",
     group: "Percorso Base",
     description: "L'inizio del tuo cambiamento. Un incontro approfondito per definire la rotta verso il tuo benessere.",
-    duration: "60-90 min",
+    duration: "60 min",
     featured: true,
     target: "Ideale per chi vuole iniziare un percorso serio e personalizzato.",
     features: [
@@ -67,7 +68,7 @@ export const SERVICES = [
   },
   { 
     name: "Visita di controllo", 
-    price: "50 €", 
+    price: "50 € - 60 €", 
     category: "In Studio",
     group: "Percorso Base",
     description: "Il motore della costanza. Monitoriamo i progressi e affiniamo la strategia per restare in scia.",
@@ -82,13 +83,83 @@ export const SERVICES = [
     ]
   },
   { 
-    name: "Consulenza online", 
-    price: "50 €", 
+    name: "Educazione alimentare", 
+    price: "60 € - 70 €", 
+    category: "In Studio",
+    group: "Percorso Formativo",
+    description: "Impara a gestire la tua alimentazione con consapevolezza, senza piano alimentare. Pura conoscenza applicata.",
+    duration: "60 min",
+    target: "Chi vuole capire come funziona la nutrizione e imparare a mangiare bene in autonomia.",
+    note: "Non prevede il rilascio di un piano alimentare.",
+    features: [
+      "Insegnamento lettura delle etichette",
+      "Pianificazione dei pasti settimanali",
+      "Gestione della spesa intelligente",
+      "Approccio intuitivo senza restrizioni rigide",
+      "Materiale didattico in OMAGGIO"
+    ]
+  },
+  { 
+    name: "Piano Allenamento su Misura", 
+    price: "Su Preventivo", 
+    category: "In Studio",
+    group: "Training",
+    description: "Sinergia perfetta tra nutrizione e movimento. Un programma di allenamento cucito addosso alle tue esigenze.",
+    duration: "30 min",
+    target: "Per chi vuole massimizzare i risultati estetici e di salute abbinando l'esercizio fisico corretto alla dieta.",
+    features: [
+      "Valutazione della mobilità articolare",
+      "Test di forza e resistenza iniziali",
+      "Programmazione periodizzata mensile",
+      "Video tutorial per ogni esercizio",
+      "Integrazione con il piano alimentare"
+    ]
+  },
+
+  // ── A DOMICILIO ──
+  { 
+    name: "Prima visita a domicilio", 
+    price: "120 € - 150 €", 
+    category: "A Domicilio",
+    group: "Domiciliare",
+    description: "La professionalità del nutrizionista comodamente a casa tua. Stessa qualità dello studio, nel tuo ambiente.",
+    duration: "60 min",
+    target: "Persone a mobilità ridotta, neo-mamme o chi preferisce l'intimità domestica.",
+    features: [
+      "Visita nutrizionale completa a casa tua",
+      "Valutazione della dispensa domestica",
+      "Consigli pratici su cucina e bilance",
+      "Analisi antropometriche portatili",
+      "Stesso standard qualitativo dello studio"
+    ]
+  },
+  { 
+    name: "Controllo a domicilio", 
+    price: "60 € - 80 €", 
+    category: "A Domicilio",
+    group: "Domiciliare",
+    description: "Monitoraggio dei progressi senza spostarti da casa. Follow-up professionale nel tuo comfort.",
+    duration: "30 min",
+    target: "Per chi ha già effettuato la prima visita a domicilio e vuole continuare il percorso comodamente.",
+    features: [
+      "Monitoraggio peso e circonferenze",
+      "Revisione e aggiustamento del piano",
+      "Rilevazione BIA portatile di controllo",
+      "Supporto motivazionale continuo",
+      "Feedback e strategie personalizzate"
+    ]
+  },
+
+  // ── ONLINE ──
+  { 
+    name: "Percorso Online", 
+    price: "Su Preventivo", 
     category: "Online",
     group: "Smart",
-    description: "La flessibilità della tecnologia al servizio della tua salute. Ovunque tu sia.",
-    duration: "45 min",
-    target: "Ideale per lavoratori fuori sede, studenti o chi ha poco tempo.",
+    description: "Il tuo percorso nutrizionale completo, ovunque tu sia. Con formula di pagamento flessibile.",
+    duration: "60 min",
+    target: "Lavoratori fuori sede, studenti o chi preferisce la comodità del digitale.",
+    note: "Disponibile con pagamento mensile, semestrale o annuale anticipato.",
     features: [
       "Videochiamata HD su piattaforma sicura",
       "Analisi del diario alimentare",
@@ -97,6 +168,24 @@ export const SERVICES = [
       "Piano alimentare digitale incluso"
     ]
   },
+  { 
+    name: "Allenamento Online", 
+    price: "Su Preventivo", 
+    category: "Online",
+    group: "Training",
+    description: "Il tuo trainer digitale sempre con te. Un programma di allenamento professionale accessibile da ovunque.",
+    duration: "30 min",
+    target: "Per chi si allena a casa o in palestra e vuole una guida tecnica esperta a distanza.",
+    features: [
+      "Video-call di valutazione tecnica",
+      "Scheda digitale interattiva",
+      "Check settimanali via chat/video",
+      "Correzione dell'esecuzione tramite video",
+      "Adattamento costante in base ai feedback"
+    ]
+  },
+
+  // ── DIETE SPECIALISTICHE ──
   { 
     name: "Nutrizione Sportiva", 
     price: "Su Preventivo", 
@@ -130,54 +219,6 @@ export const SERVICES = [
     ]
   },
   { 
-    name: "Analisi BIA Avanzata", 
-    price: "35 €", 
-    category: "Diagnostica",
-    group: "Check-up",
-    description: "Oltre il semplice peso. Scopri di cosa è fatto veramente il tuo corpo.",
-    duration: "20 min",
-    target: "Chi vuole monitorare massa magra, grassa e stato di idratazione.",
-    features: [
-      "Analisi Akern® BIA 101 New Edition",
-      "Valutazione Acqua Intracellulare",
-      "Stima della Massa Muscolare Scheletrica",
-      "Analisi del Metabolismo Basale",
-      "Report cartaceo/digitale immediato"
-    ]
-  },
-  { 
-    name: "Educazione alimentare", 
-    price: "40 €", 
-    category: "In Studio",
-    group: "Percorso Formativo",
-    description: "Impara a gestire la tua alimentazione con consapevolezza per risultati duraturi nel tempo.",
-    duration: "45 min",
-    target: "Donne, uomini, persone impegnatissime senza tempo o chiunque voglia imparare a mangiare bene.",
-    features: [
-      "Insegnamento lettura delle etichette",
-      "Pianificazione dei pasti settimanali",
-      "Gestione della spesa intelligente",
-      "Approccio intuitivo senza restrizioni rigide",
-      "Materiale didattico in OMAGGIO"
-    ]
-  },
-  { 
-    name: "Visita a domicilio", 
-    price: "120 € - 150 €", 
-    category: "In Studio",
-    group: "Domiciliare",
-    description: "La professionalità del nutrizionista comodamente a casa tua.",
-    duration: "60-90 min",
-    target: "Personale a mobilità ridotta, neo-mamme o chi prefersice l'intimità domestica.",
-    features: [
-      "Visita nutrizionale completa a casa tua",
-      "Valutazione della dispensa domestica",
-      "Consigli pratici su cucina e bilance",
-      "Analisi antropometriche portatili",
-      "Stesso standard qualitativo dello studio"
-    ]
-  },
-  { 
     name: "Dieta Chetogenica", 
     price: "Su Preventivo", 
     category: "Diete",
@@ -185,6 +226,18 @@ export const SERVICES = [
     description: "Protocolli VLCKD (Very Low Calorie Ketogenic Diet) per un reset metabolico rapido e controllato.",
     duration: "60 min",
     target: "Pazienti con obesità, insulino-resistenza o che necessitano di un dimagrimento rapido pre-intervento.",
+    details: {
+      cosè: "La dieta chetogenica è un protocollo alimentare a bassissimo contenuto di carboidrati e alto contenuto di grassi che induce il corpo a utilizzare i grassi come fonte primaria di energia, producendo corpi chetonici al posto del glucosio.",
+      comeFunziona: "Riducendo drasticamente i carboidrati (sotto i 20-50g/giorno), il fegato converte i grassi in corpi chetonici che diventano il carburante principale per cervello e muscoli. Il Dottore monitora costantemente i livelli di chetosi tramite analisi specifiche, gestendo ogni fase: induzione, mantenimento e reintroduzione graduale dei carboidrati.",
+      benefici: [
+        "Perdita di massa grassa rapida preservando la massa muscolare",
+        "Riduzione significativa della fame e degli attacchi di appetito",
+        "Miglioramento della sensibilità insulinica e del profilo glicemico",
+        "Riduzione dei trigliceridi e miglioramento del profilo lipidico",
+        "Effetto anti-infiammatorio sistemico",
+        "Maggiore lucidità mentale e stabilità energetica"
+      ]
+    },
     features: [
       "Protocolli VLCKD scientificamente validati",
       "Monitoraggio dei corpi chetonici",
@@ -193,36 +246,22 @@ export const SERVICES = [
       "Supporto costante durante la fase d'urto"
     ]
   },
+
+  // ── DIAGNOSTICA ──
   { 
-    name: "Piano Allenamento su Misura (Studio)", 
-    price: "Su Preventivo", 
-    category: "In Studio",
-    group: "Training",
-    description: "Sinergia perfetta tra nutrizione e movimento. Un programma di allenamento cucito addosso alle tue esigenze fisiche.",
-    duration: "60 min",
-    target: "Per chi vuole massimizzare i risultati estetici e di salute abbinando l'esercizio fisico corretto alla dieta.",
+    name: "Analisi BIA Avanzata", 
+    price: "35 € - 40 €", 
+    category: "Diagnostica",
+    group: "Check-up",
+    description: "Oltre il semplice peso. Scopri di cosa è fatto veramente il tuo corpo.",
+    duration: "15 min",
+    target: "Chi vuole monitorare massa magra, grassa e stato di idratazione.",
     features: [
-      "Valutazione della mobilità articolare",
-      "Test di forza e resistenza iniziali",
-      "Programmazione periodizzata mensile",
-      "Video tutorial per ogni esercizio",
-      "Integrazione con il piano alimentare"
-    ]
-  },
-  { 
-    name: "Piano Allenamento su Misura Online", 
-    price: "Su Preventivo", 
-    category: "Online",
-    group: "Training",
-    description: "Il tuo trainer digitale sempre con te. Un programma di allenamento professionale accessibile da ovunque.",
-    duration: "45 min",
-    target: "Ideale per chi si allena a casa o in palestra e vuole una guida tecnica esperta a distanza.",
-    features: [
-      "Video-call di valutazione tecnica",
-      "Scheda digitale interattiva",
-      "Check settimanali via chat/video",
-      "Correzione dell'esecuzione tramite video",
-      "Adattamento costante in base ai feedback"
+      "Analisi Akern® BIA 101 New Edition",
+      "Valutazione Acqua Intracellulare",
+      "Stima della Massa Muscolare Scheletrica",
+      "Analisi del Metabolismo Basale",
+      "Report cartaceo/digitale immediato"
     ]
   }
 ];

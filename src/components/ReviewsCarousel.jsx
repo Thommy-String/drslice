@@ -60,10 +60,10 @@ const reviews = [
 
 export function ReviewsCarousel() {
   return (
-    <section className="py-24 bg-white overflow-hidden relative w-full" id="recensioni">
+    <section className="py-0  overflow-hidden relative w-full" id="recensioni">
       {/* Visual background decor */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      <div className="w-full overflow-hidden mt-6 mb-2 relative z-30 group flex-1" 
+      <div className="absolute top-0 left-0 w-full h-[1px] " />
+      <div className="w-full overflow-hidden mt-0 mb-2 relative z-30 group flex-1" 
          style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
         {/* Container that animates */}
         <div className="flex w-max animate-scroll group-hover:[animation-play-state:paused] pointer-events-auto">
