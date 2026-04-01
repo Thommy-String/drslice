@@ -5,6 +5,7 @@ import { Navbar } from './Navbar';
 import { SOCIAL_LINKS } from '../constants';
 import logoImg from '../assets/loghi/slice logo. finale_.png';
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
+import doctorImg from '../assets/Paolo/drPaoloPanarini.jpg';
 
 const pillars = [
   {
@@ -154,6 +155,17 @@ export function MetodoSlicePage() {
           <div className="text-center">
             <div className="flex justify-center mb-8">
               <img src={logoImg} alt="Slice Nutrizione Logo" className="h-20 lg:h-28 w-auto object-contain brightness-0 invert opacity-80" />
+            </div>
+
+            {/* Doctor Photo */}
+            <div className="flex justify-center mb-10">
+              <div className="relative w-32 h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden ring-2 ring-emerald-500/30 shadow-lg shadow-emerald-500/20">
+                <img 
+                  src={doctorImg} 
+                  alt="Dott. Paolo Panarini" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-black uppercase tracking-widest mb-8 border border-emerald-500/20">
