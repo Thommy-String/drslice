@@ -58,6 +58,17 @@ export const SERVICES = [
     duration: "60 min",
     featured: true,
     target: "Ideale per chi vuole iniziare un percorso serio e personalizzato.",
+    details: {
+      cosè: "La prima visita è un colloquio approfondito in cui il Dottore analizza il tuo stato di salute, le tue abitudini alimentari e il tuo stile di vita. Non è una semplice pesata: è il punto di partenza per costruire un percorso nutrizionale cucito su misura per te.",
+      comeFunziona: "Nella prima parte si raccoglie l'anamnesi completa (patologie, farmaci, storia del peso, allergie). Si passa poi alle misurazioni: peso, circonferenze e analisi della composizione corporea tramite BIA professionale. Infine si definiscono insieme gli obiettivi e il piano alimentare personalizzato viene consegnato entro 5 giorni lavorativi.",
+      benefici: [
+        "Quadro completo del tuo stato nutrizionale e metabolico",
+        "Piano alimentare 100% personalizzato sulle tue esigenze",
+        "Analisi BIA della composizione corporea inclusa",
+        "Obiettivi chiari, realistici e misurabili",
+        "Supporto continuo dal primo giorno"
+      ]
+    },
     features: [
       "Anamnesi patologica e fisiologica",
       "Valutazione abitudini alimentari",

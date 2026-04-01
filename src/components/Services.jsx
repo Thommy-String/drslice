@@ -128,10 +128,25 @@ const specColors = {
    ServiceCard — Always-Open Card
    ═══════════════════════════════════ */
 function ServiceCard({ service, colorSet }) {
+  const isFeatured = service.featured;
+
   return (
-    <div className="group relative flex flex-col p-7 sm:p-8 rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-slate-300">
+    <div className={`group relative flex flex-col p-7 sm:p-8 rounded-3xl border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+      isFeatured
+        ? 'border-emerald-300 ring-2 ring-emerald-500/20 shadow-lg shadow-emerald-500/10'
+        : 'border-slate-200 hover:border-slate-300'
+    }`}>
+      {/* "IL PIÙ SCELTO" badge */}
+      {isFeatured && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+          <span className="bg-emerald-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg shadow-emerald-600/30 tracking-widest uppercase whitespace-nowrap">
+            ⭐ Il più scelto
+          </span>
+        </div>
+      )}
+
       {/* Header: icon + price */}
-      <div className="flex items-start justify-between mb-5">
+      <div className={`flex items-start justify-between ${isFeatured ? 'mt-2 mb-5' : 'mb-5'}`}>
         <div className={`p-3 rounded-2xl ${colorSet.iconBg} shadow-sm`}>
           {service.group === "Training"
             ? <Dumbbell className="w-5 h-5" />
@@ -151,6 +166,37 @@ function ServiceCard({ service, colorSet }) {
 
       {/* Description */}
       <p className="text-sm text-slate-500 leading-relaxed mb-5">{service.description}</p>
+
+      {/* Extended details (Cos'è, Come funziona, Benefici) */}
+      {service.details && (
+        <div className="mb-5 space-y-3">
+          {service.details.cosè && (
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+              <span className={`text-[10px] font-bold uppercase tracking-wider ${colorSet.accent}`}>Cos'è</span>
+              <p className="text-xs text-slate-600 leading-relaxed mt-1">{service.details.cosè}</p>
+            </div>
+          )}
+          {service.details.comeFunziona && (
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+              <span className={`text-[10px] font-bold uppercase tracking-wider ${colorSet.accent}`}>Come funziona</span>
+              <p className="text-xs text-slate-600 leading-relaxed mt-1">{service.details.comeFunziona}</p>
+            </div>
+          )}
+          {service.details.benefici && (
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+              <span className={`text-[10px] font-bold uppercase tracking-wider ${colorSet.accent}`}>Benefici</span>
+              <ul className="mt-1.5 space-y-1.5">
+                {service.details.benefici.map((b, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs text-slate-600">
+                    <CheckCircle2 className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${colorSet.accent}`} />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Note */}
       {service.note && (
