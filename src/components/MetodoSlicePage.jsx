@@ -136,7 +136,7 @@ export function MetodoSlicePage() {
   }, []);
 
   return (
-    <div className="bg-[#0B0F19] min-h-screen font-sans text-white">
+    <div className="bg-[#0B0F19] min-h-screen font-sans text-white overflow-x-hidden">
       <Navbar dark />
 
       {/* ═══════════════ HERO ═══════════════ */}

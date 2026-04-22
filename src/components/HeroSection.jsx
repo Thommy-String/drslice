@@ -62,13 +62,13 @@ export function HeroSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-start">
 
-            {/* Desktop Only Content Left / Top -> Now explicitly hidden on mobile since it's moved below image on mobile */}
-            <div className="hidden lg:block order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left relative z-20 overflow-visible w-full lg:pr-12">
+            {/* Content: Unified Title + Desktop CTA / Mobile CTA below image */}
+            <div className="order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 relative z-20 overflow-visible w-full lg:pr-12">
               
-              <div className="mb-8 lg:mb-12 mt-4 lg:mt-0">
+              <div className="mb-8 lg:mb-12 mt-4 lg:mt-0 hidden lg:block text-center lg:text-left">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
-                  Smetti di ricominciare ogni lunedì: <br className="hidden lg:block" />
-                  trova il tuo equilibrio definitivo con il <span className="text-emerald-600 relative inline-block">
+                  Oltre il conteggio delle calorie: <br className="hidden lg:block" />
+                  impara a nutrirti con il <span className="text-emerald-600 relative inline-block">
                     Metodo SLICE.
                     <svg className="absolute -bottom-2 left-0 w-full h-3 text-emerald-200/60 -z-10" viewBox="0 0 100 12" preserveAspectRatio="none">
                       <path d="M0,10 Q50,0 100,10" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round" />
@@ -80,7 +80,8 @@ export function HeroSection() {
                 </p>
               </div>
 
-              <div className="mt-4 lg:mt-0 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+              {/* Desktop CTA */}
+              <div className="mt-4 lg:mt-0 hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
                 <div className="flex flex-col gap-3 w-full sm:w-auto">
                   <Button
                     href="https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli"
@@ -179,14 +180,14 @@ export function HeroSection() {
 
               {/* Service tags moved right under the hero image */}
               <div className="block lg:hidden w-full max-w-sm mx-auto mt-6 text-center">
-                 <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-3">
-                   Smetti di ricominciare ogni lunedì: <br />
-                   il <span className="text-emerald-600 relative inline-block">
+                 <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-4">
+                   Meno regole, più consapevolezza. <br />
+                   Impara a nutrirti per sempre con il <span className="text-emerald-600 relative inline-block">
                      Metodo SLICE
                      <svg className="absolute -bottom-2 left-0 w-full h-2 text-emerald-200/60 -z-10" viewBox="0 0 100 12" preserveAspectRatio="none">
                        <path d="M0,10 Q50,0 100,10" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round" />
                      </svg>
-                   </span> cambia le regole.
+                   </span>
                  </h1>
                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium max-w-xs mx-auto mb-5">
                    Dimagrire non è una questione di forza di volontà. È questione di <span className="text-emerald-700 font-bold">metodo</span>.
