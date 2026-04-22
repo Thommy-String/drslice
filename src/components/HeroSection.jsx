@@ -239,7 +239,7 @@ export function HeroSection() {
           </div>
 
           {/* Moved Services here, stretching across screen properly without horizontal scrollbar */}
-          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10 transition-all duration-500">
+          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10">
             <Services />
           </div>
 
