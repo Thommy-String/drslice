@@ -458,7 +458,7 @@ export function ServiceQuiz() {
                     <div className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 text-emerald-600">
                       <CheckCircle2 className="w-3 h-3" strokeWidth={3} />
                     </div>
-                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-tight">
+                    <span className="text-[12px] font-bold text-slate-500 uppercase tracking-tight">
                       Nessun pagamento anticipato
                     </span>
                   </div>

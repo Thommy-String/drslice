@@ -16,7 +16,6 @@ function HomePage() {
       
       <main>
         <Methodology />
-        <Locations />
         <AboutMe />
       </main>
     </>

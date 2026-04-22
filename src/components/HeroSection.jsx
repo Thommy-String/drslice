@@ -9,6 +9,7 @@ import { ReviewsCarousel } from './ReviewsCarousel';
 import { Services } from './Services';
 import { ServiceQuiz } from './ServiceQuiz';
 import { HeroServiceTags } from './HeroServiceTags';
+import { Locations } from './Locations';
 import paoloImg from '../assets/Paolo/paoloheroimage.png';
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
 
@@ -108,7 +109,7 @@ export function HeroSection() {
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
                     </div>
-                    <span className="text-[11px] sm:text-xs font-medium text-slate-500 tracking-tight">
+                    <span className="text-[12px] sm:text-xs font-medium text-slate-500 tracking-tight">
                       Nessun pagamento anticipato
                     </span>
                   </div>
@@ -216,7 +217,7 @@ export function HeroSection() {
                          <polyline points="20 6 9 17 4 12"></polyline>
                        </svg>
                      </div>
-                     <span className="text-[10px] font-medium text-slate-500 tracking-tight">
+                     <span className="text-[12px] font-medium text-slate-500 tracking-tight">
                        Nessun pagamento anticipato
                      </span>
                    </div>
@@ -242,7 +243,12 @@ export function HeroSection() {
             <Services />
           </div>
 
-          {/* Quiz Section - Under Services */}
+          {/* Locations Section - Above Quiz */}
+          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10">
+            <Locations />
+          </div>
+
+          {/* Quiz Section - Under Locations */}
           <div className="mt-12 z-50 flex flex-col items-center justify-center max-w-lg mx-auto w-full">
             <h3 className="text-xl lg:text-3xl font-black mb-4 flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-emerald-500" />
