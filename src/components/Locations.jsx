@@ -27,7 +27,7 @@ export function Locations() {
             Dove trovarmi
           </h2>
           <p className="mt-4 text-slate-500 text-lg max-w-2xl mx-auto">
-            Ricevo su appuntamento in 5 studi tra Roma e provincia. Scegli la sede più comoda per te.
+            Ricevo su appuntamento in 4 studi tra Roma e provincia. Scegli la sede più comoda per te.
           </p>
         </div>
 

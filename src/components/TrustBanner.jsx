@@ -41,7 +41,7 @@ export function TrustBanner() {
 
           {/* Testo Citazione (Destra / Sotto) */}
           <div className="flex-1 flex items-center pt-2 pb-1.5 sm:py-0 px-4 sm:px-5">
-            <p className="text-[11px] sm:text-[12px] text-slate-600 font-medium leading-tight sm:leading-relaxed italic text-center sm:text-left w-full">
+            <p className="text-[14px] sm:text-[12px] text-slate-600 font-medium leading-tight sm:leading-relaxed italic text-center sm:text-left w-full">
               «Un professionista <span className="font-bold text-emerald-900 not-italic">chiaro e preparato</span>. Grazie per aver partecipato all'intervista.»
             </p>
           </div>

@@ -147,7 +147,7 @@ export function HeroSection() {
                     <span className="text-base md:text-lg lg:text-xl font-bold text-slate-800" style={{ fontFamily: 'var(--font-handwriting)' }}>
                       Dott. Paolo Panarini
                     </span>
-                    <span className="text-[10px] md:text-xs text-emerald-600 uppercase tracking-[-0.02em] mt-1">
+                    <span className="text-[12px] md:text-xs font-bold text-emerald-600 uppercase tracking-[-0.03em] mt-1">
                       Nutrizionista e Dietista
                     </span>
                   </div>

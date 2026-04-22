@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useTransition } from 'react';
 import {
   Home, Wifi, Car, Clock, CheckCircle2,
   Sparkles, Dumbbell, Apple, Stethoscope, FlameKindling,
@@ -322,6 +322,13 @@ function SpecCard({ service, spec }) {
    ═══════════════════════════════════ */
 export function Services() {
   const [activeMode, setActiveMode] = useState("In Studio");
+  const [isPending, startTransition] = useTransition();
+
+  const handleModeChange = (key) => {
+    startTransition(() => {
+      setActiveMode(key);
+    });
+  };
 
   const modeServices = SERVICES.filter(s => s.category === activeMode);
   const specServices = SERVICES.filter(s => s.category === "Diete" || s.category === "Diagnostica");
@@ -360,7 +367,7 @@ export function Services() {
             return (
               <button
                 key={mode.key}
-                onClick={() => setActiveMode(mode.key)}
+                onClick={() => handleModeChange(mode.key)}
                 className={`relative flex flex-col items-center text-center px-3 py-5 sm:px-6 sm:py-7 rounded-2xl sm:rounded-3xl transition-all duration-300 cursor-pointer border-2 ${
                   isActive
                     ? `${c.activeBg} ${c.activeText} border-transparent shadow-xl ${c.activeShadow}`
@@ -385,7 +392,7 @@ export function Services() {
         </div>
 
         {/* ──────── Service Cards (always open) ──────── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-20">
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-5 mb-20 transition-opacity duration-150 ${isPending ? 'opacity-60' : 'opacity-100'}`}>
           {modeServices.map((service) => (
             <ServiceCard
               key={service.name}
