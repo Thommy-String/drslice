@@ -224,16 +224,16 @@ function ServiceCard({ service, colorSet }) {
       {/* CTA */}
       <div>
         <a
-          href={SOCIAL_LINKS.miodottore}
+          href={`https://wa.me/${DOCTOR_INFO.phone.replace("+", "")}?text=${encodeURIComponent("vorrei maggiori informazioni su " + service.name)}`}
           target="_blank"
           rel="noopener noreferrer"
           className={`w-full py-3.5 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-3 transition-all shadow-lg ${colorSet.btn}`}
         >
-          <img src={mioDottoreLogo} alt="MioDottore" className="h-6 w-auto object-contain brightness-0 invert" />
-          MAGGIORI INFO
-          <ArrowRight className="w-3.5 h-3.5" />
+          <MessageCircle className="w-5 h-5" />
+          INVIA MESSAGGIO AL DOTTORE
+          
         </a>
-        <p className="text-center text-[10px] text-slate-400 mt-2 tracking-wide">Nessun obbligo di acquisto</p>
+        <p className="text-center text-[12px] text-slate-400 mt-2 tracking-wide">Nessun obbligo di acquisto</p>
       </div>
     </div>
   );
@@ -303,15 +303,15 @@ function SpecCard({ service, spec }) {
 
       <div>
         <a
-          href={SOCIAL_LINKS.miodottore}
+          href={`https://wa.me/${DOCTOR_INFO.phone.replace("+", "")}?text=${encodeURIComponent("vorrei maggiori informazioni su " + service.name)}`}
           target="_blank"
           rel="noopener noreferrer"
           className={`w-full py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-3 transition-all shadow-lg ${c.btn}`}
         >
-          <img src={mioDottoreLogo} alt="MioDottore" className="h-6 w-auto object-contain brightness-0 invert" />
-          MAGGIORI INFO <ArrowRight className="w-3.5 h-3.5" />
+          <MessageCircle className="w-5 h-5" />
+          INVIA MESSAGGIO AL DOTTORE 
         </a>
-        <p className="text-center text-[10px] text-slate-400 mt-2 tracking-wide">Nessun obbligo di acquisto</p>
+        <p className="text-center text-[12px] text-slate-400 mt-2 tracking-wide">Nessun obbligo di acquisto</p>
       </div>
     </div>
   );
@@ -322,12 +322,9 @@ function SpecCard({ service, spec }) {
    ═══════════════════════════════════ */
 export function Services() {
   const [activeMode, setActiveMode] = useState("In Studio");
-  const [isPending, startTransition] = useTransition();
 
   const handleModeChange = (key) => {
-    startTransition(() => {
-      setActiveMode(key);
-    });
+    setActiveMode(key);
   };
 
   const modeServices = SERVICES.filter(s => s.category === activeMode);
@@ -368,13 +365,13 @@ export function Services() {
               <button
                 key={mode.key}
                 onClick={() => handleModeChange(mode.key)}
-                className={`relative flex flex-col items-center text-center px-3 py-5 sm:px-6 sm:py-7 rounded-2xl sm:rounded-3xl transition-all duration-300 cursor-pointer border-2 ${
+                className={`relative flex flex-col items-center text-center px-3 py-5 sm:px-6 sm:py-7 rounded-2xl sm:rounded-3xl cursor-pointer border-2 ${
                   isActive
                     ? `${c.activeBg} ${c.activeText} border-transparent shadow-xl ${c.activeShadow}`
                     : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:shadow-md'
                 }`}
               >
-                <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl mb-2 sm:mb-3 transition-all ${
+                <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl mb-2 sm:mb-3 ${
                   isActive ? 'bg-white/20' : 'bg-slate-100'
                 }`}>
                   <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${isActive ? 'text-white' : 'text-slate-500'}`} />
@@ -392,20 +389,32 @@ export function Services() {
         </div>
 
         {/* ──────── Service Cards (always open) ──────── */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-5 mb-20 transition-opacity duration-150 ${isPending ? 'opacity-60' : 'opacity-100'}`}>
-          {modeServices.map((service) => (
-            <ServiceCard
-              key={service.name}
-              service={service}
-              colorSet={cMode}
-            />
-          ))}
+        {/* ──────── Service Cards (always open) ──────── */}
+        <div className="mb-20 relative min-h-[400px]">
+          {MODES.map((mode) => (
+            <div
+              key={mode.key}
+              className={`grid grid-cols-1 md:grid-cols-2 gap-5 transition-opacity ease-out duration-500 ${
+                activeMode === mode.key 
+                ? 'opacity-100 relative z-10 block visible' 
+                : 'opacity-0 absolute inset-x-0 top-0 z-0 pointer-events-none invisible'
+              }`}
+            >
+              {SERVICES.filter(s => s.category === mode.key).map((service) => (
+                <ServiceCard
+                  key={service.name}
+                  service={service}
+                  colorSet={modeColors[mode.color]}
+                />
+              ))}
 
-          {modeServices.length === 0 && (
-            <div className="col-span-2 text-center py-12 text-slate-400 text-sm">
-              Nessun servizio disponibile per questa modalità.
+              {SERVICES.filter(s => s.category === mode.key).length === 0 && (
+                <div className="col-span-1 md:col-span-2 text-center py-12 text-slate-400 text-sm">
+                  Nessun servizio disponibile per questa modalità.
+                </div>
+              )}
             </div>
-          )}
+          ))}
         </div>
 
         {/* ──────── Percorsi Specializzati ──────── */}

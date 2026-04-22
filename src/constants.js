@@ -107,12 +107,12 @@ export const SERVICES = [
       "Pianificazione dei pasti settimanali",
       "Gestione della spesa intelligente",
       "Approccio intuitivo senza restrizioni rigide",
-      "Materiale didattico in OMAGGIO"
+      "Materiale didattico OMAGGIO"
     ]
   },
   { 
     name: "Piano Allenamento su Misura", 
-    price: "Su Preventivo", 
+    price: "Prezzo su misura", 
     category: "In Studio",
     group: "Training",
     description: "Sinergia perfetta tra nutrizione e movimento. Un programma di allenamento cucito addosso alle tue esigenze.",
@@ -164,7 +164,7 @@ export const SERVICES = [
   // ── ONLINE ──
   { 
     name: "Percorso Online", 
-    price: "Su Preventivo", 
+    price: "Prezzo su Misura", 
     category: "Online",
     group: "Smart",
     description: "Il tuo percorso nutrizionale completo, ovunque tu sia. Con formula di pagamento flessibile.",
@@ -181,7 +181,7 @@ export const SERVICES = [
   },
   { 
     name: "Allenamento Online", 
-    price: "Su Preventivo", 
+    price: "Prezzo su Misura", 
     category: "Online",
     group: "Training",
     description: "Il tuo trainer digitale sempre con te. Un programma di allenamento professionale accessibile da ovunque.",
@@ -199,7 +199,7 @@ export const SERVICES = [
   // ── DIETE SPECIALISTICHE ──
   { 
     name: "Nutrizione Sportiva", 
-    price: "Su Preventivo", 
+    price: "Prezzo su Misura", 
     category: "Diete",
     group: "Performance",
     description: "Ottimizza il carburante per il tuo motore. Per chi non si accontenta di partecipare.",
@@ -215,7 +215,7 @@ export const SERVICES = [
   },
   { 
     name: "Diete Cliniche", 
-    price: "Su Preventivo", 
+    price: "Prezzo su Misura", 
     category: "Diete",
     group: "Clinical",
     description: "La nutrizione come terapia. Percorsi mirati per la gestione nutrizionale di patologie diagnosticate.",
@@ -231,7 +231,7 @@ export const SERVICES = [
   },
   { 
     name: "Dieta Chetogenica", 
-    price: "Su Preventivo", 
+    price: "Prezzo su Misura", 
     category: "Diete",
     group: "Keto",
     description: "Protocolli VLCKD (Very Low Calorie Ketogenic Diet) per un reset metabolico rapido e controllato.",
