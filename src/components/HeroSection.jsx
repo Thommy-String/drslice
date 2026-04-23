@@ -239,12 +239,12 @@ export function HeroSection() {
           </div>
 
           {/* Moved Services here, stretching across screen properly without horizontal scrollbar */}
-          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10">
+          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-50">
             <Services />
           </div>
 
           {/* Locations Section - Above Quiz */}
-          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-10">
+          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-0">
             <Locations />
           </div>
 

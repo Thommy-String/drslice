@@ -15,9 +15,14 @@
   --font-handwriting: 'Caveat', cursive;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: #1f2937;
   background-color: #ffffff;
