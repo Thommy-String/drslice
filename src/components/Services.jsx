@@ -166,29 +166,29 @@ function ServiceCard({ service, colorSet }) {
       </div>
 
       {/* Description */}
-      <p className="text-sm text-slate-500 leading-relaxed mb-5">{service.description}</p>
+      <p className="text-base text-slate-600 leading-relaxed mb-5">{service.description}</p>
 
       {/* Extended details (Cos'è, Come funziona, Benefici) */}
       {service.details && (
         <div className="mb-5 space-y-3">
           {service.details.cosè && (
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-              <span className={`text-[10px] font-bold uppercase tracking-wider ${colorSet.accent}`}>Cos'è</span>
-              <p className="text-xs text-slate-600 leading-relaxed mt-1">{service.details.cosè}</p>
+            <div className="p-5 rounded-xl bg-slate-50 border border-slate-100">
+              <span className={`text-xs font-black uppercase tracking-wider ${colorSet.accent}`}>Cos'è</span>
+              <p className="text-sm text-slate-600 leading-relaxed mt-2">{service.details.cosè}</p>
             </div>
           )}
           {service.details.comeFunziona && (
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-              <span className={`text-[10px] font-bold uppercase tracking-wider ${colorSet.accent}`}>Come funziona</span>
-              <p className="text-xs text-slate-600 leading-relaxed mt-1">{service.details.comeFunziona}</p>
+            <div className="p-5 rounded-xl bg-slate-50 border border-slate-100">
+              <span className={`text-xs font-black uppercase tracking-wider ${colorSet.accent}`}>Come funziona</span>
+              <p className="text-sm text-slate-600 leading-relaxed mt-2">{service.details.comeFunziona}</p>
             </div>
           )}
           {service.details.benefici && (
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-              <span className={`text-[10px] font-bold uppercase tracking-wider ${colorSet.accent}`}>Benefici</span>
+            <div className="p-5 rounded-xl bg-slate-50 border border-slate-100">
+              <span className={`text-xs font-black uppercase tracking-wider ${colorSet.accent}`}>Benefici</span>
               <ul className="mt-1.5 space-y-1.5">
                 {service.details.benefici.map((b, i) => (
-                  <li key={i} className="flex items-start gap-2 text-xs text-slate-600">
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
                     <CheckCircle2 className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${colorSet.accent}`} />
                     <span>{b}</span>
                   </li>
@@ -201,15 +201,15 @@ function ServiceCard({ service, colorSet }) {
 
       {/* Note */}
       {service.note && (
-        <div className="mb-5 px-3 py-2.5 rounded-lg bg-amber-50 border border-amber-200/60 text-xs text-amber-800 font-medium leading-relaxed">
+        <div className="mb-5 px-3 py-2.5 rounded-lg bg-amber-50 border border-amber-200/60 text-sm text-amber-800 font-medium leading-relaxed">
           ℹ️ {service.note}
         </div>
       )}
 
       {/* Target */}
       <div className={`mb-5 p-3.5 rounded-xl text-xs leading-relaxed ${colorSet.expandBg}`}>
-        <span className={`font-bold uppercase tracking-wider text-[10px] ${colorSet.accent}`}>A chi si rivolge</span>
-        <p className="mt-1 text-slate-600">{service.target}</p>
+        <span className={`font-bold uppercase tracking-wider text-xs ${colorSet.accent}`}>A chi si rivolge</span>
+        <p className="mt-2 text-sm text-slate-600">{service.target}</p>
       </div>
 
       {/* Features */}
@@ -259,29 +259,29 @@ function SpecCard({ service, spec }) {
       </div>
 
       <h4 className="text-lg font-bold text-slate-900 mb-2">{service.name}</h4>
-      <p className="text-sm text-slate-500 leading-relaxed mb-4">{service.description}</p>
+      <p className="text-base text-slate-600 leading-relaxed mb-4">{service.description}</p>
 
       {/* Extended details (Cos'è, Come funziona, Benefici) */}
       {service.details && (
         <div className="mb-5 space-y-3">
           {service.details.cosè && (
-            <div className={`p-3.5 rounded-xl bg-slate-50 border border-slate-100`}>
-              <span className={`text-[10px] font-bold uppercase tracking-wider ${c.accent}`}>Cos'è</span>
-              <p className="text-xs text-slate-600 leading-relaxed mt-1">{service.details.cosè}</p>
+            <div className={`p-5 rounded-xl bg-slate-50 border border-slate-100`}>
+              <span className={`text-xs font-black uppercase tracking-wider ${c.accent}`}>Cos'è</span>
+              <p className="text-sm text-slate-600 leading-relaxed mt-2">{service.details.cosè}</p>
             </div>
           )}
           {service.details.comeFunziona && (
-            <div className={`p-3.5 rounded-xl bg-slate-50 border border-slate-100`}>
-              <span className={`text-[10px] font-bold uppercase tracking-wider ${c.accent}`}>Come funziona</span>
-              <p className="text-xs text-slate-600 leading-relaxed mt-1">{service.details.comeFunziona}</p>
+            <div className={`p-5 rounded-xl bg-slate-50 border border-slate-100`}>
+              <span className={`text-xs font-black uppercase tracking-wider ${c.accent}`}>Come funziona</span>
+              <p className="text-sm text-slate-600 leading-relaxed mt-2">{service.details.comeFunziona}</p>
             </div>
           )}
           {service.details.benefici && (
-            <div className={`p-3.5 rounded-xl bg-slate-50 border border-slate-100`}>
-              <span className={`text-[10px] font-bold uppercase tracking-wider ${c.accent}`}>Benefici</span>
+            <div className={`p-5 rounded-xl bg-slate-50 border border-slate-100`}>
+              <span className={`text-xs font-black uppercase tracking-wider ${c.accent}`}>Benefici</span>
               <ul className="mt-1.5 space-y-1.5">
                 {service.details.benefici.map((b, i) => (
-                  <li key={i} className="flex items-start gap-2 text-xs text-slate-600">
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
                     <CheckCircle2 className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${c.accent}`} />
                     <span>{b}</span>
                   </li>
@@ -652,13 +652,13 @@ function DietSpotlightCard({ diet, onOpen }) {
         <div className={`p-2.5 rounded-xl ${c.iconBg}`}>
           <Icon className="w-5 h-5" />
         </div>
-        <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${c.badge} uppercase tracking-wider`}>
+        <span className={`text-[12px] font-bold px-2.5 py-1 rounded-full ${c.badge} uppercase tracking-wider`}>
           {diet.badge}
         </span>
       </div>
 
       <h4 className="text-lg font-black text-slate-900 mb-1.5 leading-tight">{diet.name}</h4>
-      <p className="text-sm text-slate-500 leading-relaxed mb-4 flex-grow">{diet.tagline}</p>
+      <p className="text-base text-slate-600 leading-relaxed mb-4 flex-grow">{diet.tagline}</p>
 
       <div className="flex items-center gap-1.5">
         <ul className="flex flex-wrap gap-1.5 flex-grow">
