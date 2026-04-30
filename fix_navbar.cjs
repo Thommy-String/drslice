@@ -1,13 +1,13 @@
-const fs = require('fs');
+const fs = require('fs')
 
-const navbarPath = 'src/components/Navbar.jsx';
-let content = fs.readFileSync(navbarPath, 'utf8');
+const navbarPath = 'src/components/Navbar.jsx'
+let content = fs.readFileSync(navbarPath, 'utf8')
 
 // 1. Change position from fixed to sticky
-content = content.replace('nav className={`fixed top-0 left-0 right-0 w-full z-[100]', 'nav className={`sticky top-0 w-full z-[100]');
+content = content.replace('nav className={`fixed top-0 left-0 right-0 w-full z-[100]', 'nav className={`sticky top-0 w-full z-[100]')
 
 // 2. Adjust height
-content = content.replace('h-14 lg:h-20', 'h-12 lg:h-16');
+content = content.replace('h-14 lg:h-20', 'h-12 lg:h-16')
 
 // 3. Make scroll up show navbar
 content = content.replace(
@@ -17,11 +17,11 @@ content = content.replace(
         } else if (currentScrollY > 100 && currentScrollY > lastScrollY && !isOpen) {
           setVisible(false);
         }`
-);
+)
 
 // 4. Update the mobile menu overlay so the button is at the top
-const overlayRegex = /<div className="flex flex-col h-full p-6 pt-24">([\s\S]*?)<\/div>\s*<\/div>\s*<\/nav>/m;
-const match = content.match(overlayRegex);
+const overlayRegex = /<div className="flex flex-col h-full p-6 pt-24">([\s\S]*?)<\/div>\s*<\/div>\s*<\/nav>/m
+const match = content.match(overlayRegex)
 
 if (match) {
   const newOverlayContent = `<div className="flex flex-col h-full p-6 pt-20 overflow-y-auto">
@@ -62,19 +62,19 @@ if (match) {
           
         </div>
       </div>
-    </nav>`;
+    </nav>`
 
-  content = content.replace(match[0], newOverlayContent);
+  content = content.replace(match[0], newOverlayContent)
 }
 
 // 5. Replace logo sizes
-content = content.replace(/h-10 lg:h-16/g, 'h-8 lg:h-12');
+content = content.replace(/h-10 lg:h-16/g, 'h-8 lg:h-12')
 
 // 6. Make sure background works for sticky behavior on mobile
-content = content.replace(/bg-transparent py-1\.5/g, 'bg-[#f0f7f4] lg:bg-transparent py-1.5');
+content = content.replace(/bg-transparent py-1\.5/g, 'bg-[#f0f7f4] lg:bg-transparent py-1.5')
 
 // Additional scroll logic to ensure it works properly
 
-fs.writeFileSync(navbarPath, content, 'utf8');
+fs.writeFileSync(navbarPath, content, 'utf8')
 
-console.log('Navbar updated successfully.');
+console.log('Navbar updated successfully.')

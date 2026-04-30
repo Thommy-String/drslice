@@ -1,8 +1,8 @@
-const fs = require('fs');
+const fs = require('fs')
 
-const data = fs.readFileSync('/Users/thomasdascalu/Desktop/slice nutrizione/src/components/Services.jsx', 'utf8');
+const data = fs.readFileSync('/Users/thomasdascalu/Desktop/slice nutrizione/src/components/Services.jsx', 'utf8')
 
-const regex = /\/\*\ \=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\n   DietSpotlightCard — Compact card\n   \=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\ \*\/\nfunction DietSpotlightCard\(\{ diet, onOpen \}\) \{[\s\S]*?\}\n\n\/\* \=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\n   MAIN COMPONENT/g;
+const regex = /\/\*\ \=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\n {3}DietSpotlightCard — Compact card\n {3}\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\ \*\/\nfunction DietSpotlightCard\(\{ diet, onOpen \}\) \{[\s\S]*?\}\n\n\/\* \=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\n {3}MAIN COMPONENT/g
 
 const replaceWith = `/* ═══════════════════════════════════
    DietSpotlightCard — Compact card
@@ -64,9 +64,8 @@ function DietSpotlightCard({ diet, onOpen }) {
 }
 
 /* ═══════════════════════════════════
-   MAIN COMPONENT`;
+   MAIN COMPONENT`
 
-const updatedData = data.replace(regex, replaceWith);
+const updatedData = data.replace(regex, replaceWith)
 
-fs.writeFileSync('/Users/thomasdascalu/Desktop/slice nutrizione/src/components/Services.jsx', updatedData, 'utf8');
-
+fs.writeFileSync('/Users/thomasdascalu/Desktop/slice nutrizione/src/components/Services.jsx', updatedData, 'utf8')

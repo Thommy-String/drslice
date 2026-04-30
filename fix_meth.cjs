@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs')
 
 const methCode = `import React, { useRef, useEffect } from 'react';
 import { ArrowRight, FileText, Compass, Heart, BookOpen, Crown, ChevronRight } from 'lucide-react';
@@ -117,6 +117,6 @@ export function Methodology() {
     </section>
   );
 }
-`;
+`
 
-fs.writeFileSync('src/components/Methodology.jsx', methCode);
+fs.writeFileSync('src/components/Methodology.jsx', methCode)
