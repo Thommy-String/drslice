@@ -386,26 +386,254 @@ export function MetodoSlicePage () {
                 isFinal: true
               }
             ].map((item, index) => (
-              <div key={index} ref={item.isFinal ? confettiRef : null} className={`relative flex flex-col md:flex-row items-start gap-6 mb-12 last:mb-0 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} ${item.isFinal ? 'bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-emerald-500/10 rounded-3xl p-8 md:p-12 border border-emerald-500/30 shadow-2xl shadow-emerald-500/20' : ''}`}>
-                {/* Special background for final step */}
+            <React.Fragment key={index}>
+              {item.isFinal && (
+                /* ═══ Curved connector arrow between step 04 and step 05 ═══ */
+                <div className='relative -mt-4 mb-2 md:mb-4 h-48 md:h-40 pointer-events-none select-none' aria-hidden='true'>
+                  {/* Mobile: longer, more pronounced S-curve from top-center down to the card */}
+                  <svg
+                    className='md:hidden absolute inset-0 h-full w-full overflow-visible'
+                    viewBox='0 0 200 240'
+                    preserveAspectRatio='none'
+                    fill='none'
+                  >
+                    <defs>
+                      <linearGradient id='arrowGradMobile' x1='0%' y1='0%' x2='100%' y2='100%'>
+                        <stop offset='0%' stopColor='#10b981' stopOpacity='0.2' />
+                        <stop offset='50%' stopColor='#34d399' stopOpacity='0.9' />
+                        <stop offset='100%' stopColor='#22d3ee' stopOpacity='1' />
+                      </linearGradient>
+                      <filter id='arrowGlowMobile'>
+                        <feGaussianBlur stdDeviation='2.5' result='blur' />
+                        <feMerge>
+                          <feMergeNode in='blur' />
+                          <feMergeNode in='SourceGraphic' />
+                        </feMerge>
+                      </filter>
+                      <marker
+                        id='arrowHeadMobile'
+                        viewBox='0 0 12 12'
+                        refX='10'
+                        refY='6'
+                        markerWidth='7'
+                        markerHeight='7'
+                        orient='auto-start-reverse'
+                      >
+                        <path d='M 0 0 L 11 6 L 0 12 z' fill='#22d3ee' />
+                      </marker>
+                    </defs>
+                    {/* Glow halo */}
+                    <path
+                      d='M 100 0 C 30 70, 180 150, 100 230'
+                      stroke='#10b981'
+                      strokeOpacity='0.22'
+                      strokeWidth='7'
+                      strokeLinecap='round'
+                      fill='none'
+                      filter='url(#arrowGlowMobile)'
+                    />
+                    {/* Main long S-curve */}
+                    <path
+                      d='M 100 0 C 30 70, 180 150, 100 230'
+                      stroke='url(#arrowGradMobile)'
+                      strokeWidth='2.5'
+                      strokeLinecap='round'
+                      strokeDasharray='6 6'
+                      className='arrow-dash'
+                      markerEnd='url(#arrowHeadMobile)'
+                    />
+                  </svg>
+
+                  {/* Desktop: dramatic curve starting from the RIGHT (step 04 sits on the right) sweeping down toward center */}
+                  <svg
+                    className='hidden md:block absolute inset-0 w-full h-full overflow-visible'
+                    viewBox='0 0 800 160'
+                    preserveAspectRatio='none'
+                    fill='none'
+                  >
+                    <defs>
+                      <linearGradient id='arrowGradDesktop' x1='100%' y1='0%' x2='0%' y2='100%'>
+                        <stop offset='0%' stopColor='#10b981' stopOpacity='0.15' />
+                        <stop offset='40%' stopColor='#34d399' stopOpacity='0.9' />
+                        <stop offset='100%' stopColor='#22d3ee' stopOpacity='1' />
+                      </linearGradient>
+                      <filter id='arrowGlow'>
+                        <feGaussianBlur stdDeviation='3' result='blur' />
+                        <feMerge>
+                          <feMergeNode in='blur' />
+                          <feMergeNode in='SourceGraphic' />
+                        </feMerge>
+                      </filter>
+                      <marker
+                        id='arrowHeadDesktop'
+                        viewBox='0 0 14 14'
+                        refX='11'
+                        refY='7'
+                        markerWidth='8'
+                        markerHeight='8'
+                        orient='auto-start-reverse'
+                      >
+                        <path d='M 0 0 L 13 7 L 0 14 z' fill='#22d3ee' />
+                      </marker>
+                    </defs>
+                    {/* Glow halo path — starts top-right, curves down toward center */}
+                    <path
+                      d='M 640 0 C 700 70, 280 70, 400 150'
+                      stroke='#10b981'
+                      strokeOpacity='0.25'
+                      strokeWidth='8'
+                      strokeLinecap='round'
+                      fill='none'
+                      filter='url(#arrowGlow)'
+                    />
+                    {/* Main dashed curve with auto-oriented arrowhead */}
+                    <path
+                      d='M 640 0 C 700 70, 280 70, 400 150'
+                      stroke='url(#arrowGradDesktop)'
+                      strokeWidth='2.5'
+                      strokeLinecap='round'
+                      strokeDasharray='8 8'
+                      fill='none'
+                      className='arrow-dash'
+                      markerEnd='url(#arrowHeadDesktop)'
+                    />
+                  </svg>
+
+                  {/* Floating handwritten label */}
+                  <span
+                    className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-emerald-300/90 text-3xl md:text-3xl font-bold rotate-[-6deg] whitespace-nowrap'
+                    style={{ fontFamily: 'var(--font-handwriting), cursive' }}
+                  >
+                    e finalmente...
+                  </span>
+                </div>
+              )}
+
+              <div className={`relative flex flex-col md:flex-row items-start gap-6 mb-12 last:mb-0 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} ${item.isFinal ? 'premium-card overflow-hidden bg-gradient-to-br from-emerald-500/15 via-cyan-500/5 to-emerald-500/15 rounded-3xl p-8 md:p-12 border border-emerald-400/40 shadow-2xl shadow-emerald-500/30' : ''}`}>
+                {/* Premium animated background for final step */}
                 {item.isFinal && (
                   <>
-                    <div className='absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-emerald-400/5 to-emerald-400/0 rounded-3xl animate-pulse' />
-                    <div className='absolute -top-1 -right-1 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl animate-pulse' />
+                    {/* Rotating conic gradient halo */}
+                    <div className='absolute -inset-px rounded-3xl pointer-events-none premium-rotate-glow opacity-60' />
+                    {/* Shimmer sweep */}
+                    <div className='absolute inset-0 rounded-3xl overflow-hidden pointer-events-none'>
+                      <div className='absolute inset-y-0 -inset-x-full premium-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent' />
+                    </div>
+                    {/* Soft pulsing glow */}
+                    <div className='absolute -top-10 -right-10 w-56 h-56 bg-emerald-400/20 rounded-full blur-3xl premium-pulse pointer-events-none' />
+                    <div className='absolute -bottom-10 -left-10 w-56 h-56 bg-cyan-400/15 rounded-full blur-3xl premium-pulse-delay pointer-events-none' />
+                    {/* Floating sparkles */}
+                    <Sparkles className='absolute top-6 right-8 w-4 h-4 text-emerald-300/80 premium-float' />
+                    <Sparkles className='absolute bottom-8 right-20 w-3 h-3 text-cyan-300/70 premium-float-delay' />
+                    <Sparkles className='absolute top-12 left-16 w-3 h-3 text-emerald-200/60 premium-float-slow' />
                   </>
                 )}
 
                 {/* Dot */}
-                <div className={`absolute ${item.isFinal ? 'left-8 md:left-1/2' : 'left-6 md:left-1/2'} -translate-x-1/2 w-3 h-3 rounded-full ${item.isFinal ? 'bg-gradient-to-r from-emerald-400 to-cyan-400 ring-4 ring-emerald-500/50 shadow-lg shadow-emerald-500/50 animate-pulse' : 'bg-emerald-500 ring-4 ring-[#0B0F19]'} z-10`} />
+                <div className={`absolute ${item.isFinal ? 'left-8 md:left-1/2' : 'left-6 md:left-1/2'} -translate-x-1/2 w-3 h-3 rounded-full ${item.isFinal ? 'bg-gradient-to-r from-emerald-400 to-cyan-400 ring-4 ring-emerald-500/50 shadow-lg shadow-emerald-500/50 premium-dot-pulse' : 'bg-emerald-500 ring-4 ring-[#0B0F19]'} z-10`} />
 
                 {/* Content card */}
-                <div className={`${item.isFinal ? 'relative z-10 w-full' : ''} ${item.isFinal ? '' : `ml-16 md:ml-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right md:w-1/2' : 'md:pl-16 md:text-left md:w-1/2 md:ml-auto'}`}`}>
+                <div ref={item.isFinal ? confettiRef : null} className={`${item.isFinal ? 'relative z-10 w-full' : ''} ${item.isFinal ? '' : `ml-16 md:ml-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right md:w-1/2' : 'md:pl-16 md:text-left md:w-1/2 md:ml-auto'}`}`}>
                   <span className={`${item.isFinal ? 'text-emerald-300 text-base' : 'text-emerald-500 text-sm'} font-black uppercase tracking-widest`}>{item.step}</span>
-                  <h4 className={`${item.isFinal ? 'text-4xl md:text-5xl bg-gradient-to-r from-emerald-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent' : 'text-2xl md:text-3xl text-white'} font-black mt-1 mb-3`}>{item.title}</h4>
-                  <p className={`${item.isFinal ? 'text-emerald-100/80 text-lg' : 'text-slate-400 text-base'} font-light leading-relaxed`}>{item.description}</p>
+                  <h4 className={`${item.isFinal ? 'text-4xl md:text-5xl premium-gradient-text' : 'text-2xl md:text-3xl text-white'} font-black mt-1 mb-3`}>
+                    {item.isFinal && <Crown className='inline-block w-8 h-8 md:w-10 md:h-10 mr-2 -mt-1 text-yellow-300 drop-shadow-[0_0_8px_rgba(253,224,71,0.6)] premium-crown' />}
+                    {item.title}
+                  </h4>
+                  <p className={`${item.isFinal ? 'text-emerald-100/90 text-lg' : 'text-slate-400 text-base'} font-light leading-relaxed`}>{item.description}</p>
+                  {item.isFinal && (
+                    <>
+                      {/* Section divider with label */}
+                      <div className='mt-10 mb-6 flex items-center gap-4'>
+                        <div className='h-px flex-1 bg-gradient-to-r from-transparent via-emerald-400/40 to-emerald-400/40' />
+                        <span className='text-[10px] font-black tracking-[0.25em] uppercase text-emerald-300/90'>
+                          Ecco cosa saprai fare
+                        </span>
+                        <div className='h-px flex-1 bg-gradient-to-l from-transparent via-emerald-400/40 to-emerald-400/40' />
+                      </div>
 
+                      {/* Daily life scenes grid */}
+                      <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+                        {[
+                          {
+                            icon: Utensils,
+                            tag: 'Mangiare fuori',
+                            accent: 'emerald',
+                            title: 'Poter scegliere dal menù senza sensi di colpa',
+                            parts: [
+                              'Apri il menù e ',
+                              { b: 'non cerchi la cosa con meno calorie' },
+                              '. Scegli quello che ti va, perché sai esattamente come bilanciare quel pasto nei prossimi giorni. ',
+                              { b: 'Goditi pasti liberi senza rinunciare alle uscite con amici.' }
+                            ]
+                          },
+                          {
+                            icon: Sunrise,
+                            tag: 'Il giorno dopo un evento o serata',
+                            accent: 'amber',
+                            title: 'Svegliarsi dopo un grande evento senza rimpianti',
+                            parts: [
+                              'Ti svegli dopo una cena abbondante o un matrimonio. Invece di sentirti in colpa o digiunare per "punizione", ',
+                              { b: 'sai esattamente cosa mangiare per riequilibrarti' },
+                              '. ',
+                              { b: 'Hai il controllo, non la paura.' }
+                            ]
+                          },
+                          {
+                            icon: Plane,
+                            tag: 'Viaggiare Leggeri',
+                            accent: 'cyan',
+                            title: 'Mangiare in base a dove ti trovi senza stressarti',
+                            parts: [
+                              'Sei in vacanza in un posto nuovo. Ami assaggiare cose nuove e non sai in anticipo cosa mangerai?  ',
+                              { b: 'Riesci a inserire lo strappo alla regola mangiando tranquillamente ad occhio,' },
+                              ' e al ritorno dalla vacanza sarai in ottima forma. La flessibilità rende la dieta sostenibile.'
+                            ]
+                          },
+                          {
+                            icon: Moon,
+                            tag: 'Routine Notturna',
+                            accent: 'indigo',
+                            title: 'Conoscere i pasti da non abbinare per riposare davvero',
+                            parts: [
+                              'Evita abbinamenti pesanti la sera. ',
+                              { b: 'Quando sai come digerire correttamente' },
+                              ', il tuo riposo migliora significativamente e ',
+                              { b: 'ti svegli pieno di energia' },
+                              ' e pronto per affrontare la giornata.'
+                            ]
+                          }
+                        ].map((scene, i) => (
+                          <div key={i} className={`group relative bg-[#06090e]/60 border border-white/5 rounded-2xl p-5 hover:bg-[#06090e]/80 hover:border-${scene.accent}-500/20 transition-all duration-300 flex flex-col`}>
+                            <div className='flex items-center gap-3 mb-3'>
+                              <div className={`w-8 h-8 rounded-lg bg-${scene.accent}-500/10 flex items-center justify-center shrink-0`}>
+                                <scene.icon className={`w-4 h-4 text-${scene.accent}-400`} />
+                              </div>
+                              <span className={`text-[10px] font-black uppercase tracking-wider text-${scene.accent}-400/80`}>{scene.tag}</span>
+                            </div>
+                            <h5 className='text-sm font-bold text-white mb-2 leading-tight'>{scene.title}</h5>
+                            <p className='text-xs text-slate-400 font-light leading-relaxed flex-1'>
+                              {scene.parts.map((p, j) => p.b ? <strong key={j} className='text-slate-200 font-medium'>{p.b}</strong> : p)}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className='mt-8 pt-6 border-t border-emerald-500/20 flex flex-col sm:flex-row items-center justify-between gap-4'>
+                        <div className='flex items-center gap-3 w-full sm:w-auto'>
+                          <div className='w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.2)]'>
+                            <Eye className='w-5 h-5 text-emerald-400' />
+                          </div>
+                          <div>
+                            <p className='text-sm text-emerald-300 font-bold'>Il vero traguardo</p>
+                            <p className='text-xs text-emerald-100/60'>Diventare il dietista di te stesso</p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
+            </React.Fragment>
             ))}
           </div>
         </div>

@@ -6,8 +6,12 @@ import { Navbar } from './Navbar'
 import { TrustBanner } from './TrustBanner'
 import { ReviewsCarousel } from './ReviewsCarousel'
 import { HeroServiceTags } from './HeroServiceTags'
+import { VideoShowcase } from './VideoShowcase'
+import { VideoReel } from './VideoReel'
 import paoloImg from '../assets/Paolo/paoloheroimage.png'
+import { HeroVideo } from './HeroVideo'
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png'
+import sliceLogo from '../assets/loghi/slice logo. finale_.png'
 
 export function HeroSection () {
   return (
@@ -58,11 +62,11 @@ export function HeroSection () {
       </div>
 
       <section className='relative overflow-visible pt-6 pb-12 lg:pt-8 lg:pb-32'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible'>
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-start'>
+        <div className='max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 overflow-visible'>
+          <div className='flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-12 items-center lg:items-start'>
 
             {/* Content: Unified Title + Desktop CTA / Mobile CTA below image */}
-            <div className='order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 relative z-20 overflow-visible w-full lg:pr-12'>
+            <div className='order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 relative z-20 overflow-visible w-full lg:w-5/12 lg:pr-8 lg:shrink-0'>
 
               <div className='mb-8 lg:mb-12 mt-4 lg:mt-0 hidden lg:block text-center lg:text-left'>
                 <h1 className='text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6'>
@@ -74,9 +78,7 @@ export function HeroSection () {
                     </svg>
                   </span>
                 </h1>
-                <p className='text-lg sm:text-xl text-slate-600 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0'>
-                  Dimagrire non è una questione di forza di volontà. È questione di <span className='text-emerald-700 font-bold'>metodo</span>.
-                </p>
+                
               </div>
 
               {/* Desktop CTA */}
@@ -117,12 +119,12 @@ export function HeroSection () {
             </div>
 
             {/* Image Right / Bottom -> Now Top / First in flow */}
-            <div className='order-1 lg:order-2 relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px] lg:pl-10 pb-2 lg:pb-0 pt-0 lg:pt-8 -mt-6 lg:-mt-0'>
+            <div className='order-1 lg:order-2 relative mx-auto w-full lg:w-7/12 max-w-[400px] sm:max-w-[500px] lg:max-w-[800px] pb-2 lg:pb-0 pt-0 lg:pt-4 -mt-6 lg:-mt-0'>
 
               {/* Background abstract elements for depth */}
               <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100/40 to-emerald-50/40 rounded-full blur-3xl -z-10' />
 
-              <div className='relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white aspect-square lg:aspect-[4.2/5] border border-white/80 backdrop-blur-sm top-0 lg:top-4'>
+              <div className='relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-emerald-900/10 bg-white aspect-[18/16] sm:aspect-[4/3] lg:aspect-[3/2] border border-white/80 backdrop-blur-sm top-0 lg:top-4'>
 
                 {/* Visual Accent/Glass Overlay inside card */}
                 <div className='absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-emerald-100/20 to-transparent rounded-bl-full z-0' />
@@ -136,7 +138,7 @@ export function HeroSection () {
                 />
 
                 {/* Design element - overlapping graphic */}
-                <div className='absolute top-10 -left-6 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl z-20' />
+                <div className='absolute top-10 -left-6 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl z-20 pointer-events-none' />
 
                 {/* Roma Badge - top right */}
                 <div className='absolute top-4 right-4 z-40'>
@@ -145,17 +147,24 @@ export function HeroSection () {
                   </div>
                 </div>
 
-                {/* Refined label - now slightly larger and at bottom-left of the image card */}
-                <div className='absolute bottom-6 left-6 z-40 transform hover:scale-105 transition-transform duration-300'>
-                  <div className='bg-white/90 backdrop-blur-md px-4 py-2.5 md:px-6 md:py-3.5 rounded-2xl shadow-xl border border-white/50 flex flex-col'>
-                    <span className='text-base md:text-lg lg:text-xl font-bold text-slate-800' style={{ fontFamily: 'var(--font-handwriting)' }}>
-                      Dott. Paolo Panarini
-                    </span>
-                    <span className='text-[12px] md:text-xs font-bold text-emerald-600 uppercase tracking-[-0.03em] mt-1'>
-                      Nutrizionista e Dietista
-                    </span>
+                {/* Label - bottom left */}
+                <div className='absolute bottom-4 left-4 z-40'>
+                  <div className='bg-white/90 backdrop-blur-md px-3 py-2.5 rounded-lg shadow-lg border border-white/50 flex flex-col gap-1.5'>
+                    <span className='text-sm font-bold text-slate-800'>Dott. Paolo Panarini</span>
+                    <span className='text-xs font-medium text-emerald-600 uppercase tracking-tight'>Nutrizionista e Dietista</span>
+                    <div className='flex items-center gap-1.5 pt-1 border-t border-slate-200'>
+                      <img 
+                        src={sliceLogo} 
+                        alt='Metodo SLICE' 
+                        className='h-10 w-auto object-contain'
+                      />
+                      <span className='text-[11px] font-medium text-slate-500 uppercase tracking-wider'>Creatore Metodo 'SLICE'</span>
+                    </div>
                   </div>
                 </div>
+
+
+                
               </div>
 
               <div className='mt-4 flex justify-center'>
@@ -194,10 +203,8 @@ export function HeroSection () {
                     </svg>
                   </span>
                 </h1>
-                <p className='text-sm sm:text-base text-slate-600 leading-relaxed font-medium max-w-xs mx-auto mb-5'>
-                  Dimagrire non è una questione di forza di volontà. È questione di <span className='text-emerald-700 font-bold'>metodo</span>.
-                </p>
-                <div className='flex flex-col gap-3 w-full mb-6'>
+              
+                <div className='flex flex-col gap-3 w-full mt-6 mb-6'>
                   <Button
                     href='https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli'
                     target='_blank'
@@ -244,6 +251,11 @@ export function HeroSection () {
 
         </div>
       </section>
+
+      {/* Video Showcase - TikTok style cards (replaces fullscreen reel) */}
+      <VideoShowcase />
+
+      {/* Rest of page content */}
     </div>
   )
 }

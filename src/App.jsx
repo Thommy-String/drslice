@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { HeroSection } from './components/HeroSection'
 import { Methodology } from './components/Methodology'
 import { Locations } from './components/Locations'
@@ -19,8 +19,8 @@ function HomePage () {
       <main>
         <Methodology />
         <Services />
-        <AboutMe />
         <Locations />
+        <AboutMe />
 
         {/* Quiz Section */}
         <div className='py-16 flex flex-col items-center justify-center max-w-lg mx-auto w-full px-6'>
@@ -48,6 +48,7 @@ function App () {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/metodo-slice' element={<MetodoSlicePage />} />
+        <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
 
       <footer className='bg-slate-900 pt-20 pb-12 text-white overflow-hidden relative' id='contatti'>
