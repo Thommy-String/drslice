@@ -7,9 +7,7 @@ import { TrustBanner } from './TrustBanner'
 import { ReviewsCarousel } from './ReviewsCarousel'
 import { HeroServiceTags } from './HeroServiceTags'
 import { VideoShowcase } from './VideoShowcase'
-import { VideoReel } from './VideoReel'
 import paoloImg from '../assets/Paolo/paoloheroimage.png'
-import { HeroVideo } from './HeroVideo'
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png'
 import sliceLogo from '../assets/loghi/slice logo. finale_.png'
 
@@ -204,7 +202,7 @@ export function HeroSection () {
                   </span>
                 </h1>
               
-                <div className='flex flex-col gap-3 w-full mt-6 mb-6'>
+                <div className='flex flex-col gap-3 w-full mt- mb-6'>
                   <Button
                     href='https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli'
                     target='_blank'

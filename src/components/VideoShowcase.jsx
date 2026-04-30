@@ -1,120 +1,157 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Play, X, Volume2, VolumeX, ChevronUp, ChevronDown, Facebook } from 'lucide-react';
-import videoFibre from '../assets/videos/video-fibre-slice.mp4';
-import videoServeTempo from '../assets/videos/serve-tempo-slice.mp4';
-import videoHero from '../assets/videos/video-hero-slice.mp4';
-import videoCibi from '../assets/videos/cibi-buoni-e-cattivi.mp4';
-import videoPasta from '../assets/videos/la-pasta-fa-male-domanda.mp4';
-import videoGonfiore from '../assets/videos/gonfiore-forse-eccesso-sale.mp4';
+import React, { useState, useEffect, useRef } from 'react';
+import { Play, X, Facebook, ExternalLink, Volume2, VolumeX } from 'lucide-react';
+import thumbHero from '../assets/thumbnails/video-hero-slice.jpg';
+import thumbFibre from '../assets/thumbnails/video-fibre-slice.jpg';
+import thumbPasta from '../assets/thumbnails/la-pasta-fa-male-domanda.jpg';
+import thumbCibi from '../assets/thumbnails/cibi-buoni-e-cattivi.jpg';
+import thumbServeTempo from '../assets/thumbnails/serve-tempo-slice.jpg';
+import thumbGonfiore from '../assets/thumbnails/gonfiore-forse-eccesso-sale.jpg';
 
+// Video files live in /public/videos/{previews,full}/{slug}.mp4
+// Previews: 320p, ~6s, no audio, ~80–250KB each (lazy-loaded only when visible)
+// Full: 540p, full duration, mono audio, ~1.5–2.7MB each (loaded on modal open)
 const videos = [
   {
     id: 1,
-    src: videoHero,
+    slug: 'video-hero-slice',
+    fbUrl: 'https://www.facebook.com/reel/1475015316934969',
     title: 'Il Metodo SLICE',
     description: 'Una panoramica completa del nostro approccio rivoluzionario.',
+    thumbnail: thumbHero,
   },
   {
     id: 2,
-    src: videoFibre,
-    title: 'L\'importanza delle Fibre',
+    slug: 'video-fibre-slice',
+    fbUrl: 'https://www.facebook.com/reel/778289771893267',
+    title: "L'importanza delle Fibre",
     description: 'Scopri perché le fibre sono fondamentali nella tua alimentazione quotidiana.',
+    thumbnail: thumbFibre,
   },
   {
     id: 3,
-    src: videoPasta,
+    slug: 'la-pasta-fa-male-domanda',
+    fbUrl: 'https://www.facebook.com/reel/813920464842881',
     title: 'La pasta fa male?',
     description: 'Sfatiamo uno dei miti più diffusi sulla nutrizione italiana.',
+    thumbnail: thumbPasta,
   },
   {
     id: 4,
-    src: videoCibi,
+    slug: 'cibi-buoni-e-cattivi',
+    fbUrl: 'https://www.facebook.com/reel/807042642249674',
     title: 'Cibi buoni e cattivi',
     description: 'Esistono davvero alimenti "cattivi"? La verità sul cibo.',
+    thumbnail: thumbCibi,
   },
   {
     id: 5,
-    src: videoServeTempo,
+    slug: 'serve-tempo-slice',
+    fbUrl: 'https://www.facebook.com/reel/1271520127798886',
     title: 'Serve Tempo per Cambiare',
     description: 'Il vero cambiamento richiede pazienza e metodo. Ecco perché.',
+    thumbnail: thumbServeTempo,
   },
   {
     id: 6,
-    src: videoGonfiore,
+    slug: 'gonfiore-forse-eccesso-sale',
+    fbUrl: 'https://www.facebook.com/reel/1687490845262920',
     title: 'Gonfiore? Forse è il sale',
     description: 'Un eccesso di sale può causare ritenzione e gonfiore: ecco cosa sapere.',
+    thumbnail: thumbGonfiore,
   },
 ];
 
+const previewSrc = (slug) => `/videos/previews/${slug}.mp4`;
+const fullSrc = (slug) => `/videos/full/${slug}.mp4`;
+
 function VideoCard({ video, onClick }) {
-  const previewRef = useRef(null);
   const containerRef = useRef(null);
+  const videoRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
-  // Force a frame to be decoded (some videos start with a black frame)
-  const handleLoadedMetadata = () => {
-    const v = previewRef.current;
-    if (!v) return;
-    try {
-      // Seek to a small offset to ensure a non-black frame is rendered as poster
-      if (v.duration && v.duration > 0.5 && v.currentTime < 0.05) {
-        v.currentTime = 0.1;
-      }
-    } catch {}
-  };
-
-  // Autoplay muted previews always (looping silently for preview)
+  // Lazy-load: only mount <video> when card enters viewport.
+  // Prevents loading all 6 previews on page load (saves ~1MB on initial paint).
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (previewRef.current) {
-          if (entry.isIntersecting) {
-            previewRef.current.play().catch(() => {});
-          } else {
-            previewRef.current.pause();
-          }
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1, rootMargin: '200px' }
     );
-    if (containerRef.current) observer.observe(containerRef.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Pause off-screen videos to save battery/CPU
+  useEffect(() => {
+    if (!shouldLoad) return;
+    const el = containerRef.current;
+    const vid = videoRef.current;
+    if (!el || !vid) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          vid.play().catch(() => {});
+        } else {
+          vid.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
 
   return (
     <div
       ref={containerRef}
       onClick={onClick}
-      className="group relative aspect-[9/16] bg-black rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-500 hover:-translate-y-2"
+      className="group relative aspect-[9/16] bg-black rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/30 transition-all duration-500 hover:-translate-y-2"
     >
-      {/* Video preview - always playing silently */}
-      <video
-        ref={previewRef}
-        src={video.src}
-        className="w-full h-full object-cover"
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="auto"
-        onLoadedMetadata={handleLoadedMetadata}
-      />
+      {/* Real video preview (autoplay, muted, looped) — lazy mounted */}
+      {shouldLoad && (
+        <video
+          ref={videoRef}
+          src={previewSrc(video.slug)}
+          poster={video.thumbnail}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+      {/* Thumbnail fallback (visible until video loads, or if video fails) */}
+      {!shouldLoad && (
+        <img
+          src={video.thumbnail}
+          alt={video.title}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover scale-105 animate-kenburns"
+        />
+      )}
 
-      {/* Play icon - center, fades on hover */}
-      <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
-        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl">
-          <Play className="w-7 h-7 text-white fill-white ml-1" />
-        </div>
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/30 pointer-events-none" />
+
+      {/* Subtle play hint - bottom right (smaller, doesn't cover the video) */}
+      <div className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/25 backdrop-blur-md border border-white/50 flex items-center justify-center shadow-lg group-hover:bg-white/40 group-hover:scale-110 transition-all pointer-events-none">
+        <Play className="w-4 h-4 text-white fill-white ml-0.5" />
       </div>
 
-      {/* Title and description */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+      {/* Title and description - bottom */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 z-10 pointer-events-none">
         <h3 className="text-white font-bold text-base sm:text-lg leading-tight mb-1 drop-shadow-lg">
           {video.title}
         </h3>
-        <p className="text-white/80 text-xs sm:text-sm line-clamp-2 drop-shadow-md">
+        <p className="text-white/90 text-xs sm:text-sm line-clamp-2 drop-shadow-md">
           {video.description}
         </p>
       </div>
@@ -122,88 +159,59 @@ function VideoCard({ video, onClick }) {
   );
 }
 
-function VideoModal({ video, videos, currentIndex, onClose, onNavigate }) {
+function VideoModal({ video, onClose }) {
   const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(false);
+  const [muted, setMuted] = useState(false);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = false;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-            setIsMuted(true);
-            videoRef.current.play().catch(() => {});
-          }
-        });
-      }
-    }
-  }, [video.id]);
-
-  // Keyboard + wheel navigation (with loop)
+  // Keyboard: Esc to close, M to toggle mute
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') onNavigate(1);
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') onNavigate(-1);
+      if (e.key === 'm' || e.key === 'M') setMuted((m) => !m);
     };
-
-    let wheelLock = false;
-    const handleWheel = (e) => {
-      e.preventDefault();
-      if (wheelLock) return;
-      if (Math.abs(e.deltaY) < 10) return;
-      wheelLock = true;
-      onNavigate(e.deltaY > 0 ? 1 : -1);
-      setTimeout(() => {
-        wheelLock = false;
-      }, 600);
-    };
-
-    // Touch swipe (mobile)
-    let touchStartY = null;
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
-    };
-    const handleTouchEnd = (e) => {
-      if (touchStartY === null) return;
-      const dy = e.changedTouches[0].clientY - touchStartY;
-      if (Math.abs(dy) > 50) {
-        onNavigate(dy < 0 ? 1 : -1);
-      }
-      touchStartY = null;
-    };
-
     window.addEventListener('keydown', handleKey);
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
-    document.body.style.overflow = 'hidden';
+
+    // Robust scroll lock (works on iOS Safari too): freeze body in place,
+    // compensate for scrollbar width to avoid layout shift.
+    const scrollY = window.scrollY;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const { body } = document;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflow: body.style.overflow,
+      paddingRight: body.style.paddingRight,
+    };
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+    body.style.left = '0';
+    body.style.right = '0';
+    body.style.width = '100%';
+    body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`;
+
     return () => {
       window.removeEventListener('keydown', handleKey);
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchend', handleTouchEnd);
-      document.body.style.overflow = '';
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.left = prev.left;
+      body.style.right = prev.right;
+      body.style.width = prev.width;
+      body.style.overflow = prev.overflow;
+      body.style.paddingRight = prev.paddingRight;
+      window.scrollTo(0, scrollY);
     };
-  }, [onClose, onNavigate]);
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      const newMuted = !isMuted;
-      videoRef.current.muted = newMuted;
-      setIsMuted(newMuted);
-    }
-  };
+  }, [onClose]);
 
   return (
     <div
       className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center animate-fadeIn"
       onClick={onClose}
     >
-      {/* Close button - top right, very visible */}
+      {/* Close button - top right */}
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -215,72 +223,50 @@ function VideoModal({ video, videos, currentIndex, onClose, onNavigate }) {
         <X className="w-6 h-6" />
       </button>
 
-      {/* Video counter top-left */}
-      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[210] bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-        {currentIndex + 1} / {videos.length}
-      </div>
-
       {/* Video container */}
       <div
         className="relative h-[90vh] max-h-[900px] aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Native HTML5 video — local file, full quality with audio. No native controls. */}
         <video
           ref={videoRef}
           key={video.id}
-          src={video.src}
-          className="w-full h-full object-cover"
+          src={fullSrc(video.slug)}
+          poster={video.thumbnail}
           autoPlay
+          muted={muted}
           loop
           playsInline
-          muted={isMuted}
+          disablePictureInPicture
+          controlsList="nodownload noplaybackrate noremoteplayback"
+          className="w-full h-full object-cover bg-black"
         />
 
-        {/* Gradient overlay */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-
-        {/* Bottom info */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 pr-20 z-20">
-          <h3 className="text-white font-bold text-xl mb-2 drop-shadow-lg">{video.title}</h3>
-          <p className="text-white/90 text-sm drop-shadow-md">{video.description}</p>
-        </div>
-
-        {/* Mute toggle - bottom right */}
+        {/* Mute toggle - top left */}
         <button
-          onClick={toggleMute}
-          className="absolute bottom-4 right-4 z-30 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:scale-105"
-          aria-label={isMuted ? 'Attiva audio' : 'Disattiva audio'}
+          onClick={(e) => {
+            e.stopPropagation();
+            setMuted((m) => !m);
+          }}
+          className="absolute top-3 left-3 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110"
+          aria-label={muted ? 'Riattiva audio' : 'Disattiva audio'}
         >
-          {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+          {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
         </button>
-      </div>
 
-      {/* Navigation Buttons - desktop side */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onNavigate(-1);
-        }}
-        className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-[210] w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 backdrop-blur-md border border-white/30 items-center justify-center text-white transition-all duration-300 hover:scale-110"
-        aria-label="Precedente"
-      >
-        <ChevronUp className="w-6 h-6" />
-      </button>
-
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onNavigate(1);
-        }}
-        className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-[210] w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 backdrop-blur-md border border-white/30 items-center justify-center text-white transition-all duration-300 hover:scale-110"
-        aria-label="Successivo"
-      >
-        <ChevronDown className="w-6 h-6" />
-      </button>
-
-      {/* Mobile swipe hint */}
-      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[210] text-white/60 text-xs font-medium animate-pulse">
-        Tocca per chiudere
+        {/* Open on Facebook link - bottom overlay */}
+        <a
+          href={video.fbUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="absolute bottom-3 right-3 z-30 flex items-center gap-1.5 bg-blue-600/90 hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 hover:scale-105 shadow-lg"
+        >
+          <Facebook className="w-3.5 h-3.5" />
+          Apri su Facebook
+          <ExternalLink className="w-3 h-3" />
+        </a>
       </div>
     </div>
   );
@@ -288,14 +274,6 @@ function VideoModal({ video, videos, currentIndex, onClose, onNavigate }) {
 
 export function VideoShowcase() {
   const [activeIndex, setActiveIndex] = useState(null);
-
-  const handleNavigate = (direction) => {
-    setActiveIndex((prev) => {
-      if (prev === null) return null;
-      const len = videos.length;
-      return (prev + direction + len) % len;
-    });
-  };
 
   return (
     <section className="relative py-16 lg:py-24 bg-gradient-to-b from-slate-50 via-emerald-50/30 to-slate-50 overflow-hidden">
@@ -312,7 +290,7 @@ export function VideoShowcase() {
             <Play className="w-3.5 h-3.5 fill-emerald-700" />
             Pillole sulla nutrizione
           </div>
-         
+
           <p className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto">
             Curiosità per migliorare le tue abitudini.
           </p>
@@ -347,10 +325,7 @@ export function VideoShowcase() {
       {activeIndex !== null && (
         <VideoModal
           video={videos[activeIndex]}
-          videos={videos}
-          currentIndex={activeIndex}
           onClose={() => setActiveIndex(null)}
-          onNavigate={handleNavigate}
         />
       )}
     </section>
