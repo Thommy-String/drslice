@@ -2,7 +2,6 @@
 import React from 'react'
 import { Sparkles } from 'lucide-react'
 import { Button } from './Button'
-import { Navbar } from './Navbar'
 import { TrustBanner } from './TrustBanner'
 import { ReviewsCarousel } from './ReviewsCarousel'
 import { HeroServiceTags } from './HeroServiceTags'
@@ -14,7 +13,6 @@ import sliceLogo from '../assets/loghi/slice logo. finale_.png'
 export function HeroSection () {
   return (
     <div className='bg-[#f0f7f4] relative isolate font-sans'>
-      <Navbar />
       {/* Spacer per la navbar fixed */}
       <div className='h-[60px] lg:h-[76px]' />
 

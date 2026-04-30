@@ -20,9 +20,22 @@ export function Navbar ({ dark = false }) {
       const currentScrollY = window.scrollY
       setScrolled(currentScrollY > 20)
 
-      if (currentScrollY < 50 || currentScrollY < lastScrollY.current) {
+      // Always show near top
+      if (currentScrollY < 80) {
+        setVisible(true)
+        lastScrollY.current = currentScrollY
+        return
+      }
+
+      // Ignore micro-scrolls to avoid flicker (5px threshold)
+      const delta = currentScrollY - lastScrollY.current
+      if (Math.abs(delta) < 5) return
+
+      if (delta < 0) {
+        // Scrolling up → show navbar
         setVisible(true)
       } else {
+        // Scrolling down → hide navbar
         setVisible(false)
       }
 

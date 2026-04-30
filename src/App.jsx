@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { HeroSection } from './components/HeroSection'
 import { Methodology } from './components/Methodology'
 import { Locations } from './components/Locations'
@@ -7,6 +7,7 @@ import { Services } from './components/Services'
 import { ComparisonTable } from './components/ComparisonTable'
 import { ServiceQuiz } from './components/ServiceQuiz'
 import { MetodoSlicePage } from './components/MetodoSlicePage'
+import { Navbar } from './components/Navbar'
 import { DOCTOR_INFO, SOCIAL_LINKS, LOCATIONS, SERVICES } from './constants'
 import mioDottoreLogo from './assets/loghi/mio-dottore.png'
 import { Phone, MapPin, Mail, Instagram, Facebook, ExternalLink, Calendar, Sparkles } from 'lucide-react'
@@ -43,8 +44,13 @@ function HomePage () {
 }
 
 function App () {
+  const location = useLocation()
+  // MetodoSlicePage renders its own dark Navbar; only mount global Navbar elsewhere.
+  const showGlobalNavbar = location.pathname !== '/metodo-slice'
+
   return (
     <div className='min-h-screen bg-slate-50 font-sans text-slate-900 relative'>
+      {showGlobalNavbar && <Navbar />}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/metodo-slice' element={<MetodoSlicePage />} />

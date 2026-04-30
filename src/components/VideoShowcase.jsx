@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Play, X, Facebook, ExternalLink, Volume2, VolumeX } from 'lucide-react';
 import thumbHero from '../assets/thumbnails/video-hero-slice.jpg';
 import thumbFibre from '../assets/thumbnails/video-fibre-slice.jpg';
@@ -171,44 +172,35 @@ function VideoModal({ video, onClose }) {
     };
     window.addEventListener('keydown', handleKey);
 
-    // Robust scroll lock (works on iOS Safari too): freeze body in place,
-    // compensate for scrollbar width to avoid layout shift.
-    const scrollY = window.scrollY;
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    // Scroll lock that does NOT break position:fixed children (portal):
+    // lock <html> with overflow hidden + compensate scrollbar width.
+    // Avoids the Safari/iOS bug where body{position:fixed} re-anchors fixed children.
+    const html = document.documentElement;
     const { body } = document;
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
     const prev = {
-      position: body.style.position,
-      top: body.style.top,
-      left: body.style.left,
-      right: body.style.right,
-      width: body.style.width,
-      overflow: body.style.overflow,
-      paddingRight: body.style.paddingRight,
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      bodyPaddingRight: body.style.paddingRight,
+      bodyTouchAction: body.style.touchAction,
     };
-    body.style.position = 'fixed';
-    body.style.top = `-${scrollY}px`;
-    body.style.left = '0';
-    body.style.right = '0';
-    body.style.width = '100%';
+    html.style.overflow = 'hidden';
     body.style.overflow = 'hidden';
+    body.style.touchAction = 'none';
     if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`;
 
     return () => {
       window.removeEventListener('keydown', handleKey);
-      body.style.position = prev.position;
-      body.style.top = prev.top;
-      body.style.left = prev.left;
-      body.style.right = prev.right;
-      body.style.width = prev.width;
-      body.style.overflow = prev.overflow;
-      body.style.paddingRight = prev.paddingRight;
-      window.scrollTo(0, scrollY);
+      html.style.overflow = prev.htmlOverflow;
+      body.style.overflow = prev.bodyOverflow;
+      body.style.paddingRight = prev.bodyPaddingRight;
+      body.style.touchAction = prev.bodyTouchAction;
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center animate-fadeIn"
+      className="fixed inset-0 z-[2147483646] bg-black backdrop-blur-xl flex items-center justify-center animate-fadeIn p-4 sm:p-6"
       onClick={onClose}
     >
       {/* Close button - top right */}
@@ -217,15 +209,20 @@ function VideoModal({ video, onClose }) {
           e.stopPropagation();
           onClose();
         }}
-        className="fixed top-20 right-4 sm:top-24 sm:right-6 z-[210] w-12 h-12 rounded-full bg-red-500/20 hover:bg-red-500/40 backdrop-blur-md border border-red-300/40 flex items-center justify-center text-red-100 hover:text-white transition-all duration-300 hover:scale-110 shadow-2xl"
+        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[2147483647] w-12 h-12 rounded-full bg-red-500/20 hover:bg-red-500/40 backdrop-blur-md border border-red-300/40 flex items-center justify-center text-red-100 hover:text-white transition-all duration-300 hover:scale-110 shadow-2xl"
         aria-label="Chiudi"
       >
         <X className="w-6 h-6" />
       </button>
 
-      {/* Video container */}
+      {/* Video container — auto-fits viewport while preserving 9:16.
+          Height is min(availableHeight, widthBasedHeight) so it never overflows. */}
       <div
-        className="relative h-[90vh] max-h-[900px] aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl"
+        className="relative rounded-2xl overflow-hidden shadow-2xl bg-black"
+        style={{
+          aspectRatio: '9 / 16',
+          height: 'min(calc(100dvh - 2rem), calc((100vw - 2rem) * 16 / 9))',
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Native HTML5 video — local file, full quality with audio. No native controls. */}
@@ -268,7 +265,8 @@ function VideoModal({ video, onClose }) {
           <ExternalLink className="w-3 h-3" />
         </a>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
