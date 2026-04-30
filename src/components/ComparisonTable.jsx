@@ -4,12 +4,12 @@ import { X, Check } from 'lucide-react';
 export function ComparisonTable() {
   const comparativa = [
     { 
-      old: 'Diete rigide e "copia-incolla"', 
-      new: 'Piani 100% personalizzati' 
+      old: 'Vecchie diete rigide', 
+      new: 'Piani con sostituzioni libere' 
     },
     { 
-      old: 'Pesare ogni grammo', 
-      new: 'Porzioni visive e flessibili' 
+      old: 'Devi pesare ossessivamente tutto il cibo al grammo', 
+      new: 'Essere consapevoli è importante, ma non è lo scopo' 
     },
     { 
       old: 'Rinunciare a cene fuori', 

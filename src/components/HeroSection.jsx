@@ -4,12 +4,8 @@ import { Sparkles } from 'lucide-react';
 import { Button } from './Button';
 import { Navbar } from './Navbar';
 import { TrustBanner } from './TrustBanner';
-import { ComparisonTable } from './ComparisonTable';
 import { ReviewsCarousel } from './ReviewsCarousel';
-import { Services } from './Services';
-import { ServiceQuiz } from './ServiceQuiz';
 import { HeroServiceTags } from './HeroServiceTags';
-import { Locations } from './Locations';
 import paoloImg from '../assets/Paolo/paoloheroimage.png';
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
 
@@ -17,6 +13,8 @@ export function HeroSection() {
   return (
     <div className="bg-[#f0f7f4] relative isolate font-sans">
       <Navbar />
+      {/* Spacer per la navbar fixed */}
+      <div className="h-[60px] lg:h-[76px]" />
       
       {/* Dynamic Modern Background Elements - "Deep Medical" Theme */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -68,8 +66,8 @@ export function HeroSection() {
               
               <div className="mb-8 lg:mb-12 mt-4 lg:mt-0 hidden lg:block text-center lg:text-left">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
-                  Oltre il conteggio delle calorie: <br className="hidden lg:block" />
-                  impara a nutrirti con il <span className="text-emerald-600 relative inline-block">
+Meno regole, più consapevolezza. <br className="hidden lg:block" />
+                  impara a nutrirti per sempre con il <span className="text-emerald-600 relative inline-block">
                     Metodo SLICE.
                     <svg className="absolute -bottom-2 left-0 w-full h-3 text-emerald-200/60 -z-10" viewBox="0 0 100 12" preserveAspectRatio="none">
                       <path d="M0,10 Q50,0 100,10" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round" />
@@ -141,6 +139,13 @@ export function HeroSection() {
                 {/* Design element - overlapping graphic */}
                 <div className="absolute top-10 -left-6 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl z-20"></div>
 
+                {/* Roma Badge - top right */}
+                <div className="absolute top-4 right-4 z-40">
+                  <div className="bg-orange-500/90 backdrop-blur-md text-white px-3 py-1.5 rounded-full border border-orange-400/50 flex items-center gap-1.5 hover:bg-orange-600 transition-all duration-300 shadow-lg shadow-orange-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest">📍 Roma</span>
+                  </div>
+                </div>
+
                 {/* Refined label - now slightly larger and at bottom-left of the image card */}
                 <div className="absolute bottom-6 left-6 z-40 transform hover:scale-105 transition-transform duration-300">
                   <div className="bg-white/90 backdrop-blur-md px-4 py-2.5 md:px-6 md:py-3.5 rounded-2xl shadow-xl border border-white/50 flex flex-col">
@@ -175,7 +180,7 @@ export function HeroSection() {
                       </div>
                     </div>
                   </div>
-                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-widest whitespace-nowrap">150+ RECENSIONI</span>
+                  <span className="text-[10px] sm:text-[11px] font-medium text-blue-400 uppercase tracking-tight whitespace-nowrap">150+ RECENSIONI</span>
                 </div>
               </div>
 
@@ -236,35 +241,6 @@ export function HeroSection() {
           {/* Reviews Carousel - Completely breaking out of the container on all screen sizes to span 100% of viewport width without clipping */}
           <div className="relative mt-12 w-[100vw] ml-[calc(-50vw+50%)]">
             <ReviewsCarousel />
-          </div>
-
-          {/* Moved Services here, stretching across screen properly without horizontal scrollbar */}
-          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-50">
-            <Services />
-          </div>
-
-          {/* Locations Section - Above Quiz */}
-          <div className="mt-8 lg:mt-12 w-[100vw] ml-[calc(-50vw+50%)] relative z-0">
-            <Locations />
-          </div>
-
-          {/* Quiz Section - Under Locations */}
-          <div className="mt-12 z-50 flex flex-col items-center justify-center max-w-lg mx-auto w-full">
-            <h3 className="text-xl lg:text-3xl font-black mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-emerald-500" />
-              Non sai da dove iniziare?
-            </h3>
-            <ServiceQuiz />
-          </div>
-
-          {/* Underneath the grid, taking full width */}
-          <div className="mt-8 sm:mt-12 w-full flex flex-col items-center gap-12 sm:gap-16">
-
-            {/* Comparison Table */}
-            <div className="w-[100vw] ml-[calc(-50vw+50%)] lg:ml-0 lg:w-full sm:max-w-5xl px-0 sm:px-6 lg:px-8 z-20">
-              <ComparisonTable />
-            </div>
-
           </div>
 
         </div>

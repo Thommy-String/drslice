@@ -3,7 +3,7 @@ import {
   Home, Wifi, Car, Clock, CheckCircle2,
   Sparkles, Dumbbell, Apple, Stethoscope, FlameKindling,
   ScanLine, MessageCircle, ArrowRight, X, ChevronRight,
-  Flame, Salad, HeartPulse, Wind
+  Flame, Salad, HeartPulse, Wind, Trophy
 } from 'lucide-react';
 import { SERVICES, SOCIAL_LINKS, DOCTOR_INFO } from '../constants';
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png';
@@ -222,6 +222,34 @@ function ServiceCard({ service, colorSet }) {
         ))}
       </ul>
 
+      {/* Special partnership note for Training Plan */}
+      {service.group === "Training" && (
+        <div className="mb-6 p-5 rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200 shadow-sm">
+          <div className="flex gap-3 items-start">
+            <div className="text-2xl mt-1">🤝</div>
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest text-orange-700 mb-2">Abbinamento Perfetto</p>
+              <p className="text-sm text-orange-900 leading-relaxed">
+                Per <span className="font-bold">massimizzare i risultati</span>, abbina questo piano alla <span className="font-bold">Nutrizione Sportiva</span> per sinergia perfetta tra come ti alleni e cosa mangi.
+              </p>
+              <a
+                href="#diet-sports"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('diet-sports');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                  }
+                }}
+                className="inline-block mt-3 text-xs font-black text-orange-700 hover:text-orange-900 underline transition-colors"
+              >
+                Vai alla Nutrizione Sportiva →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* CTA */}
       <div>
         <a
@@ -320,6 +348,43 @@ function SpecCard({ service, spec }) {
 
 /* ─── DIET SPOTLIGHT DATA ─── */
 const DIET_SPOTLIGHTS = [
+  {
+    id: "sports",
+    icon: Trophy,
+    color: "orange",
+    badge: "Metodo SLICE",
+    name: "Nutrizione Sportiva",
+    tagline: "Massimizza la performance e i risultati in palestra",
+    intro: "La nutrizione dello sportivo non è una dieta generica. È una strategia alimentare costruita su misura della disciplina che pratichi, della tua programmazione di allenamento e dei tuoi obiettivi. Il focus è preciso: massimizzare la performance in allenamento, ottimizzare il recupero muscolare, e se il tuo obiettivo è la ricomposizione corporea, gestire nutrienti e timing per costruire muscolo e perdere grasso contemporaneamente.",
+    sections: [
+      {
+        label: "Il timing dei nutrienti: ogni pasto è strategico",
+        body: "Non si tratta di 'mangiare sano'. Si tratta di timing. Quando mangi, cosa mangi, quanti grammi di carboidrati e proteine in prossimità dell'allenamento — tutto questo influisce direttamente sulla qualità dell'allenamento, sul recupero muscolare, e sulla velocità con cui raggiungi i tuoi obiettivi. Il piano viene costruito intorno alla tua programmazione settimanale di allenamenti.",
+        sectionColor: "orange",
+      },
+      {
+        label: "Adattamento allo stile di vita: il piano che regge nel tempo",
+        body: "Se sei un atleta con una vita intensa, con variabilità negli orari di allenamento o gare sporadiche, il piano tiene conto di tutto. Non è rigido — è flessibile ma preciso. Saprai esattamente cosa mangiare nei giorni ad alta intensità, nei giorni di recupero, e come adattare il piano quando cambia la tua programmazione annuale.",
+        sectionColor: "amber",
+      },
+      {
+        label: "Psicologia e costanza: dall'alimentazione all'allenamento",
+        body: "Un piano perfetto non serve se non lo segui. Per questo c'è particolare attenzione all'aspetto motivazionale: creare consapevolezza su come l'alimentazione migliora davvero la tua performance, come il timing dei nutrienti ti dà più energia in palestra, come la costanza sull'alimentazione amplifica i risultati dell'allenamento. Questo crea vera costanza.",
+        sectionColor: "yellow",
+      },
+      {
+        label: "Nutrizione + Allenamento: il massimo dei risultati",
+        body: "Se il tuo obiettivo è la ricomposizione corporea o il potenziamento con i pesi, hai la possibilità di lavorare insieme su nutrizione E allenamento. Questo significa gestire entrambe le variabili in modo sinergico: sapere quante proteine servono per la tua massa attuale, come strutturare i carboidrati intorno alla tua progressione di forza, come l'alimentazione supporta l'aumento di volume e la riduzione del grasso. I risultati quando gestisc entrambe le variabili sono significativamente superiori.",
+        sectionColor: "emerald",
+      }
+    ],
+    benefits: [
+      "Più energia e resistenza negli allenamenti",
+      "Recupero muscolare ottimizzato e meno indolenzimento",
+      "Risultati visibili: muscolo gained, grasso perso",
+    ],
+    target: "Chiunque pratichi sport o allenamento con i pesi e voglia ottimizzare davvero la performance e i risultati. Sia che tu sia un atleta agonista che un appassionato di fitness. Perfetto per chi ha obiettivi di ricomposizione corporea e vuole gestire nutrizione e allenamento insieme per massimizzare i risultati."
+  },
   {
     id: "keto",
     icon: Flame,
@@ -451,6 +516,18 @@ const DIET_SPOTLIGHTS = [
 ];
 
 const dietSpotlightColors = {
+  orange: {
+    iconBg: "bg-orange-100 text-orange-600",
+    accent: "text-orange-600",
+    badge: "bg-orange-100 text-orange-700",
+    border: "border-orange-100 hover:border-orange-300",
+    btn: "bg-orange-600 hover:bg-orange-700 shadow-orange-600/20",
+    pill: "bg-orange-50 border-orange-100",
+    dot: "bg-orange-500",
+    labelColor: "text-orange-600",
+    drawerHeader: "bg-gradient-to-br from-orange-600 to-amber-700",
+    checkColor: "text-orange-500",
+  },
   purple: {
     iconBg: "bg-purple-100 text-purple-600",
     accent: "text-purple-600",
@@ -514,6 +591,7 @@ const sectionColorMap = {
   sky:     { bg: "bg-sky-50",     border: "border-sky-200",     label: "text-sky-700",     num: "bg-sky-100 text-sky-700" },
   cyan:    { bg: "bg-cyan-50",    border: "border-cyan-200",    label: "text-cyan-700",    num: "bg-cyan-100 text-cyan-700" },
   blue:    { bg: "bg-blue-50",    border: "border-blue-200",    label: "text-blue-700",    num: "bg-blue-100 text-blue-700" },
+  yellow:  { bg: "bg-yellow-50",  border: "border-yellow-200",  label: "text-yellow-700",  num: "bg-yellow-100 text-yellow-700" },
 };
 
 /* ═══════════════════════════════════
@@ -645,10 +723,20 @@ function DietSpotlightCard({ diet, onOpen }) {
 
   return (
     <div
+      id={diet.id === "sports" ? "diet-sports" : undefined}
       className={`group relative flex flex-col bg-white border rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer ${c.border}`}
       onClick={() => onOpen(diet)}
     >
-      <div className="flex items-start justify-between mb-3">
+      {/* Linked to Training Plan badge — only for Sports Nutrition */}
+      {diet.id === "sports" && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+          <span className="bg-amber-600 text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-amber-600/30 tracking-widest uppercase whitespace-nowrap">
+            ✨ Perfetto con Piano Allenamento
+          </span>
+        </div>
+      )}
+
+      <div className="flex items-start justify-between mb-3 mt-2">
         <div className={`p-2.5 rounded-xl ${c.iconBg}`}>
           <Icon className="w-5 h-5" />
         </div>
@@ -693,7 +781,7 @@ export function Services() {
   };
 
   const modeServices = SERVICES.filter(s => s.category === activeMode);
-  const specServices = SERVICES.filter(s => (s.category === "Diete" || s.category === "Diagnostica") && s.group !== "Keto");
+  const specServices = SERVICES.filter(s => (s.category === "Diete" || s.category === "Diagnostica") && s.group !== "Keto" && s.group !== "Performance");
 
   const currentMode = MODES.find(m => m.key === activeMode);
   const cMode = modeColors[currentMode.color];

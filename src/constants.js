@@ -82,34 +82,35 @@ export const SERVICES = [
     price: "50 € - 60 €", 
     category: "In Studio",
     group: "Percorso Base",
-    description: "Il motore della costanza. Monitoriamo i progressi e affiniamo la strategia per restare in scia.",
+    description: "Il motore della costanza. Monitoriamo i progressi. Eseguita ogni 3 settimane.",
     duration: "30 min",
-    target: "Per chi ha già effettuato la prima visita e vuole mantenere i risultati.",
+    target: "Per chi ha già effettuato la prima visita e vuole mantenere i risultati. Ogni 21 giorni.",
     features: [
       "Monitoraggio peso e circonferenze",
       "Revisione dello schema alimentare",
       "Rilevazione BIA di controllo",
       "Supporto motivazionale continuo",
-      "Aggiustamenti basati sul feedback"
+      "Aggiustamenti basati sul feedback",
+      "Ogni 3 settimane"
     ]
   },
   { 
-    name: "Educazione alimentare", 
+    name: "Educazione Alimentare", 
     price: "60 € - 70 €", 
     category: "In Studio",
     group: "Percorso Formativo",
-    description: "Impara a gestire la tua alimentazione con consapevolezza, senza piano alimentare. Pura conoscenza applicata.",
+    description: "La bussola per chi non ha bisogno di una dieta, ma di risposte. Una sessione intensiva per eliminare i falsi miti, ottimizzare i tuoi piatti e smettere di procedere per tentativi.",
     duration: "60 min",
-    target: "Chi vuole capire come funziona la nutrizione e imparare a mangiare bene in autonomia.",
-    note: "Non prevede il rilascio di un piano alimentare.",
+    target: "Per chi sta già bene ma vuole chiarezza su dibbi come ad es. abbinamento cibi o fare la spesa senza l'ansia di sbagliare.",
+    note: "Focus su autonomia e conoscenza. Non prevede il rilascio di un piano alimentare pesato.",
     features: [
-      "Insegnamento lettura delle etichette",
-      "Pianificazione dei pasti settimanali",
-      "Gestione della spesa intelligente",
-      "Approccio intuitivo senza restrizioni rigide",
-      "Materiale didattico OMAGGIO"
+      "Abbinamenti strategici (per evitare pesantezza e cali di energia)",
+      "Fact-checking nutrizionale: eliminiamo i dubbi su cosa fa bene o male",
+      "Decodifica delle etichette: impara a leggere oltre il marketing",
+      "La spesa ottimizzata: organizzare la dispensa per mangiare sano in 10 minuti",
+      "Risposte dirette alle tue curiosità (integratori, superfood, falsi miti)"
     ]
-  },
+},
   { 
     name: "Piano Allenamento su Misura", 
     price: "Prezzo su misura", 
@@ -120,10 +121,9 @@ export const SERVICES = [
     target: "Per chi vuole massimizzare i risultati estetici e di salute abbinando l'esercizio fisico corretto alla dieta.",
     features: [
       "Valutazione della mobilità articolare",
-      "Test di forza e resistenza iniziali",
       "Programmazione periodizzata mensile",
-      "Video tutorial per ogni esercizio",
-      "Integrazione con il piano alimentare"
+      "Feedback e correzione su tecnica di esecuzione esercizi",
+      "Anche allenamenti a casa con attrezzatura limitata"
     ]
   },
 
@@ -167,16 +167,17 @@ export const SERVICES = [
     price: "Prezzo su Misura", 
     category: "Online",
     group: "Smart",
-    description: "Il tuo percorso nutrizionale completo, ovunque tu sia. Con formula di pagamento flessibile.",
+    description: "Il tuo percorso nutrizionale completo, ovunque tu sia. Con visita di controllo ogni 3 settimane.",
     duration: "60 min",
     target: "Lavoratori fuori sede, studenti o chi preferisce la comodità del digitale.",
     note: "Disponibile con pagamento mensile, semestrale o annuale anticipato.",
     features: [
-      "Videochiamata HD su piattaforma sicura",
+      "Videochiamata su piattaforma sicura",
       "Analisi del diario alimentare",
       "Valutazione obiettivi a distanza",
-      "Invio kit per auto-rilevazioni",
-      "Piano alimentare digitale incluso"
+      "Tutorial PDF come misurare a casa",
+      "Piano alimentare digitale incluso",
+      "Monitoraggio progressi con foto"
     ]
   },
   { 
@@ -189,10 +190,10 @@ export const SERVICES = [
     target: "Per chi si allena a casa o in palestra e vuole una guida tecnica esperta a distanza.",
     features: [
       "Video-call di valutazione tecnica",
-      "Scheda digitale interattiva",
       "Check settimanali via chat/video",
       "Correzione dell'esecuzione tramite video",
-      "Adattamento costante in base ai feedback"
+      "Adattamento mensile costante in base ai feedback",
+      "Monitoriaggio progressi con foto",
     ]
   },
 

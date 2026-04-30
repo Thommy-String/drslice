@@ -4,10 +4,12 @@ import { Methodology } from './components/Methodology'
 import { Locations } from './components/Locations'
 import { AboutMe } from './components/AboutMe'
 import { Services } from './components/Services'
+import { ComparisonTable } from './components/ComparisonTable'
+import { ServiceQuiz } from './components/ServiceQuiz'
 import { MetodoSlicePage } from './components/MetodoSlicePage'
 import { DOCTOR_INFO, SOCIAL_LINKS, LOCATIONS, SERVICES } from './constants'
 import mioDottoreLogo from './assets/loghi/mio-dottore.png'
-import { Phone, MapPin, Mail, Instagram, Facebook, ExternalLink, Calendar } from 'lucide-react'
+import { Phone, MapPin, Mail, Instagram, Facebook, ExternalLink, Calendar, Sparkles } from 'lucide-react'
 
 function HomePage() {
   return (
@@ -16,7 +18,25 @@ function HomePage() {
       
       <main>
         <Methodology />
+        <Services />
         <AboutMe />
+        <Locations />
+
+        {/* Quiz Section */}
+        <div className="py-16 flex flex-col items-center justify-center max-w-lg mx-auto w-full px-6">
+          <h3 className="text-xl lg:text-3xl font-black mb-4 flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-emerald-500" />
+            Non sai da dove iniziare?
+          </h3>
+          <ServiceQuiz />
+        </div>
+
+        {/* Comparison Table */}
+        <div className="w-full flex justify-center pb-16">
+          <div className="w-[100vw] ml-[calc(-50vw+50%)] lg:ml-0 lg:w-full sm:max-w-5xl px-0 sm:px-6 lg:px-8">
+            <ComparisonTable />
+          </div>
+        </div>
       </main>
     </>
   )

@@ -9,26 +9,26 @@ export function AboutMe() {
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/2 pointer-events-none" />
       
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:items-center">
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="flex flex-col gap-12 lg:gap-16 lg:flex-row lg:items-center px-0 md:px-6">
           
           {/* Visual Side: Minimal Image (now even smaller) */}
-          <div className="lg:w-1/5 md:w-1/3 w-1/2 mx-auto lg:mx-0">
+          <div className="lg:w-1/5 md:w-1/3 w-full lg:mx-0">
             <div className="relative">
-              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <div className="md:rounded-2xl overflow-hidden md:border border-white/10 shadow-xl">
                 <img 
                   src={aboutMeImg} 
                   alt="Dott. Paolo Panarini" 
-                  className="w-full aspect-[4/5] object-cover scale-105"
+                  className="w-full aspect-[4/5] sm:aspect-square md:aspect-[4/5] object-cover md:scale-105"
                 />
               </div>
               {/* Minimal Accent */}
-              <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-emerald-500/40 rounded-bl-xl -z-10" />
+              <div className="hidden md:block absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-emerald-500/40 rounded-bl-xl -z-10" />
             </div>
           </div>
 
           {/* Content Side: Minimalist Narrative (takes up more space) */}
-          <div className="lg:w-4/5">
+          <div className="lg:w-4/5 px-6 md:px-0">
             <div className="mb-12">
               <div className="h-0.5 w-12 bg-emerald-500 mb-6" />
               <h2 className="text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight">

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, UtensilsCrossed, Ban, Clock, Sparkles, CheckCircle2, Heart, Brain, Salad, Target, Users, BookOpen } from 'lucide-react';
 import { Navbar } from './Navbar';
@@ -131,16 +131,85 @@ const colorMap = {
 };
 
 export function MetodoSlicePage() {
+  const [showConfetti, setShowConfetti] = useState(false);
+  const confettiRef = React.useRef(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Trigger confetti when component mounts (once)
+  useEffect(() => {
+    // We'll trigger confetti on scroll to step 05
+    const handleScroll = () => {
+      if (confettiRef.current) {
+        const rect = confettiRef.current.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8 && !showConfetti) {
+          setShowConfetti(true);
+          triggerConfetti();
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showConfetti]);
+
+  const triggerConfetti = () => {
+    // Create confetti particles
+    if (confettiRef.current) {
+      const container = confettiRef.current;
+      const colors = ['#10b981', '#06b6d4', '#8b5cf6', '#ec4899', '#f59e0b', '#3b82f6'];
+      
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = confetti.style.width;
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.borderRadius = '50%';
+        confetti.style.left = container.getBoundingClientRect().left + container.offsetWidth / 2 + 'px';
+        confetti.style.top = container.getBoundingClientRect().top + 'px';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.zIndex = '9999';
+        
+        const xVelocity = (Math.random() - 0.5) * 8;
+        const yVelocity = Math.random() * -10 - 5;
+        let x = parseFloat(confetti.style.left);
+        let y = parseFloat(confetti.style.top);
+        let vx = xVelocity;
+        let vy = yVelocity;
+        
+        document.body.appendChild(confetti);
+        
+        const animate = () => {
+          x += vx;
+          y += vy;
+          vy += 0.1; // gravity
+          vx *= 0.99; // air resistance
+          
+          confetti.style.left = x + 'px';
+          confetti.style.top = y + 'px';
+          confetti.style.opacity = Math.max(0, 1 - (y - parseFloat(container.getBoundingClientRect().top)) / 500);
+          
+          if (y < window.innerHeight + 100) {
+            requestAnimationFrame(animate);
+          } else {
+            document.body.removeChild(confetti);
+          }
+        };
+        
+        animate();
+      }
+    }
+  };
 
   return (
     <div className="bg-[#0B0F19] min-h-screen font-sans text-white overflow-x-hidden">
       <Navbar dark />
 
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden">
+      <section className="relative pt-12 pb-2 lg:pt-20 lg:pb-32 overflow-hidden">
         {/* Background effects */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-600/8 rounded-full blur-[160px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/8 rounded-full blur-[140px] -translate-x-1/3 translate-y-1/2 pointer-events-none" />
@@ -180,13 +249,164 @@ export function MetodoSlicePage() {
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-300 font-light max-w-3xl mx-auto leading-relaxed mb-6">
-              Non è solo un piano alimentare. È un percorso che ti insegna a gestire la tua alimentazione <span className="text-white font-semibold">in autonomia, per tutta la vita</span>.
-            </p>
+            
 
-            <p className="text-base text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
-              Grazie ad un affiancamento costante e un'attenzione rivolta all'educazione alimentare, imparerai a bilanciare i tuoi pasti da solo — portandoti dietro queste conoscenze per sempre, evitando di riprendere peso in futuro.
-            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ 3 OBIETTIVI ═══════════════ */}
+      <section className="relative overflow-hidden">
+        {/* Full-bleed dark background */}
+        <div className="absolute inset-0 bg-[#070B14]" />
+
+        {/* ── Section header ── */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
+            I 3 Obiettivi del Percorso
+          </div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] text-white mb-8">
+            Ecco i 3 obiettivi <br />
+            <span className="bg-gradient-to-r from-emerald-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">del metodo.</span>
+          </h2>
+          <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-6 max-w-3xl mx-auto">
+            Una trasformazione che dura non si costruisce su un unico pilastro. Se lavori solo sulla composizione corporea senza affrontare il mindset e l'educazione alimentare, prima o poi tornerai al punto di partenza. Il Metodo SLICE funziona è stato creato per affrontare <strong className="text-white font-semibold">tutti e tre gli aspetti insieme</strong>.
+          </p>
+        </div>
+
+        {/* ── Obiettivo 01 — Educazione ── */}
+        <div className="relative z-10 border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-16">
+            {/* Left: number + label */}
+            <div className="shrink-0 flex flex-col items-start gap-3 lg:w-48">
+              <span className="text-[clamp(5rem,12vw,9rem)] font-black leading-none text-emerald-500/40 select-none -ml-2 tracking-tighter">1</span>
+              <span className="text-3xl lg:text-5xl font-black tracking-tight text-emerald-400">Educazione</span>
+              <div className="w-12 h-px bg-emerald-500/40" />
+            </div>
+            {/* Center: main content */}
+            <div className="flex-1 min-w-0">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug tracking-tight mb-6">
+                La tua trasformazione parte <span className="text-emerald-400">dalla clinica, non dalle ipotesi.</span>
+              </p>
+              <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
+                Analisi del sangue, composizione corporea, quadro metabolico — tutto esaminato insieme prima di impostare qualsiasi piano. Colesterolo alto, glicemia, tiroide: nulla viene ignorato. Non si parte dal cibo, <strong className="text-slate-200 font-semibold">si parte da te.</strong>
+              </p>
+            </div>
+            
+          </div>
+        </div>
+
+        {/* ── Obiettivo 02 — Mindset ── */}
+        <div className="relative z-10 border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-16">
+            {/* Left: number + label */}
+            <div className="shrink-0 flex flex-col items-start gap-3 lg:w-48">
+              <span className="text-[clamp(5rem,12vw,9rem)] font-black leading-none text-sky-500/40 select-none -ml-2 tracking-tighter">2</span>
+              <span className="text-4xl lg:text-6xl font-black tracking-tight text-sky-400">Mindset</span>
+              <div className="w-12 h-px bg-sky-500/40" />
+            </div>
+            {/* Center: main content */}
+            <div className="flex-1 min-w-0">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug tracking-tight mb-6">
+                Gestione dello <span className="text-sky-400">Stress e riprogrammazione delle abitudini</span>
+              </p>
+              <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
+                Questo non è un programma automatico. Sei una persona, non un numero. Lavoriamo insieme sui veri problemi della tua vita: lo stress, l'abitudine, le emozioni legate al cibo. Quando senti di voler mollare — e capita a tutti — sono qui per sostenerti, capire cosa sta succedendo e trovare insieme la soluzione. <strong className="text-slate-200 font-semibold">Faccio da guida anche quando il percorso mentale diventa difficile.</strong>
+              </p>
+            </div>
+          
+          </div>
+        </div>
+
+        {/* ── Obiettivo 03 — Composizione Corporea ── */}
+        <div className="relative z-10 border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-16">
+            {/* Left: number + label */}
+            <div className="shrink-0 flex flex-col items-start gap-3 lg:w-48">
+              <span className="text-[clamp(5rem,12vw,9rem)] font-black leading-none text-violet-500/40 select-none -ml-2 tracking-tighter">3</span>
+              <span className="text-3xl lg:text-5xl font-black tracking-tight text-violet-400">Composizione Corporea</span>
+              <div className="w-12 h-px bg-violet-500/40" />
+            </div>
+            {/* Center: main content */}
+            <div className="flex-1 min-w-0">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug tracking-tight mb-6">
+                 Risulati visibili allo specchio.<span className="text-violet-400"> Un corpo di cui andrai fier.</span>
+              </p>
+              <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
+                Meno massa grassa, più massa muscolare, una silhouette che cambia in modo tangibile. <strong className="text-slate-200 font-semibold">Quando le persone intorno a te iniziano a dirtelo, sai che il lavoro ha funzionato.</strong>
+              </p>
+            </div>
+            
+          </div>
+          <div className="border-t border-white/5" />
+        </div>
+      </section>
+
+      {/* ═══════════════ COME FUNZIONA IL PERCORSO ═══════════════ */}
+      <section className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F19] via-[#0E1225] to-[#0B0F19]" />
+        
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold text-emerald-500 uppercase tracking-[0.3em] mb-4">Il Percorso</h2>
+            <h3 className="text-3xl md:text-5xl font-black tracking-tight mb-6">
+              Cosa succede in pratica?
+            </h3>
+          </div>
+
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/50 via-emerald-500/20 to-transparent" />
+
+            {[
+              {
+                step: '01',
+                title: 'Prima Visita & Analisi',
+                description: 'Conosciamo la tua storia, i tuoi obiettivi e le tue abitudini. Eseguo un\'analisi della composizione corporea e valutiamo insieme il punto di partenza. Successivamente faremo un\'analisi ad ogni visita per monitorare con precisione i tuoi progressi.'
+              },
+              {
+                step: '02',
+                title: 'Piano Personalizzato & Adattabile',
+                description: 'Costruisco il tuo piano alimentare su misura, basato sulle tue abitudini reali e il tuo stile di vita. Ma non è rigido: se qualcosa non funziona, lo cambiamo. Se le tue esigenze evolvono, il piano si adatta con te.'
+              },
+              {
+                step: '03',
+                title: 'Affiancamento Costante',
+              description: "Il percorso non è una linea retta: ci sono i giorni no, lo stress al lavoro, o quel momento di crisi personale — come una rottura sentimentale. A differenza dell’approccio medico tradizionale, qui non verrai mai giudicato. Il mio compito è essere presente proprio in quei momenti per gestire lo sfogo, la complicazione o la crisi. Siamo umani, non macchine. Ti offro un supporto a 360 gradi che integra la salute fisica con quella mentale, aiutandoti a rialzarti e a ritrovare l’equilibrio senza sensi di colpa."
+              },
+              {
+                step: '04',
+                title: 'Educazione & Autonomia',
+                description: 'Ti insegno a leggere le etichette, a bilanciare i pasti, a fare la spesa intelligente. Settimana dopo settimana diventi sempre più autonomo.'
+              },
+              {
+                step: '05',
+                title: 'Libertà Definitiva',
+                description: 'L\'obiettivo finale è che tu non abbia più bisogno di me. Avrai le conoscenze per gestire la tua alimentazione in autonomia, per sempre.',
+                isFinal: true
+              }
+            ].map((item, index) => (
+              <div key={index} ref={item.isFinal ? confettiRef : null} className={`relative flex flex-col md:flex-row items-start gap-6 mb-12 last:mb-0 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} ${item.isFinal ? 'bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-emerald-500/10 rounded-3xl p-8 md:p-12 border border-emerald-500/30 shadow-2xl shadow-emerald-500/20' : ''}`}>
+                {/* Special background for final step */}
+                {item.isFinal && (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-emerald-400/5 to-emerald-400/0 rounded-3xl animate-pulse" />
+                    <div className="absolute -top-1 -right-1 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
+                  </>
+                )}
+                
+                {/* Dot */}
+                <div className={`absolute ${item.isFinal ? 'left-8 md:left-1/2' : 'left-6 md:left-1/2'} -translate-x-1/2 w-3 h-3 rounded-full ${item.isFinal ? 'bg-gradient-to-r from-emerald-400 to-cyan-400 ring-4 ring-emerald-500/50 shadow-lg shadow-emerald-500/50 animate-pulse' : 'bg-emerald-500 ring-4 ring-[#0B0F19]'} z-10`} />
+                
+                {/* Content card */}
+                <div className={`${item.isFinal ? 'relative z-10 w-full' : ''} ${item.isFinal ? '' : `ml-16 md:ml-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right md:w-1/2' : 'md:pl-16 md:text-left md:w-1/2 md:ml-auto'}`}`}>
+                  <span className={`${item.isFinal ? 'text-emerald-300 text-base' : 'text-emerald-500 text-sm'} font-black uppercase tracking-widest`}>{item.step}</span>
+                  <h4 className={`${item.isFinal ? 'text-4xl md:text-5xl bg-gradient-to-r from-emerald-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent' : 'text-2xl md:text-3xl text-white'} font-black mt-1 mb-3`}>{item.title}</h4>
+                  <p className={`${item.isFinal ? 'text-emerald-100/80 text-lg' : 'text-slate-400 text-base'} font-light leading-relaxed`}>{item.description}</p>
+                 
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -308,65 +528,6 @@ export function MetodoSlicePage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ COME FUNZIONA IL PERCORSO ═══════════════ */}
-      <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F19] via-[#0E1225] to-[#0B0F19]" />
-        
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-sm font-bold text-emerald-500 uppercase tracking-[0.3em] mb-4">Il Percorso</h2>
-            <h3 className="text-3xl md:text-5xl font-black tracking-tight mb-6">
-              Cosa succede in pratica?
-            </h3>
-          </div>
-
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/50 via-emerald-500/20 to-transparent" />
-
-            {[
-              {
-                step: '01',
-                title: 'Prima Visita & Analisi',
-                description: 'Conosciamo la tua storia, i tuoi obiettivi e le tue abitudini. Eseguo un\'analisi della composizione corporea e valutiamo insieme il punto di partenza.'
-              },
-              {
-                step: '02',
-                title: 'Piano Personalizzato',
-                description: 'Costruisco il tuo piano alimentare su misura. Non una dieta generica: un percorso pensato per il tuo stile di vita, i tuoi gusti e i tuoi ritmi.'
-              },
-              {
-                step: '03',
-                title: 'Educazione & Autonomia',
-                description: 'Ti insegno a leggere le etichette, a bilanciare i pasti, a fare la spesa intelligente. Settimana dopo settimana diventi sempre più autonomo.'
-              },
-              {
-                step: '04',
-                title: 'Affiancamento Costante',
-                description: 'Non ti lascio solo. Controlli periodici, supporto continuo e aggiustamenti in base ai tuoi progressi e ai cambiamenti nella tua vita.'
-              },
-              {
-                step: '05',
-                title: 'Libertà Definitiva',
-                description: 'L\'obiettivo finale è che tu non abbia più bisogno di me. Avrai le conoscenze per gestire la tua alimentazione in autonomia, per sempre.'
-              }
-            ].map((item, index) => (
-              <div key={index} className={`relative flex flex-col md:flex-row items-start gap-6 mb-12 last:mb-0 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                {/* Dot */}
-                <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-[#0B0F19] z-10" />
-                
-                {/* Content card */}
-                <div className={`ml-16 md:ml-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right md:w-1/2' : 'md:pl-16 md:text-left md:w-1/2 md:ml-auto'}`}>
-                  <span className="text-emerald-500 text-xs font-black uppercase tracking-widest">{item.step}</span>
-                  <h4 className="text-xl font-black text-white mt-1 mb-3">{item.title}</h4>
-                  <p className="text-slate-400 font-light leading-relaxed text-sm">{item.description}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
