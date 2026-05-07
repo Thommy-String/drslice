@@ -2,11 +2,9 @@ import React from 'react'
 import { Stethoscope, Monitor, HeartPulse, Activity, Activity as Pulse, FileText, Apple, Baby, Calendar, Dumbbell, Home } from 'lucide-react'
 
 const serviceTags = [
-  { label: 'Prima visita dietistica', icon: Stethoscope, color: 'text-emerald-700', bg: 'bg-emerald-50', border: 'border-emerald-100', id: 'prima-visita-nutrizionale' },
-  { label: 'Consulenza online', icon: Monitor, color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-100', id: 'consulenza-online' },
-  { label: 'Visita nutrizionale', icon: Apple, color: 'text-rose-700', bg: 'bg-rose-50', border: 'border-rose-100', id: 'prima-visita-nutrizionale' },
+  { label: 'Prima visita nutrizionale', icon: Stethoscope, color: 'text-emerald-700', bg: 'bg-emerald-50', border: 'border-emerald-100', id: 'prima-visita-nutrizionale' },
+  { label: 'Percorsi online', icon: Monitor, color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-100', id: 'consulenza-online' },
   { label: 'Visita di controllo', icon: Calendar, color: 'text-teal-700', bg: 'bg-teal-50', border: 'border-teal-100', id: 'visita-di-controllo' },
-  { label: 'Analisi BIA', icon: Activity, color: 'text-cyan-700', bg: 'bg-cyan-50', border: 'border-cyan-100', id: 'analisi-bia-avanzata' },
   { label: 'Educazione alimentare', icon: Baby, color: 'text-amber-700', bg: 'bg-amber-50', border: 'border-amber-100', id: 'educazione-alimentare' },
   { label: 'Dieta per sportivi', icon: Dumbbell, color: 'text-orange-700', bg: 'bg-orange-50', border: 'border-orange-100', id: 'nutrizione-sportiva' },
   { label: 'Visita a domicilio', icon: Home, color: 'text-pink-700', bg: 'bg-pink-50', border: 'border-pink-100', id: 'visita-a-domicilio' }

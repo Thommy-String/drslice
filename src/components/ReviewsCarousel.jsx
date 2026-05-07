@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png'
 
 const reviews = [
@@ -59,16 +59,54 @@ const reviews = [
 ]
 
 export function ReviewsCarousel () {
+  const containerRef = useRef(null)
+  const rafRef = useRef(null)
+  const isPausedRef = useRef(false)
+  const resumeTimerRef = useRef(null)
+
+  useEffect(() => {
+    const tick = () => {
+      const el = containerRef.current
+      if (el) {
+        if (!isPausedRef.current) {
+          el.scrollLeft += 0.5
+        }
+        // Always keep the loop seamless, even during manual scroll
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft -= el.scrollWidth / 2
+        }
+      }
+      rafRef.current = requestAnimationFrame(tick)
+    }
+    rafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [])
+
+  const pause = () => {
+    clearTimeout(resumeTimerRef.current)
+    isPausedRef.current = true
+  }
+
+  const resume = (delay = 0) => {
+    resumeTimerRef.current = setTimeout(() => {
+      isPausedRef.current = false
+    }, delay)
+  }
+
   return (
-    <section className='py-0  overflow-hidden relative w-full' id='recensioni'>
-      {/* Visual background decor */}
-      <div className='absolute top-0 left-0 w-full h-[1px] ' />
+    <section className='py-0 overflow-hidden relative w-full' id='recensioni'>
+      <div className='absolute top-0 left-0 w-full h-[1px]' />
       <div
-        className='w-full overflow-hidden mt-0 mb-2 relative z-30 group flex-1'
+        ref={containerRef}
+        onMouseEnter={pause}
+        onMouseLeave={() => resume(0)}
+        onTouchStart={pause}
+        onTouchEnd={() => resume(1200)}
+        className='w-full overflow-x-scroll mt-0 mb-2 relative z-30 flex-1'
         style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
       >
-        {/* Container that animates */}
-        <div className='flex w-max animate-scroll group-hover:[animation-play-state:paused] pointer-events-auto'>
+        {/* Container with doubled reviews for seamless loop */}
+        <div className='flex w-max'>
           {/* We map twice to create an infinite loop effect */}
           {[...reviews, ...reviews].map((review, index) => (
             <div

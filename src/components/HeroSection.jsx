@@ -105,7 +105,7 @@ export function HeroSection () {
                         <polyline points='20 6 9 17 4 12' />
                       </svg>
                     </div>
-                    <span className='text-[12px] sm:text-xs font-medium text-slate-500 tracking-tight'>
+                    <span className='text-[14px] sm:text-xs font-medium text-slate-500 tracking-tight'>
                       Nessun pagamento anticipato
                     </span>
                   </div>
@@ -145,9 +145,9 @@ export function HeroSection () {
 
                 {/* Label - bottom left */}
                 <div className='absolute bottom-4 left-4 z-40'>
-                  <div className='bg-white/90 backdrop-blur-md px-3 py-2.5 rounded-lg shadow-lg border border-white/50 flex flex-col gap-1.5'>
-                    <span className='text-sm font-bold text-slate-800'>Dott. Paolo Panarini</span>
-                    <span className='text-xs font-medium text-emerald-600 uppercase tracking-tight'>Nutrizionista e Dietista</span>
+                  <div className='bg-white/90 backdrop-blur-md px-3 py-2.5 rounded-lg shadow-lg border border-white/50 flex flex-col gap-1'>
+                    <span className='text-lg font-black text-slate-900'>Dott. Paolo Panarini</span>
+                    <span className='text-sm font-medium text-emerald-600 uppercase tracking-tight'>Nutrizionista - Dietista</span>
                     <div className='flex items-center gap-1.5 pt-1 border-t border-slate-200'>
                       <img 
                         src={sliceLogo} 
@@ -212,7 +212,7 @@ export function HeroSection () {
                       <img
                         src={mioDottoreLogo}
                         alt=''
-                        className='w-12 h-6 object-contain brightness-0 invert'
+                        className='w-16 h-10 object-contain brightness-0 invert'
                       />
                      }
                   >
@@ -224,7 +224,7 @@ export function HeroSection () {
                         <polyline points='20 6 9 17 4 12' />
                       </svg>
                     </div>
-                    <span className='text-[12px] font-medium text-slate-500 tracking-tight'>
+                    <span className='text-[14px] font-medium text-slate-400 tracking-tight'>
                       Nessun pagamento anticipato
                     </span>
                   </div>

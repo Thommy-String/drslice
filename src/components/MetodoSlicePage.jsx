@@ -5,7 +5,7 @@ import { Navbar } from './Navbar'
 import { SOCIAL_LINKS } from '../constants'
 import logoImg from '../assets/loghi/slice logo. finale_.png'
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png'
-import doctorImg from '../assets/Paolo/drPaoloPanarini.jpg'
+import doctorImg from '../assets/Paolo/drPaoloPanarini.png'
 
 const pillars = [
   {

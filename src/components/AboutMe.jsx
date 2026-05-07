@@ -67,7 +67,7 @@ export function AboutMe () {
                 </div>
                 <div className='space-y-2'>
                   <p className='text-slate-400 leading-relaxed text-base'>
-                    Formazione clinica tra <span className='text-white'>Toscana e Roma</span>, consolidata con un approccio basato sull'evidenza scientifica e l'aggiornamento costante.
+                    <span className='text-white'>Laurea in Dietistica</span> e <span className='text-white'>Laurea Magistrale in Scienze della Nutrizione Umana</span>, entrambe conseguite presso l'Università degli Studi di Roma Tor Vergata.
                   </p>
                 </div>
               </div>

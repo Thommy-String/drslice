@@ -8,6 +8,8 @@ import { ComparisonTable } from './components/ComparisonTable'
 import { ServiceQuiz } from './components/ServiceQuiz'
 import { MetodoSlicePage } from './components/MetodoSlicePage'
 import { Navbar } from './components/Navbar'
+import { MobileCTA } from './components/MobileCTA'
+import { CookieBanner } from './components/CookieBanner'
 import { DOCTOR_INFO, SOCIAL_LINKS, LOCATIONS, SERVICES } from './constants'
 import mioDottoreLogo from './assets/loghi/mio-dottore.png'
 import { Phone, MapPin, Mail, Instagram, Facebook, ExternalLink, Calendar, Sparkles } from 'lucide-react'
@@ -51,6 +53,8 @@ function App () {
   return (
     <div className='min-h-screen bg-slate-50 font-sans text-slate-900 relative'>
       {showGlobalNavbar && <Navbar />}
+      <MobileCTA />
+      <CookieBanner />
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/metodo-slice' element={<MetodoSlicePage />} />
