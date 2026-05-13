@@ -63,17 +63,23 @@ export function ReviewsCarousel () {
   const rafRef = useRef(null)
   const isPausedRef = useRef(false)
   const resumeTimerRef = useRef(null)
+  const isProgrammaticScrollRef = useRef(false)
 
   useEffect(() => {
     const tick = () => {
       const el = containerRef.current
       if (el) {
         if (!isPausedRef.current) {
+          isProgrammaticScrollRef.current = true
           el.scrollLeft += 0.5
+          // reset flag on next tick (after the scroll event has fired)
+          requestAnimationFrame(() => { isProgrammaticScrollRef.current = false })
         }
         // Always keep the loop seamless, even during manual scroll
         if (el.scrollLeft >= el.scrollWidth / 2) {
+          isProgrammaticScrollRef.current = true
           el.scrollLeft -= el.scrollWidth / 2
+          requestAnimationFrame(() => { isProgrammaticScrollRef.current = false })
         }
       }
       rafRef.current = requestAnimationFrame(tick)
@@ -93,17 +99,26 @@ export function ReviewsCarousel () {
     }, delay)
   }
 
+  const handleScroll = () => {
+    // Ignore scroll events triggered by our own programmatic scrolling
+    if (isProgrammaticScrollRef.current) return
+    pause()
+    resume(2500)
+  }
+
   return (
     <section className='py-0 overflow-hidden relative w-full' id='recensioni'>
       <div className='absolute top-0 left-0 w-full h-[1px]' />
       <div
         ref={containerRef}
         onMouseEnter={pause}
-        onMouseLeave={() => resume(0)}
+        onMouseLeave={() => resume(2000)}
         onTouchStart={pause}
-        onTouchEnd={() => resume(1200)}
-        className='w-full overflow-x-scroll mt-0 mb-2 relative z-30 flex-1'
-        style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+        onTouchEnd={() => resume(2500)}
+        onTouchCancel={() => resume(2500)}
+        onScroll={handleScroll}
+        className='w-full overflow-x-auto mt-0 mb-2 relative z-30 flex-1 no-scrollbar'
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
       >
         {/* Container with doubled reviews for seamless loop */}
         <div className='flex w-max'>

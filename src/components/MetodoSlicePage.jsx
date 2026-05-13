@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ChevronRight, UtensilsCrossed, Ban, Clock, Sparkles, CheckCircle2, Heart, Brain, Salad, Target, Users, BookOpen, Crown, Utensils, Sunrise, Plane, Moon, Eye } from 'lucide-react'
 import { Navbar } from './Navbar'
@@ -208,6 +209,14 @@ export function MetodoSlicePage () {
 
   return (
     <div className='bg-[#0B0F19] min-h-screen font-sans text-white overflow-x-hidden'>
+      <Helmet>
+        <title>Il Metodo SLICE – Dimagrimento Duraturo | Dott. Paolo Panarini</title>
+        <meta name="description" content="Scopri il Metodo SLICE del Dott. Paolo Panarini: un approccio nutrizionale scientifico per dimagrire senza rinunce, senza effetto yo-yo e con risultati duraturi. Roma." />
+        <link rel="canonical" href="https://www.slicenutrizione.it/metodo-slice" />
+        <meta property="og:title" content="Il Metodo SLICE – Dimagrimento Duraturo | Dott. Paolo Panarini" />
+        <meta property="og:description" content="Scopri il Metodo SLICE: nutrizione personalizzata, risultati duraturi, senza rinunce." />
+        <meta property="og:url" content="https://www.slicenutrizione.it/metodo-slice" />
+      </Helmet>
       <Navbar dark />
 
       {/* ═══════════════ HERO ═══════════════ */}
