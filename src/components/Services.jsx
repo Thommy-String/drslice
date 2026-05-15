@@ -622,16 +622,16 @@ function DietDrawer ({ diet, onClose }) {
 
   return (
     <div
-      className='fixed inset-0 z-[9998] flex items-end justify-center pointer-events-none'
-      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+      className='fixed inset-0 z-[9998] flex items-end justify-center'
     >
-      {/* Backdrop — Ottimizzato per mobile */}
-      <div className='absolute inset-0 bg-black/40 sm:backdrop-blur-md pointer-events-auto' onClick={onClose} />
+      {/* Backdrop */}
+      <div className='absolute inset-0 bg-black/40 sm:backdrop-blur-md' onClick={onClose} />
 
       {/* Drawer */}
       <div
-        className='relative w-full max-w-2xl bg-white rounded-t-[2.5rem] shadow-lg sm:shadow-2xl flex flex-col overflow-hidden'
+        className='relative w-full max-w-2xl bg-white rounded-t-[2.5rem] shadow-lg sm:shadow-2xl flex flex-col overflow-hidden pointer-events-auto'
         style={{ height: '90vh', maxHeight: '90vh', willChange: 'transform' }}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* ── Hero Header — solid color ── */}
         <div className={`relative ${c.drawerHeader} px-6 pt-4 pb-6 flex-shrink-0`}>

@@ -1,44 +1,57 @@
 import React from 'react'
-import { Stethoscope, Monitor, HeartPulse, Activity, Activity as Pulse, FileText, Apple, Baby, Calendar, Dumbbell, Home } from 'lucide-react'
+import { MapPin, Navigation } from 'lucide-react'
+import { LOCATIONS } from '../constants'
 
-const serviceTags = [
-  { label: 'Prima visita nutrizionale', icon: Stethoscope, color: 'text-emerald-700', bg: 'bg-emerald-50', border: 'border-emerald-100', id: 'prima-visita-nutrizionale' },
-  { label: 'Percorsi online', icon: Monitor, color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-100', id: 'consulenza-online' },
-  { label: 'Visita di controllo', icon: Calendar, color: 'text-teal-700', bg: 'bg-teal-50', border: 'border-teal-100', id: 'visita-di-controllo' },
-  { label: 'Educazione alimentare', icon: Baby, color: 'text-amber-700', bg: 'bg-amber-50', border: 'border-amber-100', id: 'educazione-alimentare' },
-  { label: 'Dieta per sportivi', icon: Dumbbell, color: 'text-orange-700', bg: 'bg-orange-50', border: 'border-orange-100', id: 'nutrizione-sportiva' },
-  { label: 'Visita a domicilio', icon: Home, color: 'text-pink-700', bg: 'bg-pink-50', border: 'border-pink-100', id: 'visita-a-domicilio' }
-]
+import studioImg from '../assets/sedi/viaTriesteTivoli.jpg'
+import fisioImg from '../assets/sedi/fisioera.jpg'
+import farmaciaImg from '../assets/sedi/farmaciaFabbri.png'
+import naturaImg from '../assets/sedi/naturalFarma-Guidonia.jpg'
+
+const locationImgs = [studioImg, fisioImg, farmaciaImg, naturaImg]
 
 export function HeroServiceTags () {
-  const handleClick = (id) => {
-    if (!id) return
-    const element = document.getElementById(`service-${id}`)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  const TagRenderer = ({ tag }) => {
-    const Icon = tag.icon
-    return (
-      <div
-        onClick={() => handleClick(tag.id)}
-        className={`flex flex-col items-center justify-center gap-1.5 p-2 rounded-xl ${tag.bg} ${tag.color} border ${tag.border} shadow-sm text-center w-full min-h-[60px] cursor-pointer hover:shadow-md transition-shadow`}
-      >
-        <Icon className='w-4 h-4 shrink-0 opacity-80' />
-        <span className='text-[9px] sm:text-[10px] font-bold uppercase tracking-wide leading-[1.1] w-full' style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>
-          {tag.label}
-        </span>
-      </div>
-    )
+  const handleClick = () => {
+    const el = document.getElementById('sedi')
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <div className='w-full mt-4 sm:mt-6 px-1'>
-      <div className='grid grid-cols-2 md:grid-cols-4 gap-2'>
-        {serviceTags.map((tag, idx) => (
-          <TagRenderer key={idx} tag={tag} />
+      <p className='text-[10px] font-semibold uppercase tracking-widest text-slate-400 text-center mb-3'>
+        📍 Dove ricevo
+      </p>
+      <div className='grid grid-cols-2 lg:grid-cols-4 gap-2.5'>
+        {LOCATIONS.map((loc, idx) => (
+          <div
+            key={idx}
+            onClick={handleClick}
+            className='group relative cursor-pointer rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]'
+            style={{ aspectRatio: '4/5' }}
+          >
+            {/* Photo */}
+            <img
+              src={locationImgs[idx]}
+              alt={loc.name}
+              className='absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
+            />
+            {/* Strong gradient for readability */}
+            <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10' />
+
+            {/* Map pin badge top-left */}
+            <div className='absolute top-2.5 left-2.5 flex items-center gap-1 bg-emerald-500/90 backdrop-blur-sm rounded-full px-2 py-0.5 shadow-sm'>
+              <MapPin className='w-2.5 h-2.5 text-white flex-shrink-0' />
+              <span className='text-white text-[9px] font-bold uppercase tracking-wide'>{loc.city}</span>
+            </div>
+
+            {/* Text bottom */}
+            <div className='absolute bottom-0 left-0 right-0 p-3 text-left'>
+              <p className='text-white text-[13px] font-black leading-tight drop-shadow-sm'>{loc.name}</p>
+              <div className='flex items-start gap-1 mt-1'>
+                <Navigation className='w-2.5 h-2.5 text-emerald-300 flex-shrink-0 mt-0.5' />
+                <p className='text-white/80 text-[10px] font-medium leading-snug'>{loc.address}</p>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>

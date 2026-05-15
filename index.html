@@ -2,8 +2,15 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192.png" />
+    <meta name="theme-color" content="#0b1c12" />
+
+    <!-- ═══ Performance hints ═══ -->
+    <!-- Prefetch the first 2 video previews so they're ready when user scrolls -->
+    <link rel="prefetch" as="video" href="/videos/previews/video-hero-slice.mp4" type="video/mp4" />
+    <link rel="prefetch" as="video" href="/videos/previews/video-fibre-slice.mp4" type="video/mp4" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- ═══ Primary SEO ═══ -->

@@ -1,12 +1,13 @@
 // src/components/HeroSection.jsx
 import React from 'react'
-import { Sparkles } from 'lucide-react'
+import { Sparkles, Phone } from 'lucide-react'
 import { Button } from './Button'
 import { TrustBanner } from './TrustBanner'
 import { ReviewsCarousel } from './ReviewsCarousel'
 import { HeroServiceTags } from './HeroServiceTags'
 import { VideoShowcase } from './VideoShowcase'
 import paoloImg from '../assets/Paolo/paoloheroimage.png'
+import drAvatarImg from '../assets/Paolo/drPaoloPanarini.png'
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png'
 import sliceLogo from '../assets/loghi/slice logo. finale_.png'
 
@@ -65,7 +66,7 @@ export function HeroSection () {
             <div className='order-2 lg:order-1 max-w-2xl mx-auto lg:mx-0 relative z-20 overflow-visible w-full lg:w-5/12 lg:pr-8 lg:shrink-0'>
 
               <div className='mb-8 lg:mb-12 mt-4 lg:mt-0 hidden lg:block text-center lg:text-left'>
-                <h1 className='text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6'>
+                <h1 className='text-4xl sm:text-3xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6'>
                   Meno regole, più consapevolezza. <br className='hidden lg:block' />
                   impara a nutrirti per sempre con il <span className='text-emerald-600 relative inline-block'>
                     Metodo SLICE.
@@ -80,23 +81,21 @@ export function HeroSection () {
               {/* Desktop CTA */}
               <div className='mt-4 lg:mt-0 hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center'>
                 <div className='flex flex-col gap-3 w-full sm:w-auto'>
-                  <Button
-                    href='https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    variant='primary'
-                    size='lg'
-                    className='w-full sm:w-auto text-lg shadow-lg shadow-emerald-600/30 flex items-center justify-center transition-all duration-300'
-                    icon={
-                      <img
-                        src={mioDottoreLogo}
-                        alt=''
-                        className='w-18 h-8 sm:w-14 sm:h-18 object-contain brightness-0 invert'
-                      />
-                    }
+                  <a
+                    href='tel:+393408964979'
+                    className='group flex items-center gap-3 w-full sm:w-auto px-6 py-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl text-base font-bold shadow-lg shadow-emerald-500/30 hover:shadow-emerald-600/40 transition-all duration-300'
                   >
-                    Prenota la tua visita
-                  </Button>
+                    <img
+                      src={drAvatarImg}
+                      alt='Dott. Paolo Panarini'
+                      className='w-9 h-9 rounded-full object-cover border-2 border-white/40 flex-shrink-0'
+                    />
+                    <span className='flex flex-col text-left'>
+                      <span className='text-[11px] font-semibold uppercase tracking-widest text-emerald-100'>Chiama ora</span>
+                      <span className='text-[17px] font-black leading-tight'>Dott. Paolo Panarini</span>
+                    </span>
+                    <Phone className='w-5 h-5 ml-auto flex-shrink-0 group-hover:scale-110 transition-transform' />
+                  </a>
 
                   {/* Trust/Risk Reversal Signal */}
                   <div className='flex items-center justify-center lg:justify-start gap-2 px-1'>
@@ -106,7 +105,7 @@ export function HeroSection () {
                       </svg>
                     </div>
                     <span className='text-[14px] sm:text-xs font-medium text-slate-500 tracking-tight'>
-                      Nessun pagamento anticipato
+                      Nessun obbligo di acquisto
                     </span>
                   </div>
                 </div>
@@ -190,7 +189,7 @@ export function HeroSection () {
 
               {/* Service tags moved right under the hero image */}
               <div className='block lg:hidden w-full max-w-sm mx-auto mt-6 text-center'>
-                <h1 className='text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-4'>
+                <h1 className='text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-4'>
                   Meno regole, più consapevolezza. <br />
                   Impara a nutrirti per sempre con il <span className='text-emerald-600 relative inline-block'>
                     Metodo SLICE
@@ -201,23 +200,21 @@ export function HeroSection () {
                 </h1>
               
                 <div className='flex flex-col gap-3 w-full mt- mb-6'>
-                  <Button
-                    href='https://www.miodottore.it/paolo-panarini/dietista-nutrizionista/tivoli'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    variant='primary'
-                    size='lg'
-                    className='w-full text-base shadow-lg shadow-emerald-600/30 flex items-center justify-center transition-all duration-300'
-                    icon={
-                      <img
-                        src={mioDottoreLogo}
-                        alt=''
-                        className='w-16 h-10 object-contain brightness-0 invert'
-                      />
-                     }
+                  <a
+                    href='tel:+393408964979'
+                    className='group flex items-center gap-3 w-full px-5 py-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl text-base font-bold shadow-lg shadow-emerald-500/30 hover:shadow-emerald-600/40 transition-all duration-300'
                   >
-                    Prenota la tua visita
-                  </Button>
+                    <img
+                      src={drAvatarImg}
+                      alt='Dott. Paolo Panarini'
+                      className='w-9 h-9 rounded-full object-cover border-2 border-white/40 flex-shrink-0'
+                    />
+                    <span className='flex flex-col text-left'>
+                      <span className='text-[11px] font-semibold uppercase tracking-widest text-emerald-100'>Chiama ora</span>
+                      <span className='text-[17px] font-black leading-tight'>Dott. Paolo Panarini</span>
+                    </span>
+                    <Phone className='w-5 h-5 ml-auto flex-shrink-0 group-hover:scale-110 transition-transform' />
+                  </a>
                   <div className='flex items-center justify-center gap-2 px-1'>
                     <div className='flex items-center justify-center w-4 h-4 rounded-full bg-emerald-100 text-emerald-600'>
                       <svg xmlns='http://www.w3.org/2000/svg' className='w-2.5 h-2.5' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='3' strokeLinecap='round' strokeLinejoin='round'>
@@ -225,7 +222,7 @@ export function HeroSection () {
                       </svg>
                     </div>
                     <span className='text-[14px] font-medium text-slate-400 tracking-tight'>
-                      Nessun pagamento anticipato
+                      Nessun obbligo di acquisto
                     </span>
                   </div>
                 </div>

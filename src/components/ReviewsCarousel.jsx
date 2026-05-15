@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useCallback } from 'react'
 import mioDottoreLogo from '../assets/loghi/mio-dottore.png'
 
 const reviews = [
@@ -59,28 +59,23 @@ const reviews = [
 ]
 
 export function ReviewsCarousel () {
-  const containerRef = useRef(null)
-  const rafRef = useRef(null)
-  const isPausedRef = useRef(false)
-  const resumeTimerRef = useRef(null)
-  const isProgrammaticScrollRef = useRef(false)
+  const scrollerRef = useRef(null)
+  const rafRef      = useRef(null)
+  const pausedRef   = useRef(false)
+  const resumeT     = useRef(null)
+  const posRef      = useRef(0)   // sub-pixel accumulator
 
+  /* ── Auto-scroll loop (writes scrollLeft directly, smooth & manual-friendly) ── */
   useEffect(() => {
+    const SPEED = 0.5  // px / frame ≈ 30 px/s
+
     const tick = () => {
-      const el = containerRef.current
-      if (el) {
-        if (!isPausedRef.current) {
-          isProgrammaticScrollRef.current = true
-          el.scrollLeft += 0.5
-          // reset flag on next tick (after the scroll event has fired)
-          requestAnimationFrame(() => { isProgrammaticScrollRef.current = false })
-        }
-        // Always keep the loop seamless, even during manual scroll
-        if (el.scrollLeft >= el.scrollWidth / 2) {
-          isProgrammaticScrollRef.current = true
-          el.scrollLeft -= el.scrollWidth / 2
-          requestAnimationFrame(() => { isProgrammaticScrollRef.current = false })
-        }
+      const el = scrollerRef.current
+      if (el && !pausedRef.current && el.scrollWidth > el.clientWidth) {
+        posRef.current += SPEED
+        const half = el.scrollWidth / 2
+        if (posRef.current >= half) posRef.current -= half
+        el.scrollLeft = posRef.current
       }
       rafRef.current = requestAnimationFrame(tick)
     }
@@ -88,46 +83,59 @@ export function ReviewsCarousel () {
     return () => cancelAnimationFrame(rafRef.current)
   }, [])
 
-  const pause = () => {
-    clearTimeout(resumeTimerRef.current)
-    isPausedRef.current = true
-  }
+  /* ── Pause / Resume — also re-syncs accumulator with manual scroll position ── */
+  const pause = useCallback(() => {
+    clearTimeout(resumeT.current)
+    pausedRef.current = true
+  }, [])
 
-  const resume = (delay = 0) => {
-    resumeTimerRef.current = setTimeout(() => {
-      isPausedRef.current = false
+  const resume = useCallback((delay = 1500) => {
+    clearTimeout(resumeT.current)
+    resumeT.current = setTimeout(() => {
+      // sync accumulator with whatever position the user left it at
+      const el = scrollerRef.current
+      if (el) {
+        const half = el.scrollWidth / 2
+        posRef.current = el.scrollLeft % half
+      }
+      pausedRef.current = false
     }, delay)
-  }
+  }, [])
 
-  const handleScroll = () => {
-    // Ignore scroll events triggered by our own programmatic scrolling
-    if (isProgrammaticScrollRef.current) return
-    pause()
-    resume(2500)
-  }
+  /* While dragging keep the accumulator in sync so resume is seamless */
+  const onScroll = useCallback(() => {
+    if (pausedRef.current) {
+      const el = scrollerRef.current
+      if (el) posRef.current = el.scrollLeft
+    }
+  }, [])
 
   return (
     <section className='py-0 overflow-hidden relative w-full' id='recensioni'>
       <div className='absolute top-0 left-0 w-full h-[1px]' />
-      <div
-        ref={containerRef}
-        onMouseEnter={pause}
-        onMouseLeave={() => resume(2000)}
-        onTouchStart={pause}
-        onTouchEnd={() => resume(2500)}
-        onTouchCancel={() => resume(2500)}
-        onScroll={handleScroll}
-        className='w-full overflow-x-auto mt-0 mb-2 relative z-30 flex-1 no-scrollbar'
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
-      >
-        {/* Container with doubled reviews for seamless loop */}
-        <div className='flex w-max'>
-          {/* We map twice to create an infinite loop effect */}
-          {[...reviews, ...reviews].map((review, index) => (
-            <div
-              key={`${review.id}-${index}`}
-              className='w-[280px] bg-white border border-slate-100 rounded-2xl p-5 mx-3 flex-shrink-0 flex flex-col justify-between relative overflow-hidden shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]'
-            >
+
+      {/* Wrapper: keeps gradient masks fixed outside */}
+      <div className='relative'>
+        {/* Scrollable track — pause on enter, manual swipe possible while paused */}
+        <div
+          ref={scrollerRef}
+          onMouseEnter={pause}
+          onMouseLeave={() => resume(1500)}
+          onTouchStart={pause}
+          onTouchEnd={() => resume(2200)}
+          onTouchCancel={() => resume(2200)}
+          onPointerDown={pause}
+          onPointerUp={() => resume(2000)}
+          onScroll={onScroll}
+          className='w-full overflow-x-auto no-scrollbar'
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+        >
+          <div className='flex w-max'>
+            {[...reviews, ...reviews].map((review, index) => (
+              <div
+                key={`${review.id}-${index}`}
+                className='w-[280px] bg-white border border-slate-100 rounded-2xl p-5 mx-3 flex-shrink-0 flex flex-col justify-between relative overflow-hidden shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]'
+              >
               {/* Very subtile elegant gradient hint at the bottom right */}
               <div className='absolute -bottom-10 -right-10 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl' />
 
@@ -177,10 +185,11 @@ export function ReviewsCarousel () {
             </div>
           ))}
         </div>
+        </div>{/* end scrollerRef */}
 
-        {/* Gradient masks for smooth edges */}
-        <div className='absolute top-0 right-0 w-12 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none' />
-        <div className='absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none' />
+        {/* Gradient masks */}
+        <div className='pointer-events-none absolute inset-y-0 left-0  w-16 bg-gradient-to-r from-white to-transparent z-10' />
+        <div className='pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10' />
       </div>
     </section>
   )

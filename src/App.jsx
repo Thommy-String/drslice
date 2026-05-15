@@ -10,6 +10,8 @@ import { MetodoSlicePage } from './components/MetodoSlicePage'
 import { Navbar } from './components/Navbar'
 import { MobileCTA } from './components/MobileCTA'
 import { CookieBanner } from './components/CookieBanner'
+import { KillScreen } from './components/KillScreen'
+import { useKillSwitch } from './killSwitch'
 import { DOCTOR_INFO, SOCIAL_LINKS, LOCATIONS, SERVICES } from './constants'
 import mioDottoreLogo from './assets/loghi/mio-dottore.png'
 import { Phone, MapPin, Mail, Instagram, Facebook, ExternalLink, Calendar, Sparkles } from 'lucide-react'
@@ -46,7 +48,12 @@ function HomePage () {
 }
 
 function App () {
+  const siteEnabled = useKillSwitch()
   const location = useLocation()
+
+  // Kill-switch: se il sito è "spento" mostra solo la pagina di errore.
+  if (!siteEnabled) return <KillScreen />
+
   // MetodoSlicePage renders its own dark Navbar; only mount global Navbar elsewhere.
   const showGlobalNavbar = location.pathname !== '/metodo-slice'
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronRight } from 'lucide-react'
-import { NAV_LINKS, SOCIAL_LINKS } from '../constants'
+import { Menu, X, ChevronRight, Phone } from 'lucide-react'
+import { NAV_LINKS, SOCIAL_LINKS, DOCTOR_INFO } from '../constants'
 import logoImg from '../assets/loghi/slice logo. finale_.png'
 
 export function Navbar ({ dark = false }) {
@@ -81,6 +81,13 @@ export function Navbar ({ dark = false }) {
               </a>
             ))}
             <a
+              href={`tel:${DOCTOR_INFO.phone}`}
+              className='group/call flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-[11px] font-black uppercase tracking-widest transition-all shadow-lg shadow-emerald-500/30 hover:shadow-emerald-600/40'
+            >
+              <Phone className='w-3.5 h-3.5 group-hover/call:animate-bounce' />
+              <span>Chiama</span>
+            </a>
+            <a
               href={SOCIAL_LINKS.miodottore}
               target='_blank'
               className={`group/btn relative px-5 py-2.5 text-white rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-emerald-600 transition-all shadow-xl flex items-center gap-2 overflow-hidden ${dark ? 'bg-white/10 shadow-white/5 hover:shadow-emerald-600/20' : 'bg-slate-900 shadow-slate-900/10 hover:shadow-emerald-600/20'}`} rel='noreferrer'
@@ -91,16 +98,25 @@ export function Navbar ({ dark = false }) {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-3 rounded-2xl transition-all duration-300 relative z-[999999] ${
-              isOpen ? 'bg-slate-900 text-white' : (dark ? 'bg-white/10 text-slate-300 hover:bg-emerald-500/20 hover:text-emerald-400' : 'bg-slate-50 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600')
-            }`}
-            aria-label='Menu'
-          >
-            {isOpen ? <X className='h-6 w-6' /> : <Menu className='h-6 w-6' />}
-          </button>
+          {/* Mobile: Call button + Menu Button */}
+          <div className='lg:hidden flex items-center gap-2'>
+            <a
+              href={`tel:${DOCTOR_INFO.phone}`}
+              className='flex items-center gap-1.5 px-3.5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-[11px] font-black uppercase tracking-widest transition-all shadow-md shadow-emerald-500/30'
+            >
+              <Phone className='w-3.5 h-3.5' />
+              <span>Chiama</span>
+            </a>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-3 rounded-2xl transition-all duration-300 relative z-[999999] ${
+                isOpen ? 'bg-slate-900 text-white' : (dark ? 'bg-white/10 text-slate-300 hover:bg-emerald-500/20 hover:text-emerald-400' : 'bg-slate-50 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600')
+              }`}
+              aria-label='Menu'
+            >
+              {isOpen ? <X className='h-6 w-6' /> : <Menu className='h-6 w-6' />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -117,6 +133,16 @@ export function Navbar ({ dark = false }) {
           }`}
             style={{ transitionDelay: isOpen ? '100ms' : '0ms' }}
           >
+            <a
+              href={`tel:${DOCTOR_INFO.phone}`}
+              onClick={() => setIsOpen(false)}
+              className='flex items-center justify-between w-full p-5 bg-emerald-500 text-white rounded-[1.5rem] text-lg font-bold transition-all hover:bg-emerald-600 shadow-xl shadow-emerald-500/30 mb-3'
+            >
+              <span>📞 Chiama ora — {DOCTOR_INFO.phoneDisplay}</span>
+              <div className='bg-white/20 p-2 rounded-full'>
+                <Phone className='w-5 h-5' />
+              </div>
+            </a>
             <a
               href={SOCIAL_LINKS.miodottore}
               target='_blank'
