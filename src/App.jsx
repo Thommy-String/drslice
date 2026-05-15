@@ -11,6 +11,8 @@ import { Navbar } from './components/Navbar'
 import { MobileCTA } from './components/MobileCTA'
 import { CookieBanner } from './components/CookieBanner'
 import { KillScreen } from './components/KillScreen'
+import { PrivacyPolicyPage } from './components/PrivacyPolicyPage'
+import { CookiePolicyPage } from './components/CookiePolicyPage'
 import { useKillSwitch } from './killSwitch'
 import { DOCTOR_INFO, SOCIAL_LINKS, LOCATIONS, SERVICES } from './constants'
 import mioDottoreLogo from './assets/loghi/mio-dottore.png'
@@ -65,6 +67,8 @@ function App () {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/metodo-slice' element={<MetodoSlicePage />} />
+        <Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
+        <Route path='/cookie-policy' element={<CookiePolicyPage />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
 
@@ -199,11 +203,21 @@ function App () {
 
           <div className='pt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6'>
             <p className='text-slate-500 text-xs font-bold uppercase tracking-widest text-center md:text-left'>
-              © {new Date().getFullYear()} Dott. Paolo Panarini. Dietista & Nutrizionista. P.IVA 1234567890
+              © {new Date().getFullYear()} Dott. Paolo Panarini. Dietista & Nutrizionista.
             </p>
-            <div className='flex gap-8'>
-              <a href='#' className='text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-colors'>Privacy Policy</a>
-              <a href='#' className='text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-colors'>Cookie Policy</a>
+            <div className='flex flex-wrap gap-x-8 gap-y-2 justify-center'>
+              <a href='/privacy-policy' className='text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-colors'>Privacy Policy</a>
+              <a href='/cookie-policy' className='text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-colors'>Cookie Policy</a>
+              <button
+                type='button'
+                onClick={() => {
+                  if (typeof window.openCookiePreferences === 'function') window.openCookiePreferences()
+                  else window.dispatchEvent(new Event('sn:open-cookie-preferences'))
+                }}
+                className='text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-colors cursor-pointer'
+              >
+                Gestisci Cookie
+              </button>
             </div>
           </div>
         </div>

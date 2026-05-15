@@ -4,7 +4,7 @@ export const DOCTOR_INFO = {
   role: 'Biologo Nutrizionista',
   phone: '+393408964979',
   phoneDisplay: '340 896 4979',
-  email: 'paolo.panarini@email.it', // Da verificare
+  email: 'slice.nutrizione@gmail.com',
   whatsappMsg: 'Buongiorno Dott. Panarini, vorrei richiedere informazioni per una visita nutrizionale.'
 }
 

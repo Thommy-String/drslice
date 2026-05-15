@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { X, Cookie, ChevronDown, ChevronUp, Check, Shield } from 'lucide-react'
 
 const COOKIE_KEY = 'slice_cookie_consent'
-const COOKIE_EXPIRY_DAYS = 365
+const COOKIE_EXPIRY_DAYS = 180   // Garante: max 6 mesi consigliato per ricorrere a riproporre il banner
+const CONSENT_VERSION = 1        // Bump this when policy changes -> banner reappears
 
 function setCookie (name, value, days) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString()
@@ -16,6 +17,33 @@ function getCookie (name) {
   }, null)
 }
 
+/** Dispatch consent change event so other modules can react (e.g. GA loader) */
+function emitConsentChange (consent) {
+  try {
+    window.dispatchEvent(new CustomEvent('sn:consent-change', { detail: consent }))
+    // Google Consent Mode v2 (futuro-proof: si attiva quando aggiungerai gtag)
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        ad_storage:        consent.marketing ? 'granted' : 'denied',
+        ad_user_data:      consent.marketing ? 'granted' : 'denied',
+        ad_personalization: consent.marketing ? 'granted' : 'denied',
+        analytics_storage: consent.analytics ? 'granted' : 'denied'
+      })
+    }
+  } catch {}
+}
+
+/** Public API: read current consent (or null if not chosen yet). */
+export function getConsent () {
+  const raw = getCookie(COOKIE_KEY)
+  if (!raw) return null
+  try {
+    const obj = JSON.parse(raw)
+    if (obj.version !== CONSENT_VERSION) return null   // outdated -> ask again
+    return obj
+  } catch { return null }
+}
+
 export function CookieBanner () {
   const [visible, setVisible] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -23,25 +51,40 @@ export function CookieBanner () {
   const [saved, setSaved] = useState(false)
 
   useEffect(() => {
-    const saved = getCookie(COOKIE_KEY)
-    if (saved) return // already chose — never show again
-    const timer = setTimeout(() => setVisible(true), 10000)
-    return () => clearTimeout(timer)
+    // Show IMMEDIATELY on first visit (Garante: no delay) if no valid consent
+    const existing = getConsent()
+    if (!existing) {
+      setVisible(true)
+    }
+
+    // Allow other parts of the app (footer "Gestisci cookie") to reopen it
+    const reopen = () => {
+      const cur = getConsent()
+      if (cur) setPrefs({ analytics: !!cur.analytics, marketing: !!cur.marketing })
+      setExpanded(true)
+      setVisible(true)
+    }
+    window.addEventListener('sn:open-cookie-preferences', reopen)
+    window.openCookiePreferences = reopen   // also exposed on window for convenience
+    return () => window.removeEventListener('sn:open-cookie-preferences', reopen)
   }, [])
 
   const save = (consent) => {
-    setCookie(COOKIE_KEY, JSON.stringify(consent), COOKIE_EXPIRY_DAYS)
-    setVisible(false)
-
-    // Activate tracking only if marketing accepted
-    if (consent.marketing) {
-      // window.gtag?.('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' })
-      // fbq?.('consent', 'grant')
+    const payload = {
+      ...consent,
+      version: CONSENT_VERSION,
+      timestamp: new Date().toISOString()    // accountability GDPR art. 5
     }
+    setCookie(COOKIE_KEY, JSON.stringify(payload), COOKIE_EXPIRY_DAYS)
+    setVisible(false)
+    emitConsentChange(payload)
   }
 
   const acceptAll = () => save({ analytics: true, marketing: true })
   const rejectAll = () => save({ analytics: false, marketing: false })
+  // Garante: chiudere col "X" NON deve equivalere ad accettazione né a rifiuto.
+  // Il banner si chiude per la sessione e ricomparirà al prossimo accesso.
+  const dismissForSession = () => setVisible(false)
   const saveCustom = () => {
     setSaved(true)
     setTimeout(() => {
@@ -80,8 +123,9 @@ export function CookieBanner () {
               </div>
             </div>
             <button
-              onClick={rejectAll}
-              aria-label='Chiudi e rifiuta tutti'
+              onClick={dismissForSession}
+              aria-label='Chiudi (decidi più tardi)'
+              title='Chiudi senza decidere — il banner ricomparirà al prossimo accesso'
               className='w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors flex-shrink-0 mt-0.5'
             >
               <X className='w-4 h-4' />
